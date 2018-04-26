@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">AppTrainer</string>
     <string name="action_settings">Settings</string>
+
+
+    <!--LOGIN ACTIVITY-->
+    <string name="register_btn">Sign up</string>
+    <string name="login_btn">Sign in</string>
+    <string name="email_example_txt">bunny@trainer.gym</string>
+    <string name="forgot_passwd">Forgot password?</string>
 </resources>
