@@ -21,7 +21,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/ic_bunny_coach-web" />
+            app:srcCompat="@drawable/ic_bunny_coach_web" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/editText"

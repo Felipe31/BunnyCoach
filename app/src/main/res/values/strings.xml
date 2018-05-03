@@ -8,4 +8,8 @@
     <string name="login_btn">Sign in</string>
     <string name="email_example_txt">bunny@trainer.gym</string>
     <string name="forgot_passwd">Forgot password?</string>
+
+
+
+    <string name="choose_profile_button">test</string>
 </resources>
