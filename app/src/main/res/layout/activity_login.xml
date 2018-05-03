@@ -24,61 +24,68 @@
             app:srcCompat="@drawable/ic_bunny_coach_web" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editText"
+            android:id="@+id/user_etxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             app:backgroundTint="@color/textColor"
             android:textColor="@color/textColor"
             android:inputType="textEmailAddress"
-            android:padding="20dp"
+            android:paddingTop="16dp"
             android:text="@string/email_example_txt" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editText2"
+            android:id="@+id/passwd_etxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
             app:backgroundTint="@color/textColor"
-            android:padding="20dp"
+            android:paddingTop="16dp"
             android:text="1234567890"
             android:textColor="@color/textColor" />
-
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="@string/forgot_passwd" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button2"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="left"
+                    android:text="@string/forgot_passwd"
+                    android:textColor="@color/textColor" />
+
+                <Button
+                    android:id="@+id/register_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_border"
+                    android:text="@string/login_btn"
+                    android:layout_marginLeft="50dp"
+                    android:textColor="@color/textColor" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/login_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_border"
+                android:paddingTop="20dp"
+                android:layout_gravity="center"
                 android:text="@string/register_btn"
                 android:textColor="@color/textColor" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_border"
-                android:text="@string/login_btn"
-                android:textColor="@color/textColor" />
         </LinearLayout>
 
     </LinearLayout>
