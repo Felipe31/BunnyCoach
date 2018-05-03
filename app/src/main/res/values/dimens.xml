@@ -1,9 +1,14 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="margin_small">16dp</dimen>
+    <!-- https://material.io/guidelines/components/cards.html#cards-content-blocks -->
+    <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
-    <dimen name="margin_big">16dp</dimen>
+    <dimen name="margin_big">24dp</dimen>
+
+    <!-- https://material.io/guidelines/components/text-fields.html#text-fields-layout -->
+    <dimen name="margin_top_edit_text">@dimen/margin_medium</dimen>
+    <dimen name="margin_bottom_edit_text">@dimen/margin_small</dimen>
 
 </resources>
 
