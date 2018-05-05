@@ -17,4 +17,92 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+
+    <!-- Style to be used to buttons, applying borderless style from material design -->
+    <style name="AppButtom" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppButtom.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppButtom.Purple">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppButtom.Blue">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="AppButtom.Dummy">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:text">""</item>
+        <item name="layout_width">0dp</item>
+        <item name="layout_height">wrap_content</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <!--
+    Apply margin to bottom and end for buttons that will
+    be placed at the bottom-end corner of the app
+    -->
+    <style name="AppButtom.White.ParentBottomEnd">
+        <item name="android:layout_marginBottom">@dimen/margin_button_parent_corners</item>
+        <item name="android:layout_marginEnd">@dimen/margin_button_parent_corners</item>
+    </style>
+
+    <style name="AppButtom.Dummy.ParentBottomEnd">
+        <item name="android:layout_marginBottom">@dimen/margin_button_parent_corners</item>
+        <item name="android:layout_marginEnd">@dimen/margin_button_parent_corners</item>
+    </style>
+
+    <style name="AppButtom.Blue.ParentBottomEnd">
+        <item name="android:layout_marginBottom">@dimen/margin_button_parent_corners</item>
+        <item name="android:layout_marginEnd">@dimen/margin_button_parent_corners</item>
+    </style>
+
+    <style name="AppButtom.Purple.ParentBottomEnd">
+        <item name="android:layout_marginBottom">@dimen/margin_button_parent_corners</item>
+        <item name="android:layout_marginEnd">@dimen/margin_button_parent_corners</item>
+    </style>
+
+    <!-- Primary attributes to all texts in this app -->
+    <style name="AppText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppText.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppText.Purple">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppText.Blue">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <!--
+    Default attributes for the triangularized background
+    that must be placed under android.support.constraint.ConstraintLayout
+    TODO: fix style, only width and height are working
+    -->
+    <style name="TriangularizedImageBackground">
+        <item name="xmlns:app">"http://schemas.android.com/apk/res-auto"</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="app:layout_constraintTop_toTopOf">parent</item>
+        <item name="app:layout_constraintRight_toRightOf">parent</item>
+        <item name="app:layout_constraintLeft_toLeftOf">parent</item>
+        <item name="android:src">@drawable/ic_bg_pink_pallet_triangularized</item>
+    </style>
+
+
+
 </resources>
