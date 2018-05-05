@@ -1,4 +1,4 @@
-<resources>
+<resources >
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -40,8 +40,8 @@
     <style name="AppButtom.Dummy">
         <item name="android:textColor">@color/blue</item>
         <item name="android:text">""</item>
-        <item name="layout_width">0dp</item>
-        <item name="layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:visibility">invisible</item>
     </style>
 
@@ -90,17 +90,16 @@
     <!--
     Default attributes for the triangularized background
     that must be placed under android.support.constraint.ConstraintLayout
-    TODO: fix style, only width and height are working
     -->
-    <style name="TriangularizedImageBackground">
-        <item name="xmlns:app">"http://schemas.android.com/apk/res-auto"</item>
+    <style name="TriangularizedPurpleImageBackground">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:scaleType">fitXY</item>
-        <item name="app:layout_constraintTop_toTopOf">parent</item>
-        <item name="app:layout_constraintRight_toRightOf">parent</item>
-        <item name="app:layout_constraintLeft_toLeftOf">parent</item>
         <item name="android:src">@drawable/ic_bg_pink_pallet_triangularized</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintRight_toRightOf">parent</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
     </style>
 
 
