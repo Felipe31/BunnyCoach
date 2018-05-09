@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppTrainer</string>
+    <string name="app_name">BunnyCoach</string>
     <string name="action_settings">Settings</string>
 
 
@@ -10,6 +10,18 @@
     <string name="forgot_passwd">Forgot password?</string>
 
 
+    <!-- Profile chooser -->
+    <string name="profile_chooser_balanced_title">The Balanced</string>
+    <string name="profile_chooser_balanced_text">Who wants to take care of your helth, doing regular exercices</string>
+    <string name="profile_chooser_bodybuilder_title">The Bodybuilder</string>
+    <string name="profile_chooser_bodybuilder_text">Who dreams with the perfect body, doing hardcore exercices</string>
+    <string name="profile_chooser_lazy_title">The Lazy</string>
+    <string name="profile_chooser_lazy_text">Who aims at losing weight, increasing the difficulty through time</string>
+    <string name="profile_chooser_fragment_choose_your_profile">Choose the profile you seek</string>
 
-    <string name="choose_profile_button">test</string>
+    <string name="choose_profile_button">CHOOSE</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
