@@ -10,23 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e2f8d87-3cdf-4ad3-8915-d3fa739a2868" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/ic_bunny_coach-web.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/Login.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/Login.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_bunny_coach-web.png" afterPath="" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-04-05-20-50-14-346.json" afterPath="" />
       <change beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-04-05-20-50-14-346.rawproto" afterPath="" />
       <change beforePath="$PROJECT_DIR$/build/android-profile/profile-2018-04-05-20-51-33-676.json" afterPath="" />
@@ -83,17 +70,19 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="37" lean-forward="false" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="51" column="32" lean-forward="false" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
               <folding>
-                <element signature="e#2942#2961#0" expanded="true" />
-                <element signature="e#3436#3458#0" expanded="true" />
+                <element signature="e#1325#1352#0" expanded="true" />
+                <element signature="e#2646#2669#0" expanded="true" />
+                <element signature="e#3076#3095#0" expanded="true" />
+                <element signature="e#3519#3541#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
@@ -2165,7 +2154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -2437,7 +2426,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2482,17 +2471,27 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="83" column="37" lean-forward="false" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/Login.java">
@@ -2509,17 +2508,85 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="83" column="37" lean-forward="false" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+          <folding>
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+          <folding>
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+          <folding>
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/Login.java">
@@ -2536,31 +2603,35 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml">
@@ -2575,7 +2646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2590,7 +2660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2598,7 +2667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2616,17 +2684,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml">
@@ -2641,7 +2711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2656,7 +2725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2664,7 +2732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2682,31 +2749,35 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml">
@@ -2721,7 +2792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2736,7 +2806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="49" lean-forward="false" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2744,7 +2813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="58" lean-forward="true" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2766,7 +2834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2779,23 +2846,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_profile_chooser.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-          <folding>
-            <element signature="e#727#758#0" expanded="false" />
-          </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2809,25 +2872,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/connectRest.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
@@ -2858,7 +2919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2866,52 +2926,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradient_login.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="35" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_border.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="54" lean-forward="false" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="37" lean-forward="false" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="51" column="32" lean-forward="false" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
           <folding>
-            <element signature="e#2942#2961#0" expanded="true" />
-            <element signature="e#3436#3458#0" expanded="true" />
+            <element signature="e#1325#1352#0" expanded="true" />
+            <element signature="e#2646#2669#0" expanded="true" />
+            <element signature="e#3076#3095#0" expanded="true" />
+            <element signature="e#3519#3541#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
   </component>
