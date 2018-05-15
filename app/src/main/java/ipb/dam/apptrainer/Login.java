@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.net.URL;
 
+import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
 
 public class Login extends AppCompatActivity {
@@ -31,10 +32,11 @@ public class Login extends AppCompatActivity {
 
                 String user = userEtxt.getText().toString();
                 String passwd = passwdEtxt.getText().toString();
-                startActivity(new Intent(context, ProfileChooserActivity.class));
 
 
                 Log.i(getLocalClassName(), user+passwd);
+                startActivity(new Intent(context, HomeActivity.class));
+
         });
 
         AppCompatEditText passwdEtxt = findViewById(R.id.passwd_etxt);
@@ -51,7 +53,7 @@ public class Login extends AppCompatActivity {
 
         register_txtv.setOnClickListener(view -> {
                 // TODO: 15/05/18 Start form activity
-            Toast.makeText(context, "\"Register\" not implemented", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(context, ProfileChooserActivity.class));
 
         });
 
@@ -60,7 +62,6 @@ public class Login extends AppCompatActivity {
         forgotPasswdTxtv.setOnClickListener(view -> {
             // TODO: 15/05/18 Implement simple screen
             Toast.makeText(context, "\"Forgot password\" not implemented", Toast.LENGTH_SHORT).show();
-
         });
 
     }

@@ -11,7 +11,7 @@
     -->
     <Button
         style="@style/AppButtom.Dummy.ParentBottomEnd"
-        android:id="@+id/fragment_profile_chooser_button_dummy"
+        android:id="@+id/fragment_home_button_dummy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -21,46 +21,49 @@
     triangularized purple image
     -->
     <View
-        android:id="@+id/fragment_profile_chooser_view_whitebackground_dummy"
+        android:id="@+id/fragment_home_view_whitebackground_dummy"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/fragment_profile_chooser_textview_profile_title"/>
+        app:layout_constraintTop_toTopOf="@id/fragment_home_txtv_title" />
 
     <!-- Helps to create a gab between the profile title and the text to select the profile -->
     <View
-        android:id="@+id/fragment_profile_chooser_view_gap_dummy"
+        android:id="@+id/fragment_home_view_gap_dummy"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_big"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_chooser_view_whitebackground_dummy"
+        app:layout_constraintBottom_toTopOf="@id/fragment_home_view_whitebackground_dummy"
         android:background="@android:color/white"/>
 
-    <TextView
+    <SeekBar
         style="@style/AppText"
-        android:id="@+id/fragment_profile_chooser_textview_profile_description"
+        android:id="@+id/fragment_home_seekbar"
+        android:layout_width="322dp"
         android:layout_margin="@dimen/margin_big"
-        android:text="Profile description"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_chooser_button_dummy"
+        app:layout_constraintBottom_toTopOf="@id/fragment_home_button_dummy"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        style="@style/AppText.Purple"
-        android:id="@+id/fragment_profile_chooser_textview_profile_title"
+        style="@style/AppText.Blue"
+        android:id="@+id/fragment_home_txtv_title"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:text="Title"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_chooser_textview_profile_description"
-        app:layout_constraintStart_toStartOf="@id/fragment_profile_chooser_textview_profile_description" />
+        android:text="@string/home_exercise_week"
+        app:layout_constraintBottom_toTopOf="@id/fragment_home_seekbar"
+        app:layout_constraintStart_toStartOf="@id/fragment_home_seekbar" />
 
     <TextView
-        style="@style/AppText.White"
-        app:layout_constraintBottom_toTopOf="@id/fragment_profile_chooser_view_gap_dummy"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="@dimen/margin_big"
-        android:text="@string/profile_chooser_fragment_choose_your_profile" />
+        android:id="@+id/fragment_home_txtv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="3 of 5 done"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_home_view_whitebackground_dummy"
+        app:layout_constraintStart_toStartOf="@+id/fragment_home_txtv_title"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_home_seekbar" />
 
     <!-- TODO: add bunny image -->
 
