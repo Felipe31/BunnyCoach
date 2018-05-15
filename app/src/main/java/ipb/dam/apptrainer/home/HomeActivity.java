@@ -26,6 +26,9 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
         final HomeActivity.ScreenSlidePagerAdapter adapter = new HomeActivity.ScreenSlidePagerAdapter();
         pager.setAdapter(adapter);
 
+
+        // TODO: 15/05/18 Verify if the user is logged in
+
     }
 
     /**
@@ -48,7 +51,7 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
         @Override
         public Fragment getItem(int position) {
             Log.i(getLocalClassName(), "=======> "+ String.valueOf(position));
-            return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), new String("3 of 6 done"));
+            return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), 2, 3);
         }
 
 

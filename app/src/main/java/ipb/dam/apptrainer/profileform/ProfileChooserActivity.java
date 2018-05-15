@@ -1,5 +1,6 @@
 package ipb.dam.apptrainer.profileform;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.home.HomeActivity;
 
 /**
  * <p>Handles the activity responsible of showing the different kind of profiles available
@@ -44,7 +46,8 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
     public void onClick(View v){
         //TODO add functionality to the CHOOSE button
         // For test purpose only
-        Toast.makeText(this, "Button's been clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     /**
