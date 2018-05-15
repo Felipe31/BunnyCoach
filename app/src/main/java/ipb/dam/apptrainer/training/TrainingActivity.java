@@ -1,7 +1,8 @@
-package ipb.dam.apptrainer.home;
+package ipb.dam.apptrainer.training;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,25 +13,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
-import ipb.dam.apptrainer.training.TrainingActivity;
+import ipb.dam.apptrainer.training.TrainingFragment;
 
-public class HomeActivity  extends AppCompatActivity implements Button.OnClickListener {
+public class TrainingActivity extends AppCompatActivity implements Button.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_training);
 
-        final Button chooseButton = findViewById(R.id.content_home_button_check);
-        chooseButton.setOnClickListener(this);
 
-        final ViewPager pager = findViewById(R.id.content_home_viewpager);
-        final HomeActivity.ScreenSlidePagerAdapter adapter = new HomeActivity.ScreenSlidePagerAdapter();
+        final ViewPager pager = findViewById(R.id.content_training_viewpager);
+        final TrainingActivity.ScreenSlidePagerAdapter adapter = new TrainingActivity.ScreenSlidePagerAdapter(6);
         pager.setAdapter(adapter);
 
 
         // TODO: 15/05/18 Verify if the user is logged in
-
     }
 
     /**
@@ -38,25 +36,25 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
      * @param v View that has triggered this method
      */
     public void onClick(View v){
-        //TODO add functionality to the CHECK button
-        Toast.makeText(this, "\"Exercises\" not implemented", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, TrainingActivity.class));
+        //Toast.makeText(this, "Exercise done", Toast.LENGTH_SHORT).show();
+
+
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
-        private static final int NUM_PAGES = 1;
+        private final int NUM_PAGES;
 
-        public ScreenSlidePagerAdapter() {
-            super(HomeActivity.this.getSupportFragmentManager());
+        private ScreenSlidePagerAdapter(Integer numPages) {
+            super(TrainingActivity.this.getSupportFragmentManager());
+            NUM_PAGES = numPages;
         }
 
         @Override
         public Fragment getItem(int position) {
             Log.i(getLocalClassName(), "=======> "+ String.valueOf(position));
-            return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), 2, 3);
+            return TrainingFragment.newInstance("Exercise nº "+String.valueOf(position), "Description", position % 2 == 0);
         }
-
 
         @Override
         public int getCount() {

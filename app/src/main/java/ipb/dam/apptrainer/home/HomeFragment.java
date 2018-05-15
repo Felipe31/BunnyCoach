@@ -19,7 +19,6 @@ public class HomeFragment extends Fragment {
      * Argument indexing the data related to the activity title
      */
     private static final String ARG_FRAGMENT_TITLE = "arg_profile_title";
-    private static final String ARG_PROGRESS_TEXT = "arg_progress_text";
     private static final String ARG_CURRENT_INT = "arg_current_int";
     private static final String ARG_TOTAL_INT = "arg_total_int";
 

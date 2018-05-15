@@ -24,7 +24,7 @@
         </activity>
 
         <activity android:name=".home.HomeActivity" android:launchMode="singleInstance"/>
-
+        <activity android:name=".training.TrainingActivity" android:launchMode="singleInstance"/>
 
         <activity android:name=".profileform.ProfileChooserActivity"
             android:exported="true" android:launchMode="singleInstance"

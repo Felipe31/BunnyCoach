@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
 
 
-    <!--LOGIN ACTIVITY-->
+    <!-- Login Activity -->
     <string name="register_btn">Don\'t have an account?</string>
     <string name="login_btn">Login</string>
     <string name="email_example_txt">Email</string>
@@ -14,6 +14,13 @@
     <!-- Home Activity -->
     <string name="home_exercise_week">Exercises of the week</string>
     <string name="check_exercises_button">Check</string>
+
+
+    <!-- Training Activity -->
+    <string name="training_done_button">Done</string>
+    <string name="exercise_title">Exercise Test</string>
+    <string name="exercise_done_snack">Exercise set as done!</string>
+    <string name="exercise_done_snack_undo">Undo</string>
 
     <!-- Profile chooser -->
     <string name="profile_chooser_balanced_title">The Balanced</string>
