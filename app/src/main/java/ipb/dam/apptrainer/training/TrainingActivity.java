@@ -15,7 +15,7 @@ import android.widget.Toast;
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.training.TrainingFragment;
 
-public class TrainingActivity extends AppCompatActivity implements Button.OnClickListener {
+public class TrainingActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -29,16 +29,6 @@ public class TrainingActivity extends AppCompatActivity implements Button.OnClic
 
 
         // TODO: 15/05/18 Verify if the user is logged in
-    }
-
-    /**
-     * Called every time a click has been detected by the view {@code v}.
-     * @param v View that has triggered this method
-     */
-    public void onClick(View v){
-        //Toast.makeText(this, "Exercise done", Toast.LENGTH_SHORT).show();
-
-
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

@@ -39,7 +39,6 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
      */
     public void onClick(View v){
         //TODO add functionality to the CHECK button
-        Toast.makeText(this, "\"Exercises\" not implemented", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, TrainingActivity.class));
     }
 
