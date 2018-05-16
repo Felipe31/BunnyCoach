@@ -2,6 +2,7 @@ package ipb.dam.apptrainer.profileform;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -93,6 +94,7 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
 
             String profileTitle;
             String profileDescription;
+            int profilePicture;
             final Resources res = getResources();
 
             switch (position){
@@ -100,20 +102,24 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
                 case PAGE_PROFILE_LAZY:
                     profileTitle = res.getString(R.string.profile_chooser_lazy_title);
                     profileDescription = res.getString(R.string.profile_chooser_lazy_text);
+                    profilePicture =  R.drawable.gordo;
                     break;
 
                 case PAGE_PROFILE_BALANCED:
                     profileTitle = res.getString(R.string.profile_chooser_balanced_title);
                     profileDescription = res.getString(R.string.profile_chooser_balanced_text);
+                    profilePicture = R.drawable.normal;
                     break;
 
                 default:
                     profileTitle = res.getString(R.string.profile_chooser_bodybuilder_title);
                     profileDescription = res.getString(R.string.profile_chooser_bodybuilder_text);
+                    profilePicture =  R.drawable.forte;
+
 
             }
 
-            return ProfileChooserFragment.newInstance(profileTitle, profileDescription);
+            return ProfileChooserFragment.newInstance(profileTitle, profileDescription, profilePicture);
         }
 
 
