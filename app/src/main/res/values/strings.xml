@@ -15,6 +15,12 @@
     <string name="home_exercise_week">Exercises of the week</string>
     <string name="check_exercises_button">Check</string>
 
+    <!-- Register Activity -->
+    <string name="register_now_btn">Register now</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="name">Name</string>
+    <string name="birthday">Date of birth</string>
+
 
     <!-- Training Activity -->
     <string name="training_done_button">Done</string>
