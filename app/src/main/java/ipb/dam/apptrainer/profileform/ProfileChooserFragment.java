@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -112,10 +113,12 @@ public class ProfileChooserFragment extends Fragment {
                 root.findViewById(R.id.fragment_profile_chooser_textview_profile_description);
         final ImageView profile = root.findViewById(R.id.profile_image_view);
 
+        Toast.makeText(getContext(), "oii", Toast.LENGTH_SHORT).show();
         // Set up texts to be shown
         title.setText(profileTitle);
         description.setText(profileDescription);
         profile.setImageDrawable(root.getResources().getDrawable(profilePicture));
+        // TODO fix error, poor performance and error being thrown in my device (Sansung Galaxy S4)
 
         return root;
     }
