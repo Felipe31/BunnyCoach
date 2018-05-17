@@ -16,6 +16,7 @@ import java.net.URL;
 
 import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
+import ipb.dam.apptrainer.register.RegisterActivity;
 
 public class Login extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class Login extends AppCompatActivity {
 
         register_txtv.setOnClickListener(view -> {
                 // TODO: 15/05/18 Start form activity
-            startActivity(new Intent(context, ProfileChooserActivity.class));
+            startActivity(new Intent(context, RegisterActivity.class));
 
         });
 

@@ -43,7 +43,7 @@ public class TrainingActivity extends AppCompatActivity{
         @Override
         public Fragment getItem(int position) {
             Log.i(getLocalClassName(), "=======> "+ String.valueOf(position));
-            return TrainingFragment.newInstance("Exercise nº "+String.valueOf(position), "Description", position % 2 == 0);
+            return TrainingFragment.newInstance("Exercise nº "+String.valueOf(position), "Description", position % 2 == 0, R.drawable.jump_rope);
         }
 
         @Override

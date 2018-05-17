@@ -10,7 +10,7 @@
     @layout/content_profile_chooser
     -->
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/home_imageview"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_home_view_gap_dummy"
@@ -51,9 +51,8 @@
     <SeekBar
         android:id="@+id/fragment_home_seekbar"
         style="@style/AppText"
-        android:layout_width="355dp"
+        android:layout_width="match_parent"
         android:layout_height="16dp"
-
         android:layout_margin="@dimen/margin_big"
         app:layout_constraintBottom_toTopOf="@id/fragment_home_button_dummy"
         app:layout_constraintStart_toStartOf="parent" />

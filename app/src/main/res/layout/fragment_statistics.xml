@@ -5,10 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ipb.dam.apptrainer.home.components.CircularSeekBar
-        android:id="@+id/fragment_statistics_circular_seek_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
@@ -22,6 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_big"
         app:layout_constraintBottom_toTopOf="@id/fragment_statistics_title_days_worked"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_Statistics_dummy_space"
+        android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/fragment_statistics_title_days_worked"
@@ -113,5 +116,12 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toEndOf="@+id/fragment_statistics_day_of_the_week_saturday" />
 
+    <ipb.dam.apptrainer.home.components.CircularSeekBar
+        android:id="@+id/fragment_statistics_circular_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- TODO Fix margins/size of the circular seek bar -->
+    <!-- TODO change line color and ball color -->
 
 </android.support.constraint.ConstraintLayout>

@@ -23,14 +23,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".home.HomeActivity" android:launchMode="singleInstance"/>
-        <activity android:name=".training.TrainingActivity" android:launchMode="singleInstance"/>
-
-        <activity android:name=".profileform.ProfileChooserActivity"
-            android:exported="true" android:launchMode="singleInstance"
-            />
-        <!-- TODO Delete the exported attribute later, only used for
-            development purposes -->
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".training.TrainingActivity" />
+        <activity android:name=".register.RegisterActivity" />
+        <activity android:name=".profileform.ProfileChooserActivity" />
 
     </application>
 

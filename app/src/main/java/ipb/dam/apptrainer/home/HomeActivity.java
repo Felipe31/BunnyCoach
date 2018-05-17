@@ -25,7 +25,7 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
         chooseButton.setOnClickListener(this);
 
         final ViewPager pager = findViewById(R.id.content_home_viewpager);
-        final HomeActivity.ScreenSlidePagerAdapter adapter = new HomeActivity.ScreenSlidePagerAdapter();
+        final ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter();
         pager.setAdapter(adapter);
 
 
@@ -44,16 +44,30 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
-        private static final int NUM_PAGES = 1;
+        private static final int NUM_PAGES = 2;
 
-        public ScreenSlidePagerAdapter() {
+        private static final int PAGE_EXERCISES_OF_THE_WEEK = 0;
+
+        private static final int PAGE_STATISTICS = 1;
+
+        private ScreenSlidePagerAdapter() {
             super(HomeActivity.this.getSupportFragmentManager());
         }
 
         @Override
         public Fragment getItem(int position) {
-            Log.i(getLocalClassName(), "=======> "+ String.valueOf(position));
-            return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), 2, 3);
+
+            switch (position){
+
+                case PAGE_EXERCISES_OF_THE_WEEK:
+                    Log.i(getLocalClassName(), "=======> "+ String.valueOf(position));
+                    return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), 2, 3);
+                    //break;
+
+                default:
+                    return StatisticsFragment.newInstance();
+            }
+
         }
 
 

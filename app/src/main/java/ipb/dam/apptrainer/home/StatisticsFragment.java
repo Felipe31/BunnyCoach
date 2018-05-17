@@ -72,9 +72,9 @@ public class StatisticsFragment extends Fragment {
      *
      * @return A new instance of fragment ProfileChooserFragment.
      */
-    public static ProfileChooserFragment newInstance() {
+    public static StatisticsFragment newInstance() {
 
-        ProfileChooserFragment fragment = new ProfileChooserFragment();
+        StatisticsFragment fragment = new StatisticsFragment();
 
         // Set the arguments so the title and description won't be lost
         // if the operational system recreates this class using the default constructor.
