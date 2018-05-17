@@ -53,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button register_btn = findViewById(R.id.register_btn);
 
         register_btn.setOnClickListener(view -> {
+
             startActivity(new Intent(this, ProfileChooserActivity.class));
         });
 
