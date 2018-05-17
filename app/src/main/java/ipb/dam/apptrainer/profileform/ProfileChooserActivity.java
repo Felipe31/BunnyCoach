@@ -22,6 +22,7 @@ import ipb.dam.apptrainer.home.HomeActivity;
  * based on his preferences.</p>
  *
  * <p>This class also contains the pager adapter {@link ScreenSlidePagerAdapter}</p>
+ * @author Murillo Henrique Pedroso Ferreira
  */
 public class ProfileChooserActivity extends AppCompatActivity implements Button.OnClickListener {
 

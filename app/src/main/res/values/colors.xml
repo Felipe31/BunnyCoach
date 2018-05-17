@@ -5,4 +5,7 @@
     <color name="colorAccent">#3F51B5</color>
     <color name="textColor">#f0f0f0</color>
     <color name="blue">#2380b8</color>
+
+    <color name="gradient_background_statistics_activity_bottom_color">#1974b2</color>
+    <color name="gradient_background_statistics_activity_top_color">#a2d9c1</color>
 </resources>

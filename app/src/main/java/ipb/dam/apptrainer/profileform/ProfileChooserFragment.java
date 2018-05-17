@@ -20,6 +20,7 @@ import ipb.dam.apptrainer.R;
  * <p>To instantiate this class, <b>DO NOT</b> use the available default constructor
  * because it is required so the Operational System can recreate this fragment if needed.
  * Use {@link #newInstance(String, String)} instead</p>
+ * @author Murillo Henrique Pedroso Ferreira
  */
 public class ProfileChooserFragment extends Fragment {
 
