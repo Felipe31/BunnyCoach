@@ -76,6 +76,15 @@
         android:layout_marginBottom="@dimen/margin_big"
         android:text="@string/profile_chooser_fragment_choose_your_profile" />
 
-    <!-- TODO: add bunny image -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_profile_chooser"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/toolbar_bg"
+        app:titleTextColor="@color/textColor"
+        app:title="@string/profile_chooser_title"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
 </android.support.constraint.ConstraintLayout>

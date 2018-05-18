@@ -14,11 +14,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <Button
-        style="@style/AppButtom.Purple.ParentBottomEnd"
-        android:id="@+id/content_home_button_check"
-        android:text="@string/check_exercises_button"
-        app:layout_constraintBottom_toBottomOf="@+id/content_home_parent"
-        app:layout_constraintEnd_toStartOf="@+id/content_home_parent" />
 
 </android.support.constraint.ConstraintLayout>

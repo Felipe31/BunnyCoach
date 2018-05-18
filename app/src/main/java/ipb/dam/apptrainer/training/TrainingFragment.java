@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,9 +106,11 @@ public class TrainingFragment extends Fragment {
 
         Button doneButton = root.findViewById(R.id.fragment_training_button);
 
+
         doneButton.setOnClickListener((View view) -> {
             doneButton.setEnabled(false);
             doneButton.setTextColor(getResources().getColor(R.color.blue));
+
             Snackbar snackbar = Snackbar.make(root.getRootView(), R.string.exercise_done_snack, Snackbar.LENGTH_LONG);
 /*
         snackbar.addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
@@ -120,12 +125,18 @@ public class TrainingFragment extends Fragment {
                 doneButton.setEnabled(true);
                 doneButton.setTextColor(getResources().getColor(R.color.colorPrimary));
             });
-
-
             snackbar.show();
 
         });
 
+
+        Toolbar toolbar = root.findViewById(R.id.toolbar_training);
+        ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) root.getContext()).getSupportActionBar();
+        if( actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            //actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
 
         return root;

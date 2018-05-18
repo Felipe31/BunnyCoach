@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,12 +116,23 @@ public class ProfileChooserFragment extends Fragment {
                 root.findViewById(R.id.fragment_profile_chooser_textview_profile_description);
         final ImageView profile = root.findViewById(R.id.profile_image_view);
 
-        Toast.makeText(getContext(), "oii", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "oii", Toast.LENGTH_SHORT).show();
         // Set up texts to be shown
         title.setText(profileTitle);
         description.setText(profileDescription);
         profile.setImageDrawable(root.getResources().getDrawable(profilePicture));
-        // TODO fix error, poor performance and error being thrown in my device (Sansung Galaxy S4)
+        // TODO fix error, poor performance and error being thrown in my device (Samsung Galaxy S4)
+
+
+        Toolbar toolbar = root.findViewById(R.id.toolbar_profile_chooser);
+        ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) root.getContext()).getSupportActionBar();
+        if( actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            //actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
 
         return root;
     }

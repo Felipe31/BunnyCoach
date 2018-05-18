@@ -1,18 +1,14 @@
 package ipb.dam.apptrainer.home;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
 import ipb.dam.apptrainer.R;
-import ipb.dam.apptrainer.training.TrainingActivity;
 
 public class HomeActivity  extends AppCompatActivity implements Button.OnClickListener {
 
@@ -21,13 +17,10 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        final Button chooseButton = findViewById(R.id.content_home_button_check);
-        chooseButton.setOnClickListener(this);
 
         final ViewPager pager = findViewById(R.id.content_home_viewpager);
         final ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter();
         pager.setAdapter(adapter);
-
 
         // TODO: 15/05/18 Verify if the user is logged in
 
@@ -39,7 +32,7 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
      */
     public void onClick(View v){
         //TODO add functionality to the CHECK button
-        startActivity(new Intent(this, TrainingActivity.class));
+
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

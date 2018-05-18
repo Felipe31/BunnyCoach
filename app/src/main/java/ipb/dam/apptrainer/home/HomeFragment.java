@@ -1,17 +1,24 @@
 package ipb.dam.apptrainer.home;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.training.TrainingActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -72,6 +79,8 @@ public class HomeFragment extends Fragment {
             totalExercise= getArguments().getInt(ARG_TOTAL_INT);
         }
 
+
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -96,6 +105,18 @@ public class HomeFragment extends Fragment {
         seekBar.setOnTouchListener((view, motionEvent) -> true);
         seekBar.setMax(totalExercise);
         seekBar.setProgress(currentExercise);
+
+
+        final Button chooseButton = root.findViewById(R.id.content_home_button_check);
+        chooseButton.setOnClickListener(view -> startActivity(new Intent(root.getContext(), TrainingActivity.class)));
+
+        Toolbar toolbar = root.findViewById(R.id.toolbar_home);
+        ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) root.getContext()).getSupportActionBar();
+        if( actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            //actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         return root;
     }

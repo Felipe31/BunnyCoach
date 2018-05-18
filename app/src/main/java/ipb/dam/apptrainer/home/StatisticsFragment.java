@@ -2,6 +2,9 @@ package ipb.dam.apptrainer.home;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +113,18 @@ public class StatisticsFragment extends Fragment {
         circularSeekBar.setMaxProgress(100);
         circularSeekBar.setProgress(91);
         circularSeekBar.invalidate();
+        circularSeekBar.ShowSeekBar();
+
+
+
+        Toolbar toolbar = root.findViewById(R.id.toolbar_home);
+        ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) root.getContext()).getSupportActionBar();
+        if( actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            //actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
 
         return root;
     }

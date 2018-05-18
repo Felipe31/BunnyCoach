@@ -25,7 +25,11 @@
         </activity>
 
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".training.TrainingActivity" />
+        <activity android:name=".training.TrainingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".home.HomeActivity" />
+        </activity>
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".profileform.ProfileChooserActivity" />
         <activity android:name=".about.AboutActivity" />
