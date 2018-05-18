@@ -56,13 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             startActivity(new Intent(this, ProfileChooserActivity.class));
         });
-
-
     }
-
-
-
-
 
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here

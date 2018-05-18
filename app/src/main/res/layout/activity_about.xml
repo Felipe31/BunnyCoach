@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Login"
+    android:background="@drawable/drawable_gradient_background_about_activity"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="64dp"
+        android:paddingRight="64dp">
+
+        <TextView
+            android:id="@+id/fragment_about_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_you"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:paddingBottom="40dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/about_weight_etxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/weight"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingTop="16dp"
+            android:textColor="@color/textColor"
+            app:backgroundTint="@color/textColor" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/about_height_etxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/height"
+            android:inputType="text"
+            android:paddingTop="16dp"
+            android:textColor="@color/textColor"
+            app:backgroundTint="@color/textColor" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/about_hours_etxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/hours"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingTop="16dp"
+            android:textColor="@color/textColor"
+            app:backgroundTint="@color/textColor" />
+
+        <android.support.constraint.ConstraintLayout
+            android:paddingTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/fragment_about_title_days_worked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_big"
+                android:layout_marginEnd="8dp"
+                android:text="@string/days_to_do_exercices"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_big"
+                android:text="@string/statistics_day_of_the_week_monday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_tuesday"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistics_day_of_the_week_tuesday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_wednesday"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_monday" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistics_day_of_the_week_wednesday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_thursday"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_tuesday" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistics_day_of_the_week_thursday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_friday"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_wednesday" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistics_day_of_the_week_friday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_saturday"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_thursday" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistics_day_of_the_week_saturday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_sunday"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_friday" />
+
+            <TextView
+                android:id="@+id/fragment_about_day_of_the_week_sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statistics_day_of_the_week_sunday"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_saturday" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/about_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/margin_big"
+                    android:background="@drawable/button_border"
+                    android:text="@string/finish"
+                    android:textColor="@color/textColor" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.about.AboutActivity;
 import ipb.dam.apptrainer.home.HomeActivity;
 
 /**
@@ -49,7 +50,7 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
         //TODO add functionality to the CHOOSE button
         // For test purpose only
         Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, AboutActivity.class));
     }
 
     /**

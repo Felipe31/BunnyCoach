@@ -28,6 +28,7 @@
         <activity android:name=".training.TrainingActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".profileform.ProfileChooserActivity" />
+        <activity android:name=".about.AboutActivity" />
 
     </application>
 

@@ -15,6 +15,14 @@
     <string name="home_exercise_week">Exercises of the week</string>
     <string name="check_exercises_button">Check</string>
 
+    <!-- About Activity -->
+    <string name="about_you">About you</string>
+    <string name="weight">Weight in kilograms</string>
+    <string name="height">Height in meters</string>
+    <string name="hours">Hours per day to work</string>
+    <string name="finish">Finish</string>
+    <string name="days_to_do_exercices">Days to do exercices</string>
+
     <!-- Register Activity -->
     <string name="register_now_btn">Register now</string>
     <string name="already_have_account">Already have an account?</string>
