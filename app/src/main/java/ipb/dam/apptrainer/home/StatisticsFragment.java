@@ -1,13 +1,18 @@
 package ipb.dam.apptrainer.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.home.components.CircularSeekBar;
@@ -23,7 +28,7 @@ import ipb.dam.apptrainer.profileform.ProfileChooserFragment;
  * Use {@link #newInstance()} instead</p>
  * @author Murillo Henrique Pedroso Ferreira
  */
-public class StatisticsFragment extends Fragment {
+public class StatisticsFragment extends Fragment implements FragmentLifecycle{
 
 
     /**
@@ -116,18 +121,24 @@ public class StatisticsFragment extends Fragment {
         circularSeekBar.ShowSeekBar();
 
 
-
-        Toolbar toolbar = root.findViewById(R.id.toolbar_home);
-        ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);
-        ActionBar actionBar = ((AppCompatActivity) root.getContext()).getSupportActionBar();
-        if( actionBar != null) {
-            actionBar.setHomeButtonEnabled(true);
-            //actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-
         return root;
     }
 
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.i("STAAAAA", "ON attach");
+
+    }
+
+    @Override
+    public void onPauseFragment(AppCompatActivity appCompatActivity) {
+    }
+
+    @Override
+    public void onResumeFragment(AppCompatActivity appCompatActivity) {
+        Objects.requireNonNull(appCompatActivity.getSupportActionBar()).setTitle(R.string.statistics_title);
+
+    }
 }
