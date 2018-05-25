@@ -1,5 +1,6 @@
 package ipb.dam.apptrainer.training;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.login.LoginActivity;
+import ipb.dam.apptrainer.login.LoginSingleton;
 import ipb.dam.apptrainer.training.TrainingFragment;
 
 public class TrainingActivity extends AppCompatActivity{
@@ -20,16 +23,23 @@ public class TrainingActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_training);
 
+        setContentView(R.layout.activity_training);
 
         final ViewPager pager = findViewById(R.id.content_training_viewpager);
         final TrainingActivity.ScreenSlidePagerAdapter adapter = new TrainingActivity.ScreenSlidePagerAdapter(6);
         pager.setAdapter(adapter);
-
-
-        // TODO: 15/05/18 Verify if the user is logged in
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!LoginSingleton.getInstance().isLogged()) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+    }
+
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 

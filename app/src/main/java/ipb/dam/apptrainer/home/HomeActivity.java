@@ -1,29 +1,43 @@
 package ipb.dam.apptrainer.home;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.Objects;
+
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.login.LoginActivity;
+import ipb.dam.apptrainer.login.LoginSingleton;
 
 public class HomeActivity  extends AppCompatActivity implements Button.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
 
+        setContentView(R.layout.activity_home);
 
         final ViewPager pager = findViewById(R.id.content_home_viewpager);
         final ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter();
         pager.setAdapter(adapter);
 
-        // TODO: 15/05/18 Verify if the user is logged in
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!LoginSingleton.getInstance().isLogged()) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     /**
@@ -49,13 +63,10 @@ public class HomeActivity  extends AppCompatActivity implements Button.OnClickLi
 
         @Override
         public Fragment getItem(int position) {
-
             switch (position){
 
                 case PAGE_EXERCISES_OF_THE_WEEK:
-                    Log.i(getLocalClassName(), "=======> "+ String.valueOf(position));
                     return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), 2, 3);
-                    //break;
 
                 default:
                     return StatisticsFragment.newInstance();
