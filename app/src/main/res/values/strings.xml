@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
 
 
-    <!-- Login Activity -->
+    <!-- LoginActivity Activity -->
     <string name="register_btn">Don\'t have an account?</string>
     <string name="login_btn">Login</string>
     <string name="email_example_txt">Email</string>

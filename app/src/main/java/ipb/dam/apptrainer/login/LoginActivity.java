@@ -1,4 +1,4 @@
-package ipb.dam.apptrainer;
+package ipb.dam.apptrainer.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,11 +14,12 @@ import android.widget.Toast;
 
 import java.net.URL;
 
+import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
 import ipb.dam.apptrainer.register.RegisterActivity;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,8 @@ public class Login extends AppCompatActivity {
                 String passwd = passwdEtxt.getText().toString();
 
 
-                Log.i(getLocalClassName(), user+passwd);
-                startActivity(new Intent(context, HomeActivity.class));
+                if(LoginSingleton.getInstance().makeLogin(user, passwd))
+                    startActivity(new Intent(context, HomeActivity.class));
 
         });
 
@@ -68,22 +69,6 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public class connectRest extends AsyncTask<URL, Integer, Long> {
-        @Override
-        protected Long doInBackground(URL... urls) {
-            return null;
-        }
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(Long aLong) {
-            super.onPostExecute(aLong);
-
-        }
-    }
 
 }
