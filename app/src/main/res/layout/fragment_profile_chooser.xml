@@ -10,12 +10,13 @@
     <ImageView
         android:id="@+id/profile_image_view"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_profile_chooser_view_gap_dummy"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_bunny_coach_web" />
+        android:scaleType="fitCenter"
+        tools:ignore="ContentDescription"/>
 
 
 

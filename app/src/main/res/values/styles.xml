@@ -79,12 +79,60 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="AppText.White.Micro">
+        <item name="android:textSize">@dimen/text_micro</item>
+    </style>
+
+    <style name="AppText.White.Small">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="AppText.White.Medium">
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="AppText.White.Big">
+        <item name="android:textSize">@dimen/text_big</item>
+    </style>
+
     <style name="AppText.Purple">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="AppText.Purple.Micro">
+        <item name="android:textSize">@dimen/text_micro</item>
+    </style>
+
+    <style name="AppText.Purple.Small">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="AppText.Purple.Medium">
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="AppText.Purple.Big">
+        <item name="android:textSize">@dimen/text_big</item>
+    </style>
+
     <style name="AppText.Blue">
         <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="AppText.Blue.Micro">
+        <item name="android:textSize">@dimen/text_micro</item>
+    </style>
+
+    <style name="AppText.Blue.Small">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="AppText.Blue.Medium">
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="AppText.Blue.Big">
+        <item name="android:textSize">@dimen/text_big</item>
     </style>
 
     <!--

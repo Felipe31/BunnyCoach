@@ -6,12 +6,23 @@
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_big">24dp</dimen>
 
+
     <!-- Margin to pull the button from the parent corners -->
     <dimen name="margin_button_parent_corners">@dimen/margin_medium</dimen>
 
     <!-- https://material.io/guidelines/components/text-fields.html#text-fields-layout -->
     <dimen name="margin_top_edit_text">@dimen/margin_medium</dimen>
     <dimen name="margin_bottom_edit_text">@dimen/margin_small</dimen>
+
+    <dimen name="fragment_statistics_statistics_holder_height">165dp</dimen>
+    <dimen name="fragment_statistics_imageview_size">128dp</dimen>
+
+    <dimen name="imagebutton_size">32dp</dimen>
+
+    <dimen name="text_micro">12sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_big">22sp</dimen>
 
 </resources>
 

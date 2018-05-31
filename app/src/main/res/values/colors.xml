@@ -8,6 +8,8 @@
     <color name="white">#FFFFFF</color>
 
 
+    <color name="fragment_statistics_text_exercises_progress_detail">#7FFFFFFF</color>
+    <color name="fragment_statistics_bar_background">#7FFFFFFF</color>
 
     <color name="gradient_background_about_activity_bottom_color">#96017b</color>
     <color name="gradient_background_about_activity_top_color">#e54b99</color>

@@ -1,6 +1,9 @@
 package ipb.dam.apptrainer.profileform;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,6 +55,11 @@ public class ProfileChooserFragment extends Fragment {
      * String holding the profile description given in {@link #newInstance(String, String, int)}
      */
     private String profileDescription;
+
+    /**
+     * Bunny image to be shown in the profile
+     */
+    private ImageView bunnyImage;
 
     private int profilePicture;
 
@@ -114,13 +122,19 @@ public class ProfileChooserFragment extends Fragment {
         final TextView title = root.findViewById(R.id.fragment_profile_chooser_textview_profile_title);
         final TextView description =
                 root.findViewById(R.id.fragment_profile_chooser_textview_profile_description);
-        final ImageView profile = root.findViewById(R.id.profile_image_view);
 
-        //Toast.makeText(getContext(), "oii", Toast.LENGTH_SHORT).show();
         // Set up texts to be shown
         title.setText(profileTitle);
         description.setText(profileDescription);
-        profile.setImageDrawable(root.getResources().getDrawable(profilePicture));
+
+        if(bunnyImage != null)
+            // Tell to the garbage collector to free the memory resources
+            // used by the old image since the imageview is about to be changed
+            ((BitmapDrawable)bunnyImage.getDrawable()).getBitmap().recycle();
+
+        bunnyImage = root.findViewById(R.id.profile_image_view);
+        bunnyImage.setImageResource(profilePicture);
+
         // TODO fix error, poor performance and error being thrown in my device (Samsung Galaxy S4)
 
 
@@ -135,6 +149,13 @@ public class ProfileChooserFragment extends Fragment {
 
 
         return root;
+    }
+
+    @Override
+    public void onDetach(){
+        // free memory used by this imageview
+        bunnyImage.setImageDrawable(null);
+        super.onDetach();
     }
 
 }

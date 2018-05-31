@@ -1,5 +1,6 @@
 package ipb.dam.apptrainer.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -109,11 +110,8 @@ public class StatisticsFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_statistics, container, false);
 
-        CircularSeekBar circularSeekBar = root.findViewById(R.id.fragment_statistics_circular_seek_bar);
-        circularSeekBar.setMaxProgress(100);
-        circularSeekBar.setProgress(91);
-        circularSeekBar.invalidate();
-        circularSeekBar.ShowSeekBar();
+        //TODO check if the line below will be needed for something
+        //CircularSeekBar circularSeekBar = root.findViewById(R.id.fragment_statistics_circular_seek_bar);
 
 
 
