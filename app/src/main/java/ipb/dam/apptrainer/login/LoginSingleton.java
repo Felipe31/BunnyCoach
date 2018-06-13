@@ -10,6 +10,8 @@ import java.net.URL;
 import ipb.dam.apptrainer.serverConnection.Connection;
 
 public class LoginSingleton {
+
+
     private static final LoginSingleton ourInstance = new LoginSingleton();
 
     public static LoginSingleton getInstance() {

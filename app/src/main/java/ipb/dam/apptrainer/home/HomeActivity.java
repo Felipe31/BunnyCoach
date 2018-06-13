@@ -3,17 +3,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
-import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.login.LoginActivity;
@@ -81,9 +75,9 @@ public class HomeActivity  extends AppCompatActivity {
 
         private static final int NUM_PAGES = 2;
 
-        private static final int PAGE_EXERCISES_OF_THE_WEEK = 0;
+        private static final int PAGE_EXERCISES_OF_THE_WEEK = 1;
 
-        private static final int PAGE_STATISTICS = 1;
+        private static final int PAGE_STATISTICS = 0;
 
         private ScreenSlidePagerAdapter() {
             super(HomeActivity.this.getSupportFragmentManager());
@@ -100,7 +94,11 @@ public class HomeActivity  extends AppCompatActivity {
                     return HomeFragment.newInstance(getResources().getString(R.string.home_exercise_week), 2, 3);
 
                 default:
-                    return StatisticsFragment.newInstance();
+                    // TODO dummy call for now. Change for the values taken from the server
+                    return StatisticsFragment.newInstance(0.89f,
+                            0.2f, 0.4f, 1f,
+                            0.6f, 0.4f,
+                            new boolean[]{false, false, true, true, true, false, true});
             }
 
         }
