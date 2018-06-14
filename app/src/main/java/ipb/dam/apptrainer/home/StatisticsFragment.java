@@ -1,6 +1,8 @@
 package ipb.dam.apptrainer.home;
 
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,8 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
@@ -71,9 +77,15 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
 
     /**
      * Animation duration in milliseconds to be performed while the statistics bars are
-     * growing from bottom to up.
+     * growing from bottom to up and the circular seek bar is changing the progress.
      */
     private static final int ANIMATION_DURATION = 800;
+
+    /**
+     * Animation start delay in milliseconds to be performed while the statistics bars are
+     * growing from bottom to up and the circular seek bar is changing the progress.
+     */
+    private static final int ANIMATION_START_DELAY = 400;
 
     /**
      * Array of bars that index the bars from left to right
@@ -190,9 +202,13 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_statistics, container, false);
 
+        int calculatedOverallProgress = (int) (statistics[0] * 100f);
+
         //TODO check if the line below will be needed for something
         CircularSeekBar circularSeekBar = root.findViewById(R.id.fragment_statistics_circular_seek_bar);
-        circularSeekBar.setProgress((int) (statistics[0] * 100f));
+        TextView overallProgressTextView = root.findViewById(R.id.fragment_statistics_exercises_current_progress);
+
+        animateCircularSeekBar(circularSeekBar, overallProgressTextView, calculatedOverallProgress);
 
         bars[0] = root.findViewById(R.id.fragment_statistics_bar_arms);
         bars[1] = root.findViewById(R.id.fragment_statistics_bar_chest);
@@ -232,13 +248,35 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
     private void expandBar(@NonNull View v, float growthRatio, int duration) {
 
         Animation scaleAnim = new ScaleAnimation(1.0f, 1.0f, // don't change the width
-                0f, growthRatio, // Change from 0% to the desired %
+                0f, growthRatio * 100f /* TODO find out why this argument is working in [0,100] and not in [0,1], might not work under different Android versions */,
                 Animation.RELATIVE_TO_SELF, 0f,
                 Animation.RELATIVE_TO_SELF, 1f);
 
         scaleAnim.setFillAfter(true);
         scaleAnim.setDuration(duration);
+        scaleAnim.setStartOffset(ANIMATION_START_DELAY);
         v.startAnimation(scaleAnim);
+    }
+
+    /**
+     * Animates progress of the {@code circularSeekBar}, increasing it from 0 to the desired value.
+     * @param circularSeekBar Circular seek bar to be animated.
+     * @param targetProgress Progress that will be set after the animation completes. Should be greater than {@code 0}
+     */
+    private void animateCircularSeekBar(@NonNull CircularSeekBar circularSeekBar,
+                                        @NonNull TextView progressTextView,
+                                        int targetProgress){
+
+        ValueAnimator anim = ValueAnimator.ofInt(0, targetProgress);
+        anim.setDuration(ANIMATION_DURATION);
+        anim.setStartDelay(ANIMATION_START_DELAY);
+        anim.addUpdateListener(animation -> {
+            int animProgress = (Integer) animation.getAnimatedValue();
+            progressTextView.setText(String.format(Locale.US, "%d%%", animProgress));
+            circularSeekBar.setProgress(animProgress);
+        });
+        anim.start();
+
     }
 
 
