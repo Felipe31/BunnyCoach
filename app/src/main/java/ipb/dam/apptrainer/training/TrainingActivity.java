@@ -2,21 +2,15 @@ package ipb.dam.apptrainer.training;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.login.LoginActivity;
 import ipb.dam.apptrainer.login.LoginSingleton;
-import ipb.dam.apptrainer.training.TrainingFragment;
 
 public class TrainingActivity extends AppCompatActivity{
 
@@ -37,6 +31,7 @@ public class TrainingActivity extends AppCompatActivity{
 
         if (!LoginSingleton.getInstance().isLogged()) {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
     }
 

@@ -15,6 +15,7 @@ import java.util.Locale;
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
+import ipb.dam.apptrainer.serverConnection.Connection;
 
 public class RegisterActivity extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
@@ -55,6 +56,10 @@ public class RegisterActivity extends AppCompatActivity {
         register_btn.setOnClickListener(view -> {
 
             startActivity(new Intent(this, ProfileChooserActivity.class));
+            Connection.getInstance().registerUser(((EditText)findViewById(R.id.register_name_etxt)).getText().toString(),
+                    ((EditText)findViewById(R.id.register_email_etxt)).getText().toString(),
+                    ((EditText)findViewById(R.id.register_passwd_etxt)).getText().toString(),
+                    ((EditText)findViewById(R.id.register_birthday)).getText().toString());
         });
     }
 

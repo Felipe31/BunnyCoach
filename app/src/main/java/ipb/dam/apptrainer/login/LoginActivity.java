@@ -35,11 +35,9 @@ public class LoginActivity extends AppCompatActivity {
                 String user = userEtxt.getText().toString();
                 String passwd = passwdEtxt.getText().toString();
 
+                LoginSingleton.getInstance().makeLogin(context, user, passwd);
 
-                if(LoginSingleton.getInstance().makeLogin(user, passwd))
-                    startActivity(new Intent(context, HomeActivity.class));
-
-        });
+                            });
 
         AppCompatEditText passwdEtxt = findViewById(R.id.passwd_etxt);
         passwdEtxt.setOnEditorActionListener((v, actionId, event) -> {
