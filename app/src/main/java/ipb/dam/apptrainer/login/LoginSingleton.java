@@ -79,16 +79,10 @@ public class LoginSingleton {
 
     public boolean makeLogout() {
         isLogged = false;
-        if(context != null) {
-            Intent intent = new Intent(context, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(intent);
-            ((AppCompatActivity) context).finish();
-        }
         return true;
     }
 
-    public void updateAbout( String height, String weight, String hours_per_day, String working_days){
+    public boolean updateAbout( String height, String weight, String hours_per_day, String working_days){
 
         this.height = height;
         this.weight = weight;
@@ -97,11 +91,11 @@ public class LoginSingleton {
 
         try {
             Connection.getInstance().updateAbout(data.getString("token"), height, weight, hours_per_day, working_days);
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.w(this.getClass().getSimpleName(), "token not defined");
-            makeLogout();
+            return false;
         }
-
+        return true;
     }
 
     public JSONObject getData() {
@@ -121,8 +115,9 @@ public class LoginSingleton {
         this.profile = profile;
 
         try {
-            Connection.getInstance().registerProfile(data.getString("token"), profile);
-        } catch (JSONException e) {
+            String token = data.getString("token");
+            Connection.getInstance().registerProfile(token , profile);
+        } catch (Exception e) {
             Log.w(this.getClass().getSimpleName(), "token not defined");
             makeLogout();
         }
