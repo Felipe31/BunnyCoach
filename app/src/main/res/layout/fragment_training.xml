@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="@id/fragment_exercise_txtv_title" />
 
     <SeekBar
-        android:id="@+id/PRICEseekBarID"
+        android:id="@+id/seekBarID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -68,8 +68,10 @@
         style="@style/AppText"
         android:layout_margin="@dimen/margin_big"
         android:text="Exercise description"
-        app:layout_constraintBottom_toTopOf="@+id/PRICEseekBarID"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarID"
         app:layout_constraintStart_toStartOf="parent" />
+
+
     <TextView
         style="@style/AppText.Blue"
         android:id="@+id/fragment_exercise_txtv_title"
