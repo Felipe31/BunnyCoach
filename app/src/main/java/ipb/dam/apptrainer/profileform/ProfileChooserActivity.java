@@ -50,10 +50,6 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
      * @param v View that has triggered this method
      */
     public void onClick(View v){
-        //TODO add functionality to the CHOOSE button
-        // For test purpose only
-        Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, AboutActivity.class));
         // TODO: 21/06/18 Get the current profile
         LoginSingleton.getInstance().setProfile(this, "PEGAR O PERFIL");
     }

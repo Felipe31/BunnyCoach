@@ -2,31 +2,20 @@ package ipb.dam.apptrainer.serverConnection;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import ipb.dam.apptrainer.R;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
 import ipb.dam.apptrainer.login.LoginSingleton;
 
 public class Connection {
@@ -50,10 +39,10 @@ public class Connection {
         try {
             requestJSON.put("api", "register");
             requestJSON.put("token", "");
-            requestJSON.put("name", name);
             requestJSON.put("email", email);
             requestJSON.put("password", password);
             requestJSON.put("confirmPassword", password);
+            requestJSON.put("name", name);
             requestJSON.put("dateBirth", birthday);
 
             sendJSON(requestJSON);
@@ -135,73 +124,47 @@ public class Connection {
                 Log.i(this.getClass().getSimpleName(), urlString);
 
                 URL url = new URL(urlString);
+                byte[] bytes = new byte[2000];
+
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-                String response = "";
                 try {
                     conn.setReadTimeout(10000);
                     conn.setConnectTimeout(15000);
                     conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Authorization", "Bearer "+dataJson[0].getString("token"));
+                    conn.setRequestProperty("Content-Type", "application/json");
+
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
-                    conn.setRequestProperty("Authorization", "Bearer "+dataJson[0].getString("token"));
                     dataJson[0].remove("token");
                     dataJson[0].remove("api");
-                    conn.setRequestProperty("Content-Type", "application/json");
-//                    String body = dataJson[0].toString();
-                    OutputStream output = conn.getOutputStream();
+                    String body = dataJson[0].toString();
+                    Log.i(this.getClass().getSimpleName(), body);
 
-                    BufferedWriter writer = new BufferedWriter(
-                            new OutputStreamWriter(output, "UTF-8"));
-                    Log.i(this.getClass().getSimpleName(), dataJson[0].toString());
+                    OutputStream output = new BufferedOutputStream(conn.getOutputStream());
+                    output.write(body.getBytes());
+                    output.flush();
+                    Log.i(this.getClass().getSimpleName(), String.valueOf(conn.getResponseCode()));
 
-                    writer.write(dataJson[0].toString());
+                    InputStream result;
+                    if(conn.getResponseCode() == 200){
+                        return new JSONObject("{\"profile_ok\":\"\"}");
+                    } else if (conn.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+                        result = conn.getInputStream();
+                    } else {
+                        /* error from server */
+                        result = conn.getErrorStream();
 
-                    writer.flush();
-                    writer.close();
-                    output.close();
-                    int responseCode=conn.getResponseCode();
-                    LoginSingleton.getInstance().setToken(conn.getHeaderField("Authorization"));
-                    Log.i(this.getClass().getSimpleName(), conn.getContent().toString());
-                    Log.i(this.getClass().getSimpleName(), "----------------------------");
-                    Log.i(this.getClass().getSimpleName(), LoginSingleton.getInstance().getToken());
-                    Log.i(this.getClass().getSimpleName(), String.valueOf(responseCode));
-
-//                    if (responseCode == HttpsURLConnection.HTTP_OK) {
-                        String line;
-                        BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        while ((line=br.readLine()) != null) {
-                            Log.i(this.getClass().getSimpleName(), line);
-                            response+=line;
-                        }
-//                    }
-                    if(response.equals("")) {
-                        Log.i(this.getClass().getSimpleName(), "EMPTYYYYY");
-                        response="";
                     }
-                    return new JSONObject(response);
+                    result.read(bytes);
+                    Log.i("Resultado", new String(bytes, StandardCharsets.UTF_8));
+                    return new JSONObject(new String(bytes, StandardCharsets.UTF_8));
 
-
-//
-//
-//
-////                    output.write(body.getBytes());
-//                    output.write(getPostDataString(params).getBytes());
-//                    output.flush();
-//                    InputStream result = conn.getInputStream();
-//                    byte[] bytes = new byte[2000];
-//                    Log.i("Resultado", "Antes do read");
-//                    result.read(bytes);
-//                    Log.i("Resultado", new String(bytes, StandardCharsets.UTF_8));
-
-//                    return new JSONObject(new String(bytes, StandardCharsets.UTF_8));
                 }finally {
                     conn.disconnect();
-                    Log.i("Resultado", "disconnect");
-
                 }
             } catch(Exception e){
                 e.printStackTrace();
-
             }
 
             return null;
@@ -216,18 +179,23 @@ public class Connection {
         protected void onPostExecute(JSONObject result) {
             super.onPostExecute(result);
 
-            if(result == null) return;
             LoginSingleton loginSingleton = LoginSingleton.getInstance();
+            if(result == null) {
+                loginSingleton.errorHandler(null);
+                return;
+            }
 
             try {
                 Log.w(this.getClass().getSimpleName(), result.toString());
-                if(result.has("token")){
-                    loginSingleton.setToken(result.getString("token"));
-                } else if(result.has("statistics")) {
-                    loginSingleton.setData(result);
-                    loginSingleton.loginSuccessful();
+
+                if(result.has("profile_ok")){
+                    loginSingleton.profileSuccessful();
+                } else if(result.length() == 1 && result.has("token")){
+                    loginSingleton.registrationSuccessful(result);
+                } else if(result.has("result")) {
+                    loginSingleton.loginSuccessful(result.getJSONObject("result"));
                 } else{
-                    loginSingleton.registrationFailed(result);
+                    loginSingleton.errorHandler(result);
                     return;
                 }
             } catch (Exception e) {

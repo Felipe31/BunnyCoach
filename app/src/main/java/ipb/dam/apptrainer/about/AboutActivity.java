@@ -31,7 +31,7 @@ public class AboutActivity extends AppCompatActivity {
                     ((EditText)findViewById(R.id.about_hours_etxt)).getText().toString())) {
 
                 if (!loginSingleton.isLogged())
-                    loginSingleton.loginSuccessful(this);
+                    loginSingleton.loginSuccessful(this, null);
                 else {
                     startActivity(new Intent(this, HomeActivity.class));
                     finish();

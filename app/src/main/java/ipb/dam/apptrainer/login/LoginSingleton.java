@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.util.Date;
 import java.util.Iterator;
 
+import ipb.dam.apptrainer.about.AboutActivity;
 import ipb.dam.apptrainer.home.HomeActivity;
+import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
+import ipb.dam.apptrainer.register.RegisterActivity;
 import ipb.dam.apptrainer.serverConnection.Connection;
 
 public class LoginSingleton {
@@ -52,18 +55,18 @@ public class LoginSingleton {
         // TODO: 25/05/18 remove the following if statement
         if(usernameApp.equals("") && passwdApp.equals("")){
             isLogged = true;
-            this.loginSuccessful();
+            this.loginSuccessful(null);
         }
 
         Connection.getInstance().requestUserLogin(usernameApp, passwdApp);
 
     }
 
-    public void loginSuccessful(Context context) {
+    public void loginSuccessful(Context context, JSONObject data) {
         this.context = context;
-        loginSuccessful();
+        loginSuccessful(null);
     }
-    public void loginSuccessful(){
+    public void loginSuccessful(JSONObject data){
         if(context != null) {
             isLogged = true;
             Intent intent = new Intent(context, HomeActivity.class);
@@ -71,6 +74,8 @@ public class LoginSingleton {
             context.startActivity(intent);
             ((AppCompatActivity)context).finish();
             context = null;
+            if(data != null)
+                setData(data);
         }
 
     }
@@ -104,17 +109,46 @@ public class LoginSingleton {
         return true;
     }
 
-    public void registrationFailed(JSONObject error){
-        Iterator<?> keys = error.keys();
-        Log.e(this.getClass().getSimpleName(), "Error on registration");
+
+
+    public void registerUser(Context context, String name, String email, String password, String birthday) {
+        this.context = context;
+        Connection.getInstance().registerUser(name, email, password, birthday);
+    }
+
+    public void registrationSuccessful(JSONObject result) {
+        try {
+            setToken(result.getString("token"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            makeLogout();
+        }
+
+        if(context != null) {
+            context.startActivity(new Intent(context, ProfileChooserActivity.class));
+            Toast.makeText(context, "Registration Successful", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void errorHandler(JSONObject error) {
+        if(context == null)
+            return;
+
+        if(error == null){
+            Toast.makeText(context, "Internal error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Iterator<String> keys = error.keys();
+        Log.e(this.getClass().getSimpleName(), "Error on operation" + error.toString());
+        Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
 
         try {
             while( keys.hasNext() ) {
-                String key = (String)keys.next();
-                if (error.get(key) instanceof JSONObject) {
-                    Log.e(this.getClass().getSimpleName(), error.getString(key));
-                }
-
+                String key = keys.next();
+                Log.e(this.getClass().getSimpleName(), ((JSONArray)error.get(key)).get(0).toString());
+                Toast.makeText(context, ((JSONArray)error.get(key)).get(0).toString(), Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -144,6 +178,13 @@ public class LoginSingleton {
             Log.w(this.getClass().getSimpleName(), "Token not defined");
             makeLogout();
         }
+
+    }
+
+    public void profileSuccessful(){
+
+        if(context != null)
+            context.startActivity(new Intent(context, AboutActivity.class));
 
     }
 
