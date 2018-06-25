@@ -308,6 +308,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
             int animProgress = (Integer) animation.getAnimatedValue();
             progressTextView.setText(String.format(Locale.US, "%d%%", animProgress));
             circularSeekBar.setProgress(animProgress);
+
         });
         anim.start();
 
