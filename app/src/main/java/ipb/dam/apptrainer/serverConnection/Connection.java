@@ -5,14 +5,26 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.login.LoginSingleton;
@@ -36,10 +48,12 @@ public class Connection {
     public void registerUser(String name, String email, String password, String birthday){
         JSONObject requestJSON = new JSONObject();
         try {
+            requestJSON.put("token", "");
             requestJSON.put("name", name);
             requestJSON.put("email", email);
             requestJSON.put("password", password);
-            requestJSON.put("birthday", birthday);
+            requestJSON.put("confirmPassword", password);
+            requestJSON.put("dateBirth", birthday);
 
             sendJSON(requestJSON);
         }catch (Exception e){
@@ -53,7 +67,7 @@ public class Connection {
         JSONObject requestJSON = new JSONObject();
         try {
             requestJSON.put("token", token);
-            requestJSON.put("profile", profile);
+            requestJSON.put("type", profile);
 
             sendJSON(requestJSON);
         }catch (Exception e){
@@ -67,9 +81,22 @@ public class Connection {
             requestJSON.put("token", token);
             requestJSON.put("height", height);
             requestJSON.put("weight", weight);
-            requestJSON.put("hours_per_day", hours_per_day);
-            requestJSON.put("working_days", working_days);
+            requestJSON.put("hours", hours_per_day);
+            requestJSON.put("daysWeek", working_days);
 
+
+            sendJSON(requestJSON);
+        }catch (Exception e){
+            Log.w(this.getClass().getSimpleName(), "JSON build error");
+        }
+    }
+
+    public void sendExcercisesDone(String token, JSONArray jsonArray){
+
+        JSONObject requestJSON = new JSONObject();
+        try {
+            requestJSON.put("token", token);
+            requestJSON.put("training", jsonArray);
             sendJSON(requestJSON);
         }catch (Exception e){
             Log.w(this.getClass().getSimpleName(), "JSON build error");
@@ -79,8 +106,6 @@ public class Connection {
 
 
     public void requestUserLogin(String usernameApp, String passwdApp) {
-
-        // TODO: 24/05/18 Handle: 401 Unauthorized is returned in requestUserLogin
 
         JSONObject requestJSON = new JSONObject();
         try {
@@ -102,23 +127,57 @@ public class Connection {
             try {
                 URL url = new URL("https://httpbin.org/post");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                String response = "";
                 try {
                     conn.setReadTimeout(10000);
                     conn.setConnectTimeout(15000);
                     conn.setRequestMethod("POST");
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
-                    String body = dataJson[0].toString();
+                    conn.setRequestProperty("Authorization", "Bearer "+dataJson[0].getString("token"));
+                    dataJson[0].remove("token");
+//                    String body = dataJson[0].toString();
+                    HashMap<String, String> params = (HashMap<String, String>) JsonHandler.jsonToMap(dataJson[0]);
                     OutputStream output = new BufferedOutputStream(conn.getOutputStream());
-                    output.write(body.getBytes());
-                    output.flush();
-                    InputStream result = conn.getInputStream();
-                    byte[] bytes = new byte[2000];
-                    Log.i("Resultado", "Antes do read");
-                    result.read(bytes);
-                    Log.i("Resultado", new String(bytes, StandardCharsets.UTF_8));
 
-                    return new JSONObject(new String(bytes, StandardCharsets.UTF_8));
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(output, "UTF-8"));
+                    writer.write(getPostDataString(params));
+
+                    writer.flush();
+                    writer.close();
+                    output.close();
+                    int responseCode=conn.getResponseCode();
+                    LoginSingleton.getInstance().setToken(conn.getHeaderField("Authorization"));
+
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
+                        String line;
+                        BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                        while ((line=br.readLine()) != null) {
+                            Log.i(this.getClass().getSimpleName(), line);
+                            response+=line;
+                        }
+                    }
+                    else {
+                        Log.i(this.getClass().getSimpleName(), "EMPTYYYYY");
+                        response="";
+                    }
+                    return new JSONObject(response);
+
+
+//
+//
+//
+////                    output.write(body.getBytes());
+//                    output.write(getPostDataString(params).getBytes());
+//                    output.flush();
+//                    InputStream result = conn.getInputStream();
+//                    byte[] bytes = new byte[2000];
+//                    Log.i("Resultado", "Antes do read");
+//                    result.read(bytes);
+//                    Log.i("Resultado", new String(bytes, StandardCharsets.UTF_8));
+
+//                    return new JSONObject(new String(bytes, StandardCharsets.UTF_8));
                 }finally {
                     conn.disconnect();
                     Log.i("Resultado", "disconnect");
@@ -140,15 +199,44 @@ public class Connection {
         protected void onPostExecute(JSONObject result) {
             super.onPostExecute(result);
 
+            if(result == JSONObject.NULL) return;
+
+
+            LoginSingleton loginSingleton = LoginSingleton.getInstance();
+
+
             Log.w(this.getClass().getSimpleName(), result.toString());
 
-            if(result.has("erro"))
-                return;
-            else if(result.has("statistics")) {
-                LoginSingleton loginSingleton = LoginSingleton.getInstance();
+            if(result.has("statistics") || result.has("token")) {
                 loginSingleton.setData(result);
                 loginSingleton.loginSuccessful();
+            } else{
+                //Todo registration failed
+                try {
+                    loginSingleton.registrationFailed(result);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return;
             }
+
+        }
+
+        private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
+            StringBuilder result = new StringBuilder();
+            boolean first = true;
+            for(Map.Entry<String, String> entry : params.entrySet()){
+                if (first)
+                    first = false;
+                else
+                    result.append("&");
+
+                result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+
+            return result.toString();
         }
     }
 }

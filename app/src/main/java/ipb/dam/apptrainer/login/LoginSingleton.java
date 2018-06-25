@@ -31,13 +31,11 @@ public class LoginSingleton {
     private Context context = null;
     private String profile = null;
 
+    private String token = null;
     private String height = null;
     private String weight = null;
     private String hours_per_day = null;
     private String working_days = null;
-
-
-
 
     private LoginSingleton() {
     }
@@ -98,6 +96,10 @@ public class LoginSingleton {
         return true;
     }
 
+    public void registrationFailed(JSONObject error){
+
+    }
+
     public JSONObject getData() {
         return data;
     }
@@ -122,6 +124,14 @@ public class LoginSingleton {
             makeLogout();
         }
 
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getHeight() {
