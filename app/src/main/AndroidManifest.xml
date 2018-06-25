@@ -16,22 +16,22 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".login.LoginActivity" android:screenOrientation="portrait"/>
 
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".home.HomeActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".training.TrainingActivity">
+        <activity android:name=".training.TrainingActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.HomeActivity" />
         </activity>
-        <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".profileform.ProfileChooserActivity" />
-        <activity android:name=".about.AboutActivity" />
+        <activity android:name=".register.RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".profileform.ProfileChooserActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".about.AboutActivity" android:screenOrientation="portrait"/>
 
     </application>
 

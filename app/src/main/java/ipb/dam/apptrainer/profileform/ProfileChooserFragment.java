@@ -132,9 +132,9 @@ public class ProfileChooserFragment extends Fragment {
         title.setText(profileTitle);
         description.setText(profileDescription);
 
-        if(bunnyImage != null)
             // Tell to the garbage collector to free the memory resources
             // used by the old image since the imageview is about to be changed
+        if(bunnyImage != null)
             ((BitmapDrawable)bunnyImage.getDrawable()).getBitmap().recycle();
 
         bunnyImage = root.findViewById(R.id.profile_image_view);
@@ -144,8 +144,6 @@ public class ProfileChooserFragment extends Fragment {
         if (bunnyImage != null) {
             bunnyImage.setImageResource(profilePicture);
         }
-        // TODO fix error, poor performance and error being thrown in my device (Samsung Galaxy S4)
-
 
         Toolbar toolbar = root.findViewById(R.id.toolbar_profile_chooser);
         ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.Date;
+import java.util.Iterator;
 
 import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.serverConnection.Connection;
@@ -77,6 +78,13 @@ public class LoginSingleton {
 
     public boolean makeLogout() {
         isLogged = false;
+        if(context != null) {
+            Intent intent = new Intent(context, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+            ((AppCompatActivity) context).finish();
+        }
+
         return true;
     }
 
@@ -88,7 +96,7 @@ public class LoginSingleton {
         this.working_days = working_days;
 
         try {
-            Connection.getInstance().updateAbout(data.getString("token"), height, weight, hours_per_day, working_days);
+            Connection.getInstance().updateAbout(getToken(), height, weight, hours_per_day, working_days);
         } catch (Exception e) {
             Log.w(this.getClass().getSimpleName(), "token not defined");
             return false;
@@ -97,7 +105,20 @@ public class LoginSingleton {
     }
 
     public void registrationFailed(JSONObject error){
+        Iterator<?> keys = error.keys();
+        Log.e(this.getClass().getSimpleName(), "Error on registration");
 
+        try {
+            while( keys.hasNext() ) {
+                String key = (String)keys.next();
+                if (error.get(key) instanceof JSONObject) {
+                    Log.e(this.getClass().getSimpleName(), error.getString(key));
+                }
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public JSONObject getData() {
@@ -113,14 +134,14 @@ public class LoginSingleton {
         return profile;
     }
 
-    public void setProfile(String profile) {
+    public void setProfile(Context context, String profile) {
         this.profile = profile;
+        this.context = context;
 
         try {
-            String token = data.getString("token");
-            Connection.getInstance().registerProfile(token , profile);
+            Connection.getInstance().registerProfile(getToken() , profile);
         } catch (Exception e) {
-            Log.w(this.getClass().getSimpleName(), "token not defined");
+            Log.w(this.getClass().getSimpleName(), "Token not defined");
             makeLogout();
         }
 

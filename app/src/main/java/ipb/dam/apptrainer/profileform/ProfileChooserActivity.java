@@ -55,7 +55,7 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
         Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, AboutActivity.class));
         // TODO: 21/06/18 Get the current profile
-        LoginSingleton.getInstance().setProfile("PEGAR O PERFIL");
+        LoginSingleton.getInstance().setProfile(this, "PEGAR O PERFIL");
     }
 
     /**
