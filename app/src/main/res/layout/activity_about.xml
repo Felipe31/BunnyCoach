@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/weight"
+            android:textColorHint="@color/white"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:paddingTop="16dp"
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/height"
+            android:textColorHint="@color/white"
             android:inputType="text"
             android:paddingTop="16dp"
             android:textColor="@color/textColor"
@@ -58,6 +60,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/hours"
+            android:textColorHint="@color/white"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:paddingTop="16dp"
@@ -77,87 +80,14 @@
                 android:layout_marginEnd="8dp"
                 android:text="@string/days_to_do_exercices"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_about_day_of_the_week_monday"
+                app:layout_constraintBottom_toTopOf="@+id/days_of_the_week_checkbox_monday"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_monday"
-                android:layout_width="wrap_content"
+            <include
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_big"
-                android:text="@string/initial_day_of_the_week_monday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_tuesday"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_tuesday"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/initial_day_of_the_week_tuesday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_wednesday"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_monday" />
-
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_wednesday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/initial_day_of_the_week_wednesday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_thursday"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_tuesday" />
-
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_thursday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/initial_day_of_the_week_thursday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_friday"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_wednesday" />
-
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_friday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/initial_day_of_the_week_friday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_saturday"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_thursday" />
-
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_saturday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/initial_day_of_the_week_saturday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
-                app:layout_constraintEnd_toStartOf="@+id/fragment_about_day_of_the_week_sunday"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_friday" />
-
-            <TextView
-                android:id="@+id/fragment_about_day_of_the_week_sunday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/initial_day_of_the_week_sunday"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/fragment_about_day_of_the_week_monday"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.9"
-                app:layout_constraintStart_toEndOf="@+id/fragment_about_day_of_the_week_saturday" />
+                layout="@layout/days_of_the_week" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -19,4 +19,7 @@
     <color name="fragment_statistics_days_of_the_week_checked">@color/white</color>
     <color name="fragment_statistics_days_of_the_week_unchecked">@color/blue</color>
 
+    <color name="activity_about_days_of_the_week_checked">@color/colorPrimary</color>
+    <color name="activity_about_days_of_the_week_unchecked">@color/white</color>
+
 </resources>

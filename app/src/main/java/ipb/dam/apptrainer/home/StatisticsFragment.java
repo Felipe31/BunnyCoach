@@ -22,7 +22,7 @@ import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.home.components.CircularSeekBar;
 
 
-/** TODO animate circular seek bar and configure the images to show the training days of the person
+/**
  * <p>Fragment that handles the statistics fragment..
  * This fragment is meant to be controled by the {@link android.support.v4.view.ViewPager}
  * present in {@link HomeActivity}.</p>
@@ -229,21 +229,21 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
         bars[3] = root.findViewById(R.id.fragment_statistics_bar_back);
         bars[4] = root.findViewById(R.id.fragment_statistics_bar_aerobic);
 
-        daysOfTheWeek[0] = root.findViewById(R.id.fragment_statistics_text_view_monday);
-        daysOfTheWeek[1] = root.findViewById(R.id.fragment_statistics_text_view_tuesday);
-        daysOfTheWeek[2] = root.findViewById(R.id.fragment_statistics_text_view_wednesday);
-        daysOfTheWeek[3] = root.findViewById(R.id.fragment_statistics_text_view_thursday);
-        daysOfTheWeek[4] = root.findViewById(R.id.fragment_statistics_text_view_friday);
-        daysOfTheWeek[5] = root.findViewById(R.id.fragment_statistics_text_view_saturday);
-        daysOfTheWeek[6] = root.findViewById(R.id.fragment_statistics_text_view_sunday);
+        daysOfTheWeek[0] = root.findViewById(R.id.days_of_the_week_text_view_monday);
+        daysOfTheWeek[1] = root.findViewById(R.id.days_of_the_week_text_view_tuesday);
+        daysOfTheWeek[2] = root.findViewById(R.id.days_of_the_week_text_view_wednesday);
+        daysOfTheWeek[3] = root.findViewById(R.id.days_of_the_week_text_view_thursday);
+        daysOfTheWeek[4] = root.findViewById(R.id.days_of_the_week_text_view_friday);
+        daysOfTheWeek[5] = root.findViewById(R.id.days_of_the_week_text_view_saturday);
+        daysOfTheWeek[6] = root.findViewById(R.id.days_of_the_week_text_view_sunday);
 
-        checkBoxes[0] = root.findViewById(R.id.fragment_statistics_checkbox_monday);
-        checkBoxes[1] = root.findViewById(R.id.fragment_statistics_checkbox_tuesday);
-        checkBoxes[2] = root.findViewById(R.id.fragment_statistics_checkbox_wednesday);
-        checkBoxes[3] = root.findViewById(R.id.fragment_statistics_checkbox_thursday);
-        checkBoxes[4] = root.findViewById(R.id.fragment_statistics_checkbox_friday);
-        checkBoxes[5] = root.findViewById(R.id.fragment_statistics_checkbox_saturday);
-        checkBoxes[6] = root.findViewById(R.id.fragment_statistics_checkbox_sunday);
+        checkBoxes[0] = root.findViewById(R.id.days_of_the_week_checkbox_monday);
+        checkBoxes[1] = root.findViewById(R.id.days_of_the_week_checkbox_tuesday);
+        checkBoxes[2] = root.findViewById(R.id.days_of_the_week_checkbox_wednesday);
+        checkBoxes[3] = root.findViewById(R.id.days_of_the_week_checkbox_thursday);
+        checkBoxes[4] = root.findViewById(R.id.days_of_the_week_checkbox_friday);
+        checkBoxes[5] = root.findViewById(R.id.days_of_the_week_checkbox_saturday);
+        checkBoxes[6] = root.findViewById(R.id.days_of_the_week_checkbox_sunday);
 
         for (int i = 0; i < checkBoxes.length; i++) {
             checkBoxes[i].setOnCheckedChangeListener(this);
@@ -304,11 +304,11 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
         ValueAnimator anim = ValueAnimator.ofInt(0, targetProgress);
         anim.setDuration(ANIMATION_DURATION);
         anim.setStartDelay(ANIMATION_START_DELAY);
-        anim.addUpdateListener(animation -> {
+
+        anim.addUpdateListener(animation -> { // updates progress text during the animation
             int animProgress = (Integer) animation.getAnimatedValue();
             progressTextView.setText(String.format(Locale.US, "%d%%", animProgress));
             circularSeekBar.setProgress(animProgress);
-
         });
         anim.start();
 
