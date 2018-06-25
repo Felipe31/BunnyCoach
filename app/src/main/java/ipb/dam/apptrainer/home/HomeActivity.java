@@ -15,19 +15,21 @@ import ipb.dam.apptrainer.login.LoginSingleton;
 
 public class HomeActivity  extends AppCompatActivity {
 
+    private ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         AppCompatActivity appCompatActivity = this;
 
-        final ViewPager pager = findViewById(R.id.content_home_viewpager);
+        pager = findViewById(R.id.content_home_viewpager);
         final ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter();
         pager.setAdapter(adapter);
 
         OnPageChangeListener pageChangeListener = new OnPageChangeListener() {
 
-            int currentPosition = 0;
+            private int currentPosition = 0;
 
             @Override
             public void onPageSelected(int newPosition) {
@@ -69,6 +71,17 @@ public class HomeActivity  extends AppCompatActivity {
         if (!LoginSingleton.getInstance().isLogged()) {
             startActivity(new Intent(this, LoginActivity.class));
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        if(pager.getCurrentItem() == 0)
+            super.onBackPressed();
+        else
+            pager.setCurrentItem(pager.getCurrentItem() - 1);
+
+
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

@@ -15,4 +15,8 @@
     <color name="gradient_background_about_activity_top_color">#e54b99</color>
     <color name="gradient_background_statistics_activity_bottom_color">#1974b2</color>
     <color name="gradient_background_statistics_activity_top_color">#a2d9c1</color>
+
+    <color name="fragment_statistics_days_of_the_week_checked">@color/white</color>
+    <color name="fragment_statistics_days_of_the_week_unchecked">@color/blue</color>
+
 </resources>

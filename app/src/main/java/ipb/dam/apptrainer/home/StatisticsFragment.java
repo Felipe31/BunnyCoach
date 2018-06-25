@@ -1,7 +1,6 @@
 package ipb.dam.apptrainer.home;
 
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -32,7 +31,7 @@ import ipb.dam.apptrainer.home.components.CircularSeekBar;
  * Use {@link #newInstance(float, float, float, float, float, float, boolean[])} instead</p>
  * @author Murillo Henrique Pedroso Ferreira
  */
-public class StatisticsFragment extends Fragment implements FragmentLifecycle {
+public class StatisticsFragment extends Fragment implements FragmentLifecycle, CheckBox.OnCheckedChangeListener {
 
 
     /**
@@ -91,6 +90,19 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
      * Array of bars that index the bars from left to right
      */
     private View[] bars = new View[NUM_STATISTICS_BARS ];
+
+    /**
+     * Array for each day of the week, starting on monday (index 0).
+     * @see #checkBoxes
+     */
+    private TextView[] daysOfTheWeek = new TextView[7];
+
+    /**
+     * Array that holds the checkboxes for each day of the week, starting on monday (index 0).
+     * @see #daysOfTheWeek
+     */
+    private CheckBox[] checkBoxes = new CheckBox[7];
+
 
     /**
      * <p>Array holding each statistics that will be shown by this fragment.</p>
@@ -216,6 +228,27 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
         bars[3] = root.findViewById(R.id.fragment_statistics_bar_back);
         bars[4] = root.findViewById(R.id.fragment_statistics_bar_aerobic);
 
+        daysOfTheWeek[0] = root.findViewById(R.id.fragment_statistics_text_view_monday);
+        daysOfTheWeek[1] = root.findViewById(R.id.fragment_statistics_text_view_tuesday);
+        daysOfTheWeek[2] = root.findViewById(R.id.fragment_statistics_text_view_wednesday);
+        daysOfTheWeek[3] = root.findViewById(R.id.fragment_statistics_text_view_thursday);
+        daysOfTheWeek[4] = root.findViewById(R.id.fragment_statistics_text_view_friday);
+        daysOfTheWeek[5] = root.findViewById(R.id.fragment_statistics_text_view_saturday);
+        daysOfTheWeek[6] = root.findViewById(R.id.fragment_statistics_text_view_sunday);
+
+        checkBoxes[0] = root.findViewById(R.id.fragment_statistics_checkbox_monday);
+        checkBoxes[1] = root.findViewById(R.id.fragment_statistics_checkbox_tuesday);
+        checkBoxes[2] = root.findViewById(R.id.fragment_statistics_checkbox_wednesday);
+        checkBoxes[3] = root.findViewById(R.id.fragment_statistics_checkbox_thursday);
+        checkBoxes[4] = root.findViewById(R.id.fragment_statistics_checkbox_friday);
+        checkBoxes[5] = root.findViewById(R.id.fragment_statistics_checkbox_saturday);
+        checkBoxes[6] = root.findViewById(R.id.fragment_statistics_checkbox_sunday);
+
+        for (int i = 0; i < checkBoxes.length; i++) {
+            checkBoxes[i].setOnCheckedChangeListener(this);
+            checkBoxes[i].setChecked(trainingDays[i]);
+        }
+
         return root;
     }
 
@@ -234,7 +267,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
         super.onResume();
 
         for (int i = 0; i < bars.length; i++)
-            expandBar(bars[i], statistics[i+1], // Index 0 is the overall statistics
+            expandBar(bars[i], statistics[i + 1 /* Index 0 is the overall statistics*/ ],
                     ANIMATION_DURATION);
 
     }
@@ -279,5 +312,14 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle {
 
     }
 
+    @Override
+    public void onCheckedChanged(CompoundButton checkbox, boolean isChecked) {
+
+        // The tag has been specified at the XML file, only values from 0 to 6 (7 checkboxes).
+        int dayIndex =  Integer.valueOf((String) checkbox.getTag());
+        daysOfTheWeek[dayIndex].setTextColor(getResources().getColor(isChecked ?
+                R.color.fragment_statistics_days_of_the_week_checked : R.color.fragment_statistics_days_of_the_week_unchecked));
+
+    }
 
 }
