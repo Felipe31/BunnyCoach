@@ -55,13 +55,19 @@
 
     <!--  Statistics Activity -->
     <string name="statistics_title_days_worked_last_week">Days worked last week</string>
-    <string name="statistics_day_of_the_week_monday">M</string>
-    <string name="statistics_day_of_the_week_tuesday">T</string>
-    <string name="statistics_day_of_the_week_wednesday">W</string>
-    <string name="statistics_day_of_the_week_thursday">T</string>
-    <string name="statistics_day_of_the_week_friday">F</string>
-    <string name="statistics_day_of_the_week_saturday">S</string>
-    <string name="statistics_day_of_the_week_sunday">S</string>
     <string name="statistics_title">Statistics</string>
+
+    <!--
+    - Initials of each day of the week to be used in the statistics fragment and
+    - in the user registration form
+    -->
+    <string name="initial_day_of_the_week_monday">M</string>
+    <string name="initial_day_of_the_week_tuesday">T</string>
+    <string name="initial_day_of_the_week_wednesday">W</string>
+    <string name="initial_day_of_the_week_thursday">T</string>
+    <string name="initial_day_of_the_week_friday">F</string>
+    <string name="initial_day_of_the_week_saturday">S</string>
+    <string name="initial_day_of_the_week_sunday">S</string>
+
 
 </resources>

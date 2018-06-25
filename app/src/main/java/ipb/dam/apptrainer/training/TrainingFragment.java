@@ -3,6 +3,7 @@ package ipb.dam.apptrainer.training;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -18,28 +19,27 @@ import android.widget.TextView;
 
 import ipb.dam.apptrainer.R;
 
-// TODO: 23/06/18 Look the necessity of porcent;
+// TODO: 23/06/18 Look the necessity of percent;
 public class TrainingFragment extends Fragment {
 
     /**
      * Argument indexing the data related to the activity title
      */
-
     private static final String ARG_EXERCISE_TITLE = "arg_profile_title";
+
     /**
      * Argument indexing the data related to the description, where we have a brief of description
      */
-
     private static final String ARG_DESCRIPTION = "arg_current_int";
-    /**
-     * Argumente indexing the data related to percentage of exercise done, ranging 1 to 100
-     */
 
+    /**
+     * Argument indexing the data related to percentage of exercise done, ranging from 1 to 100
+     */
     private static final String ARG_PERCENTAGE = "arg_percentage";
-    /**
-     * Argumente indexing the data related to data of gif
-     */
 
+    /**
+     * Argument indexing the data related to data of gif
+     */
     private static final String ARG_EXERCISE_GIF = "arg_exercise_gif";
 
 
@@ -65,20 +65,22 @@ public class TrainingFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     * @param exerciseTitle name of the exercise shown on the app screen
+     * @param exerciseTitle Name of the exercise shown on the app screen
      *
-     * @param description brief description of the exercise done
+     * @param description Brief description of the exercise to be done
      *
-     * @param percentage percentage of training, ranging from 0 to 100
+     * @param percentage Percentage of training, ranging from 0 to 100
      *                   representing how much
      *                   of the all given exercises
      *                   the person has done.
      *
-     * @param exerciseGif gif
+     * @param exerciseGif Animated drawable to be shown.
      *
      * @return
      */
-    public static TrainingFragment newInstance(@NonNull String exerciseTitle, @NonNull String description, @NonNull int percentage, @NonNull int exerciseGif) {
+    public static TrainingFragment newInstance(@NonNull String exerciseTitle,
+                                               @NonNull String description,
+                                               int percentage, @DrawableRes int exerciseGif) {
 
         TrainingFragment fragment = new TrainingFragment();
 
@@ -120,11 +122,10 @@ public class TrainingFragment extends Fragment {
         final TextView progressTxt = root.findViewById(R.id.fragment_exercise_description_textview);
         final SeekBar seekBar = root.findViewById(R.id.seekBarID);
 
-        /**
+        /*
          * This part define the behaviour of seekbar in the app,
          * Then this part control the part of percentage
          */
-
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int percentage, boolean b) {
