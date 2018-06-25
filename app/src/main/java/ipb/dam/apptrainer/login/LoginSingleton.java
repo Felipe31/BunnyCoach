@@ -2,6 +2,7 @@ package ipb.dam.apptrainer.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
+import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.about.AboutActivity;
 import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
@@ -62,39 +64,46 @@ public class LoginSingleton {
 
     }
 
-    public void loginSuccessful(Context context, JSONObject data) {
+    public void loginSuccessful(Context context, JSONObject result) {
         this.context = context;
-        loginSuccessful(null);
+        loginSuccessful(result);
     }
-    public void loginSuccessful(JSONObject data){
+    private void loginSuccessful(JSONObject result){
         if(context != null) {
-            isLogged = true;
-            Intent intent = new Intent(context, HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(intent);
-            ((AppCompatActivity)context).finish();
-            context = null;
-            if(data != null)
-                setData(data);
+            try {
+                setToken(result.getString("token"));
+                isLogged = true;
+                Intent intent = new Intent(context, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intent);
+                ((AppCompatActivity)context).finish();
+                context = null;
+                if(data != null) setData(data);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                makeLogout();
+            }
         }
 
     }
 
 
-    public boolean makeLogout() {
+    private boolean makeLogout() {
         isLogged = false;
         if(context != null) {
             Intent intent = new Intent(context, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(intent);
             ((AppCompatActivity) context).finish();
+            return true;
         }
 
-        return true;
+        return false;
     }
 
-    public boolean updateAbout( String height, String weight, String hours_per_day, String working_days){
+    public void updateAbout(Context context, String height, String weight, String hours_per_day, String working_days){
 
+        this.context = context;
         this.height = height;
         this.weight = weight;
         this.hours_per_day = hours_per_day;
@@ -103,12 +112,10 @@ public class LoginSingleton {
         try {
             Connection.getInstance().updateAbout(getToken(), height, weight, hours_per_day, working_days);
         } catch (Exception e) {
-            Log.w(this.getClass().getSimpleName(), "token not defined");
-            return false;
+            Log.w(this.getClass().getSimpleName(), "Token not defined");
+            errorHandler(null);
         }
-        return true;
     }
-
 
 
     public void registerUser(Context context, String name, String email, String password, String birthday) {
@@ -126,7 +133,7 @@ public class LoginSingleton {
 
         if(context != null) {
             context.startActivity(new Intent(context, ProfileChooserActivity.class));
-            Toast.makeText(context, "Registration Successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.info_registration_successful), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -136,13 +143,14 @@ public class LoginSingleton {
             return;
 
         if(error == null){
-            Toast.makeText(context, "Internal error", Toast.LENGTH_SHORT).show();
-            return;
+            Toast.makeText(context, context.getResources().getString(R.string.info_internal_error), Toast.LENGTH_SHORT).show();
+                return;
         }
 
         Iterator<String> keys = error.keys();
         Log.e(this.getClass().getSimpleName(), "Error on operation" + error.toString());
-        Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, context.getResources().getString(R.string.info_operation_failed), Toast.LENGTH_SHORT).show();
+
 
         try {
             while( keys.hasNext() ) {
@@ -176,6 +184,7 @@ public class LoginSingleton {
             Connection.getInstance().registerProfile(getToken() , profile);
         } catch (Exception e) {
             Log.w(this.getClass().getSimpleName(), "Token not defined");
+            errorHandler(null);
             makeLogout();
         }
 
@@ -188,7 +197,13 @@ public class LoginSingleton {
 
     }
 
-    public String getToken() {
+    public String getToken() throws Resources.NotFoundException{
+        if(token == null ) {
+            throw new Resources.NotFoundException();
+        }
+        else if(token.equals("")) {
+            throw new Resources.NotFoundException();
+        }
         return token;
     }
 
@@ -226,5 +241,13 @@ public class LoginSingleton {
 
     public void setWorking_days(String working_days) {
         this.working_days = working_days;
+    }
+
+    public void resultHandler(JSONObject result) {
+        if(context instanceof LoginActivity)
+            loginSuccessful(result);
+        else if(context instanceof RegisterActivity)
+            registrationSuccessful(result);
+
     }
 }

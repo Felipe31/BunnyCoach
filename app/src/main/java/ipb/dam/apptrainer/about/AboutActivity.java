@@ -88,31 +88,7 @@ public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheck
                 return;
             }
 
-            LoginSingleton loginSingleton = LoginSingleton.getInstance();
-
-            if(loginSingleton.updateAbout(sh, sw, sho, workingDays)) {
-
-                if (!loginSingleton.isLogged())
-                    loginSingleton.loginSuccessful(this, null);
-                else {
-                    startActivity(new Intent(this, HomeActivity.class));
-                    finish();
-                }
-
-            } else {
-
-                if (loginSingleton.isLogged()) {
-                    startActivity(new Intent(this, HomeActivity.class));
-                    finish();
-                } else {
-                    loginSingleton.makeLogout();
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                }
-
-            }
+            LoginSingleton.getInstance().updateAbout(this, sh, sw, sho, workingDays);
 
         });
     }

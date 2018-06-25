@@ -31,6 +31,7 @@ import ipb.dam.apptrainer.serverConnection.Connection;
  */
 public class ProfileChooserActivity extends AppCompatActivity implements Button.OnClickListener {
 
+    private ViewPager pager;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -38,8 +39,7 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
 
         final Button chooseButton = findViewById(R.id.content_profile_chooser_button_choose);
         chooseButton.setOnClickListener(this);
-
-        final ViewPager pager = findViewById(R.id.content_profile_chooser_viewpager_choose_profile);
+        pager = findViewById(R.id.content_profile_chooser_viewpager_choose_profile);
         final ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter();
         pager.setAdapter(adapter);
 
@@ -51,7 +51,7 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
      */
     public void onClick(View v){
         // TODO: 21/06/18 Get the current profile
-        LoginSingleton.getInstance().setProfile(this, "PEGAR O PERFIL");
+        LoginSingleton.getInstance().setProfile(this, String.valueOf(pager.getCurrentItem()));
     }
 
     /**

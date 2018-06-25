@@ -4,10 +4,13 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -117,19 +120,18 @@ public class Connection {
     static private class ConnectRest extends AsyncTask<JSONObject, Integer, JSONObject> {
         @Override
         protected JSONObject doInBackground(JSONObject ...dataJson) {
-
             try {
                 String urlString = "https://calvin.estig.ipb.pt/trainer/api/"+dataJson[0].getString("api");
 //                String urlString = "https://httpbin.org/post";
                 Log.i(this.getClass().getSimpleName(), urlString);
 
                 URL url = new URL(urlString);
-                byte[] bytes = new byte[2000];
-
+                byte[] bytes = new byte[2000000];
+                StringBuilder builder = new StringBuilder();
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 try {
-                    conn.setReadTimeout(10000);
-                    conn.setConnectTimeout(15000);
+                    conn.setReadTimeout(100000);
+                    conn.setConnectTimeout(150000);
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Authorization", "Bearer "+dataJson[0].getString("token"));
                     conn.setRequestProperty("Content-Type", "application/json");
@@ -147,19 +149,33 @@ public class Connection {
                     Log.i(this.getClass().getSimpleName(), String.valueOf(conn.getResponseCode()));
 
                     InputStream result;
-                    if(conn.getResponseCode() == 200){
-                        return new JSONObject("{\"profile_ok\":\"\"}");
-                    } else if (conn.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+
+                    if (conn.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
                         result = conn.getInputStream();
                     } else {
                         /* error from server */
                         result = conn.getErrorStream();
 
                     }
-                    result.read(bytes);
-                    Log.i("Resultado", new String(bytes, StandardCharsets.UTF_8));
-                    return new JSONObject(new String(bytes, StandardCharsets.UTF_8));
 
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(result));
+                    String line="";
+                    while((line = reader.readLine()) != null){
+                        builder.append(line);
+                    }
+                    line = builder.toString();
+
+//                    result.read(bytes);
+//                    String resultString = new String(bytes, StandardCharsets.UTF_8);
+//                    resultString = resultString.trim();
+//                    if (resultString.equals("") && conn.getResponseCode() == 200)
+                    if (line.equals("") && conn.getResponseCode() == 200)
+                        return new JSONObject("{\"profile_ok\":\"\"}");
+                    else {
+                        Log.i("Resultado", line);
+                        return new JSONObject(line);
+                    }
                 }finally {
                     conn.disconnect();
                 }
@@ -193,7 +209,16 @@ public class Connection {
                 } else if(result.length() == 1 && result.has("token")){
                     loginSingleton.registrationSuccessful(result);
                 } else if(result.has("result")) {
-                    loginSingleton.loginSuccessful(result.getJSONObject("result"));
+                    result = result.getJSONObject("result");
+                    if(result.length() == 4 && result.has("token")) {
+                        loginSingleton.loginSuccessful(null, result.getJSONObject("result"));
+                    } else if(result.has("token") && result.has("status")) {
+                        if(result.getString("status").equals("1"))
+                            loginSingleton.profileSuccessful();
+                        else if(result.getString("status").equals("0"))
+                            loginSingleton.registrationSuccessful(result);
+
+                    }
                 } else{
                     loginSingleton.errorHandler(result);
                     return;
