@@ -189,6 +189,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

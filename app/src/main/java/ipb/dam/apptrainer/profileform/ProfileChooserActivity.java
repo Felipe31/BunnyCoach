@@ -11,11 +11,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.about.AboutActivity;
 import ipb.dam.apptrainer.home.HomeActivity;
+import ipb.dam.apptrainer.login.LoginSingleton;
+import ipb.dam.apptrainer.serverConnection.Connection;
 
 /**
  * <p>Handles the activity responsible of showing the different kind of profiles available
@@ -51,6 +54,8 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
         // For test purpose only
         Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(this, AboutActivity.class));
+        // TODO: 21/06/18 Get the current profile
+        LoginSingleton.getInstance().setProfile("PEGAR O PERFIL");
     }
 
     /**

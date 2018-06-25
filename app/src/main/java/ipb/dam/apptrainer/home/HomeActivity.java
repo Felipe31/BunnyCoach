@@ -70,6 +70,7 @@ public class HomeActivity  extends AppCompatActivity {
 
         if (!LoginSingleton.getInstance().isLogged()) {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
     }
 

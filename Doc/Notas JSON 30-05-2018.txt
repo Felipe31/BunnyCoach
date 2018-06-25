@@ -1,0 +1,79 @@
+Enviar em JSON - POST
+
+
+Tela de login
+	enviar para o servidor
+
+	{token:"", email:"", password:""}
+
+	receber
+		token - valida a sessão
+		working_days - inicia na segunda-feira
+
+		{token:"", statistics:{arm:"%", abdominal:"%", leg:"", back:"", aerobic:""}, profile:{height:"", weight:"", hours_per_day:"" working_days:"0,1,2,3,4,5,6"}, training:{0:{id:"", title:"", description:"", info:"", unit:"", qtd:""}, 1:... }}
+
+
+Tela home
+	alterar de quantidade de exercícios para porcentagem
+
+
+Tela de registro
+
+	Enviar pro servidor
+
+		{todos os campos}
+
+	receber
+		{[token:""] ["erro":""]}
+
+Tela profile
+
+	Enviar 
+		{token:"", profile:"0/1/2"}
+
+	Receber
+		retorno padrão POST
+
+
+Tela about
+
+	Enviar pro servidor
+		{token:"", height:"", weight:"", hours_per_day:"" working_days:"0,1,2,3,4,5,6"}		
+
+	Receber
+		{token:"", statistics:{arm:"%", abdominal:"%", leg:"", back:"", aerobic:""}, profile:{height:"", weight:"", hours_per_day:"" working_days:"0,1,2,3,4,5,6"}, training:{0:{id:"", title:"", description:"", info:"", unit:"", qtd:""}, 1:... }}
+
+
+
+
+
+
+
+- Enviar o progresso do exercícios do dia uma vez por dia
+
+	Enviar ao servidor
+		{token:"", training:{date:"", exercises:{0:{id:"", qtd:""}, 1:...}}}
+
+	Receber
+		{token:"", statistics:{arm:"%", abdominal:"%", leg:"", back:"", aerobic:""}, profile:{height:"", weight:"", hours_per_day:"" working_days:"0,1,2,3,4,5,6"}, training:{0:{id:"", title:"", description:"", info:"", unit:"", qtd:""}, 1:... }}
+
+
+
+
+- Atualização de exercícios do treino por dia
+	- App requisita os novos exercícios para o servidor uma vez por dia
+
+- Em todas as requisições, o token é enviado e pode ser inválido. Isso deve gerar o logout do app
+
+
+
+- As informações de treinamento devem ter uma flag de versão no banco para que as telas que precisam das infomrações saibam se a informação apresentada na tela é atualizada1
+
+
+
+
+
+
+
+
+
