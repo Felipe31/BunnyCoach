@@ -54,12 +54,6 @@ public class LoginSingleton {
 
         this.context = context;
 
-        // TODO: 25/05/18 remove the following if statement
-        if(usernameApp.equals("") && passwdApp.equals("")){
-            isLogged = true;
-            this.loginSuccessful(null);
-        }
-
         Connection.getInstance().requestUserLogin(usernameApp, passwdApp);
 
     }

@@ -30,11 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            app:backgroundTint="@color/textColor"
-            android:textColor="@color/textColor"
+            android:hint="@string/email_example_txt"
             android:inputType="textEmailAddress"
             android:paddingTop="16dp"
-            android:hint="@string/email_example_txt" />
+            android:textColor="@color/textColor"
+            app:backgroundTint="@color/textColor" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/passwd_etxt"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
+            android:inputType="numberPassword"
             android:hint="@string/password"
             android:paddingTop="16dp"
             android:textColor="@color/textColor"

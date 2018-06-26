@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Context context = this;
-//        Trata login
+
         Button btn = findViewById(R.id.login_btn);
         btn.setOnClickListener(view -> {
                 AppCompatEditText userEtxt = findViewById(R.id.user_etxt);
@@ -36,8 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                 String passwd = passwdEtxt.getText().toString();
 
                 LoginSingleton.getInstance().makeLogin(context, user, passwd);
-
-                            });
+        });
 
         AppCompatEditText passwdEtxt = findViewById(R.id.passwd_etxt);
         passwdEtxt.setOnEditorActionListener((v, actionId, event) -> {
@@ -52,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         TextView register_txtv = findViewById(R.id.register_btn);
 
         register_txtv.setOnClickListener(view -> {
-                // TODO: 15/05/18 Start form activity
             startActivity(new Intent(context, RegisterActivity.class));
 
         });
