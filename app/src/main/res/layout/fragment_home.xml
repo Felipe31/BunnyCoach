@@ -55,7 +55,7 @@
         android:id="@+id/fragment_home_seekbar"
         style="@style/AppText"
         android:layout_width="match_parent"
-        android:layout_height="16dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_big"
         app:layout_constraintBottom_toTopOf="@id/content_home_button_check"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,7 +64,7 @@
         style="@style/AppText.Blue"
         android:id="@+id/fragment_home_txtv_title"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:text="@string/home_exercise_week"
+        android:text="@string/home_exercise_day"
         app:layout_constraintBottom_toTopOf="@id/fragment_home_seekbar"
         app:layout_constraintStart_toStartOf="@id/fragment_home_seekbar" />
 

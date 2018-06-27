@@ -20,9 +20,12 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.login.LoginSingleton;
 import ipb.dam.apptrainer.training.TrainingActivity;
 
 public class HomeFragment extends Fragment implements FragmentLifecycle {
@@ -125,7 +128,20 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
 
     @Override
     public void onResumeFragment(AppCompatActivity appCompatActivity) {
+        SeekBar seekBar = appCompatActivity.findViewById(R.id.fragment_home_seekbar);
+        TextView progressTxt = appCompatActivity.findViewById(R.id.fragment_home_txtv_progress);
+        try {
+            seekBar.setProgress(LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done"));
+            String exerciseStatus = LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done")+" of "+
+                    LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises")+ " done";
+            progressTxt.setText(exerciseStatus);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Objects.requireNonNull(appCompatActivity.getSupportActionBar()).setTitle(R.string.home_title);
+
 
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true" android:drawable="@drawable/registrationform_checked_day_of_the_week_background"/>
+    <item android:state_checked="false" android:drawable="@drawable/registrationform_unchecked_day_of_the_week_background"/>
+    <item android:drawable="@drawable/registrationform_unchecked_day_of_the_week_background"/>
+
+</selector>

@@ -1,0 +1,961 @@
+URL: https://localhost:44362/api/register
+Method: POST
+{
+	"email": "email@gmail.com",
+	"password": "123456",
+	"confirmPassword": "123456",
+	"name": "Pessoinha",
+	"dateBirth": "06-25-2018"
+}
+response: JSON
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MTE4MDk3OS0wMWE5LTQ4YjEtYjgyZC1lODNiZWUxYjQyMjciLCJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTUzMDUzNzAzOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2Mi8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzYyLyJ9.mz8aaNKCOiAmd4zUnFCe2GSLOi6RF7eAFLmnmWw9v-g"
+}
+exemple error:
+{
+    "DuplicateEmail": [
+        "Email 'email@gmail.com' is already taken." 
+    ],
+    "Password": [
+        "The Password must be at least 6 and at max 100 characters long."
+    ],
+    "ConfirmPassword": [
+        "The password and confirmation password do not match."
+    ]
+}
+
+URL: https://localhost:44362/api/types
+Method: POST
+{
+	"type": "1"
+}
+response status OK
+
+
+URL: https://localhost:44362/api/profiles
+Method: POST
+Header: Authorization - Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MTE4MDk3OS0wMWE5LTQ4YjEtYjgyZC1lODNiZWUxYjQyMjciLCJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTUzMDUzNzAzOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2Mi8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzYyLyJ9.mz8aaNKCOiAmd4zUnFCe2GSLOi6RF7eAFLmnmWw9v-g
+{
+	"height": 1.8,
+	"weight": 70,
+	"daysWeek": "0,1,2,3",
+	"hours": 3
+}
+
+response: JSON
+{
+    "result": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MTE4MDk3OS0wMWE5LTQ4YjEtYjgyZC1lODNiZWUxYjQyMjciLCJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTUzMDUzNzUxOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2Mi8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzYyLyJ9.3wMZSn2XIwygpFrE3PzUCVm6A657nQQ81acRbwf8SJc",
+        "statistics": {
+            "arm": 0,
+            "abdominal": 0,
+            "leg": 0,
+            "back": 0,
+            "aerobic": 0
+        },
+        "profile": {
+            "height": 1.8,
+            "weight": 70,
+            "hours": 3,
+            "daysWeek": "0,1,2,3",
+            "type":1
+        },
+        "training": [
+            {
+                "day": 0,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 1,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 2,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 3,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 4,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 5,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 6,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            }
+        ]
+    },
+    "id": 256,
+    "exception": null,
+    "status": 5,
+    "isCanceled": false,
+    "isCompleted": true,
+    "isCompletedSuccessfully": true,
+    "creationOptions": 0,
+    "asyncState": null,
+    "isFaulted": false
+}
+
+URL: https://localhost:44362/api/exercises
+Method: POST
+{
+	"training": [{
+			"id": "1003", 
+			"qtd": 5,
+			"date": "06-25-2018"
+		},
+		{
+			"id": "1002", 
+			"qtd": 5,
+			"date": "06-25-2018"
+		}
+	]
+}
+response JSON:
+{
+    "result": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MTE4MDk3OS0wMWE5LTQ4YjEtYjgyZC1lODNiZWUxYjQyMjciLCJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTUzMDUzNzkyNywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2Mi8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzYyLyJ9.MAetYMqBhgsGM50pHKoeo4GthQTKkvirYWHTBK05qP8",
+        "statistics": {
+            "arm": 0,
+            "abdominal": 100,
+            "leg": 100,
+            "back": 0,
+            "aerobic": 0
+        },
+        "profile": {
+            "height": 1.8,
+            "weight": 70,
+            "hours": 3,
+            "daysWeek": "0,1,2,3"
+        },
+        "training": [
+            {
+                "day": 0,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 1,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 2,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 3,
+                "exercises": [
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 4,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 5,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            },
+            {
+                "day": 6,
+                "exercises": [
+                    {
+                        "id": 2,
+                        "name": "Exercicios Arms",
+                        "info": "1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 2,
+                        "unit": "Km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1002,
+                        "name": "Exercicios Abdominals",
+                        "info": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 3,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1003,
+                        "name": "Exercicios Legs",
+                        "info": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 4,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1004,
+                        "name": "Exercicios Backs",
+                        "info": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 5,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    },
+                    {
+                        "id": 1005,
+                        "name": "Exercicios Aerobics",
+                        "info": "5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "describe": "55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.",
+                        "imgQtd": 0,
+                        "typeId": 6,
+                        "unit": "km",
+                        "qtd": 5,
+                        "type": null
+                    }
+                ]
+            }
+        ]
+    },
+    "id": 455,
+    "exception": null,
+    "status": 5,
+    "isCanceled": false,
+    "isCompleted": true,
+    "isCompletedSuccessfully": true,
+    "creationOptions": 0,
+    "asyncState": null,
+    "isFaulted": false
+}

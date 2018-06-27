@@ -3,19 +3,24 @@ package ipb.dam.apptrainer.profileform;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -133,8 +138,12 @@ public class ProfileChooserFragment extends Fragment {
             ((BitmapDrawable)bunnyImage.getDrawable()).getBitmap().recycle();
 
         bunnyImage = root.findViewById(R.id.profile_image_view);
-        bunnyImage.setImageResource(profilePicture);
+//        bunnyImage.setImageBitmap(BitmapFactory.decodeResource(root.getResources(), profilePicture));
+//        bunnyImage.setImageDrawable(resizeImage(profilePicture, root));
 
+        if (bunnyImage != null) {
+            bunnyImage.setImageResource(profilePicture);
+        }
         // TODO fix error, poor performance and error being thrown in my device (Samsung Galaxy S4)
 
 
@@ -150,6 +159,48 @@ public class ProfileChooserFragment extends Fragment {
 
         return root;
     }
+//
+//    public Drawable resizeImage(int imageResource, View c) {// R.drawable.large_image
+//        // Get device dimensions
+//        Display display = c.getDisplay();
+//        double deviceWidth = c.getResources().getDisplayMetrics().widthPixels;
+//
+//
+//        BitmapDrawable bd = (BitmapDrawable) this.getResources().getDrawable(
+//                imageResource);
+//        double imageHeight = bd.getBitmap().getHeight();
+//        double imageWidth = bd.getBitmap().getWidth();
+//
+//        double ratio = deviceWidth / imageWidth;
+//        int newImageHeight = (int) (imageHeight * ratio);
+//
+//        Bitmap bMap = BitmapFactory.decodeResource(getResources(), imageResource);
+//        Drawable drawable = new BitmapDrawable(this.getResources(),
+//                getResizedBitmap(bMap, newImageHeight, (int) deviceWidth));
+//
+//        return drawable;
+//    }
+//    /************************ Resize Bitmap *********************************/
+//    public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
+//
+//        int width = bm.getWidth();
+//        int height = bm.getHeight();
+//
+//        float scaleWidth = ((float) newWidth) / width;
+//        float scaleHeight = ((float) newHeight) / height;
+//
+//        // create a matrix for the manipulation
+//        Matrix matrix = new Matrix();
+//
+//        // resize the bit map
+//        matrix.postScale(scaleWidth, scaleHeight);
+//
+//        // recreate the new Bitmap
+//        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height,
+//                matrix, false);
+//
+//        return resizedBitmap;
+//    }
 
     @Override
     public void onDetach(){

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_monday"
+        android:tag="0"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:layout_marginBottom="@dimen/margin_big"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/days_of_the_week_checkbox_tuesday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_monday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_monday"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_monday"
+        />
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_tuesday"
+        android:tag="1"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toStartOf="@+id/days_of_the_week_checkbox_wednesday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/days_of_the_week_checkbox_monday" />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_tuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_tuesday"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_tuesday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_tuesday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_tuesday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_tuesday"
+        />
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_wednesday"
+        android:tag="2"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toStartOf="@+id/days_of_the_week_checkbox_thursday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/days_of_the_week_checkbox_tuesday" />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_wednesday"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_wednesday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_wednesday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_wednesday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_wednesday"
+        />
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_thursday"
+        android:tag="3"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toStartOf="@+id/days_of_the_week_checkbox_friday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/days_of_the_week_checkbox_wednesday" />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_thursday"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_thursday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_thursday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_thursday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_thursday"
+        />
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_friday"
+        android:tag="4"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toStartOf="@+id/days_of_the_week_checkbox_saturday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/days_of_the_week_checkbox_thursday" />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_friday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_friday"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_friday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_friday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_friday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_friday"
+        />
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_saturday"
+        android:tag="5"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toStartOf="@+id/days_of_the_week_checkbox_sunday"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/days_of_the_week_checkbox_friday" />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_saturday"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_saturday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_saturday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_saturday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_saturday"
+        />
+
+    <CheckBox
+        android:id="@+id/days_of_the_week_checkbox_sunday"
+        android:tag="6"
+        android:layout_width="@dimen/checkbox_size"
+        android:layout_height="@dimen/checkbox_size"
+        android:padding="@dimen/margin_small"
+        android:button="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        android:background="@drawable/fragment_statistics_checkbox_day_of_the_week_background"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_monday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toEndOf="@+id/days_of_the_week_checkbox_saturday" />
+
+    <TextView
+        android:id="@+id/days_of_the_week_text_view_sunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_day_of_the_week_sunday"
+        android:textColor="@color/blue"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="@id/days_of_the_week_checkbox_sunday"
+        app:layout_constraintTop_toTopOf="@id/days_of_the_week_checkbox_sunday"
+        app:layout_constraintEnd_toStartOf="@id/days_of_the_week_checkbox_sunday"
+        app:layout_constraintStart_toEndOf="@id/days_of_the_week_checkbox_sunday"
+        />
+
+</merge>

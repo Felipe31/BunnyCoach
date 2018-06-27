@@ -7,5 +7,6 @@
     tools:context="ipb.dam.apptrainer.home.HomeActivity">
 
     <include layout="@layout/content_training" />
+    <include layout="@layout/toolbar" />
 
 </android.support.design.widget.CoordinatorLayout>

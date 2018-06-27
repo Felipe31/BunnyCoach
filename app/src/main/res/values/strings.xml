@@ -11,10 +11,18 @@
     <string name="forgot_passwd">Forgot password?</string>
 
 
+    <!-- Toast Warnings-->
+    <string name="info_update_about_successful">Data successfully updated!</string>
+    <string name="info_registration_successful">Registration successful!</string>
+    <string name="info_internal_error">Internal error!</string>
+    <string name="info_operation_failed">Operation failed!</string>
+    <string name="info_data_outdated">Data outdated!</string>
+
+
     <!-- Home Activity -->
-    <string name="home_exercise_week">Exercises of the week</string>
+    <string name="home_exercise_day">Exercises of the day</string>
     <string name="check_exercises_button">Check</string>
-    <string name="home_title">@string/app_name</string>
+    <string name="home_title">Today\'s Exercises</string>
 
     <!-- About Activity -->
     <string name="about_you">About you</string>
@@ -55,13 +63,20 @@
 
     <!--  Statistics Activity -->
     <string name="statistics_title_days_worked_last_week">Days worked last week</string>
-    <string name="statistics_day_of_the_week_monday">M</string>
-    <string name="statistics_day_of_the_week_tuesday">T</string>
-    <string name="statistics_day_of_the_week_wednesday">W</string>
-    <string name="statistics_day_of_the_week_thursday">T</string>
-    <string name="statistics_day_of_the_week_friday">F</string>
-    <string name="statistics_day_of_the_week_saturday">S</string>
-    <string name="statistics_day_of_the_week_sunday">S</string>
     <string name="statistics_title">Statistics</string>
+
+    <!--
+    - Initials of each day of the week to be used in the statistics fragment and
+    - in the user registration form
+    -->
+    <string name="initial_day_of_the_week_monday">M</string>
+    <string name="initial_day_of_the_week_tuesday">T</string>
+    <string name="initial_day_of_the_week_wednesday">W</string>
+    <string name="initial_day_of_the_week_thursday">T</string>
+    <string name="initial_day_of_the_week_friday">F</string>
+    <string name="initial_day_of_the_week_saturday">S</string>
+    <string name="initial_day_of_the_week_sunday">S</string>
+    <string name="logout">Logout</string>
+
 
 </resources>
