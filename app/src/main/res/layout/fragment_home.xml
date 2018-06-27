@@ -64,7 +64,7 @@
         style="@style/AppText.Blue"
         android:id="@+id/fragment_home_txtv_title"
         android:layout_marginBottom="@dimen/margin_medium"
-        android:text="@string/home_exercise_week"
+        android:text="@string/home_exercise_day"
         app:layout_constraintBottom_toTopOf="@id/fragment_home_seekbar"
         app:layout_constraintStart_toStartOf="@id/fragment_home_seekbar" />
 

@@ -16,12 +16,13 @@
     <string name="info_registration_successful">Registration successful!</string>
     <string name="info_internal_error">Internal error!</string>
     <string name="info_operation_failed">Operation failed!</string>
+    <string name="info_data_outdated">Data outdated!</string>
 
 
     <!-- Home Activity -->
-    <string name="home_exercise_week">Exercises of the week</string>
+    <string name="home_exercise_day">Exercises of the day</string>
     <string name="check_exercises_button">Check</string>
-    <string name="home_title">@string/app_name</string>
+    <string name="home_title">Today\'s Exercises</string>
 
     <!-- About Activity -->
     <string name="about_you">About you</string>
@@ -75,6 +76,7 @@
     <string name="initial_day_of_the_week_friday">F</string>
     <string name="initial_day_of_the_week_saturday">S</string>
     <string name="initial_day_of_the_week_sunday">S</string>
+    <string name="logout">Logout</string>
 
 
 </resources>

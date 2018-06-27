@@ -17,9 +17,16 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import ipb.dam.apptrainer.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-// TODO: 23/06/18 Look the necessity of percent;
+import java.util.Calendar;
+
+import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.login.LoginSingleton;
+
+// TODO: 23/06/18 Check the necessity of percent;
 public class TrainingFragment extends Fragment {
 
     /**
@@ -33,6 +40,11 @@ public class TrainingFragment extends Fragment {
     private static final String ARG_DESCRIPTION = "arg_current_int";
 
     /**
+     * Argument indexing the data related to the description, where we have a brief of description
+     */
+    private static final String ARG_INFO = "arg_info";
+
+    /**
      * Argument indexing the data related to percentage of exercise done, ranging from 1 to 100
      */
     private static final String ARG_PERCENTAGE = "arg_percentage";
@@ -42,18 +54,23 @@ public class TrainingFragment extends Fragment {
      */
     private static final String ARG_EXERCISE_GIF = "arg_exercise_gif";
 
+    /**
+     * Argument indexing the data related to data of gif
+     */
+    private static final String ARG_IDX = "arg_idx";
+
 
     /**
-     * String holding the training title given in {@link #newInstance(String, String,  int, int)}
+     * String holding the training title given in {@link #newInstance(String, String, String, int, int, int)}
      */
-    private String description, exerciseTitle;
-    private int exerciseGif;
+    private String description, exerciseTitle, info;
+    private int exerciseGif, idx;
 
 
     AnimationDrawable exerciseAnimation;
     /**
      * <b>DO NOT</b> use this constructor to instantiate this class.
-     * It should only be used by the Operational System, use {@link #newInstance(String, String, int, int)}
+     * It should only be used by the Operational System, use {@link #newInstance(String, String, String, int, int, int)}
      * instead.
      *
      */
@@ -69,6 +86,8 @@ public class TrainingFragment extends Fragment {
      *
      * @param description Brief description of the exercise to be done
      *
+     * @param info More info about the exercise to be done
+     *
      * @param percentage Percentage of training, ranging from 0 to 100
      *                   representing how much
      *                   of the all given exercises
@@ -80,7 +99,8 @@ public class TrainingFragment extends Fragment {
      */
     public static TrainingFragment newInstance(@NonNull String exerciseTitle,
                                                @NonNull String description,
-                                               int percentage, @DrawableRes int exerciseGif) {
+                                               @NonNull String info,
+                                               int percentage, int idx, @DrawableRes int exerciseGif) {
 
         TrainingFragment fragment = new TrainingFragment();
 
@@ -89,8 +109,10 @@ public class TrainingFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_EXERCISE_TITLE, exerciseTitle);
         args.putString(ARG_DESCRIPTION, description);
+        args.putString(ARG_INFO, description);
         args.putInt(ARG_EXERCISE_GIF, exerciseGif);
         args.putInt(ARG_PERCENTAGE, percentage);
+        args.putInt(ARG_IDX, idx);
         fragment.setArguments(args);
 
         return fragment;
@@ -105,8 +127,11 @@ public class TrainingFragment extends Fragment {
         if (getArguments() != null) {
             exerciseTitle = getArguments().getString(ARG_EXERCISE_TITLE);
             description = getArguments().getString(ARG_DESCRIPTION);
+            info = getArguments().getString(ARG_INFO);
             exerciseGif = getArguments().getInt(ARG_EXERCISE_GIF);
+            idx = getArguments().getInt(ARG_IDX);
         }
+
 
     }
 
@@ -121,28 +146,51 @@ public class TrainingFragment extends Fragment {
         final TextView title = root.findViewById(R.id.fragment_exercise_txtv_title);
         final TextView progressTxt = root.findViewById(R.id.fragment_exercise_description_textview);
         final SeekBar seekBar = root.findViewById(R.id.seekBarID);
+        try {
 
-        /*
-         * This part define the behaviour of seekbar in the app,
-         * Then this part control the part of percentage
-         */
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int percentage, boolean b) {
-                    String exerciseStatus = String.valueOf(description)+" of "+ String.valueOf(percentage)+ " %";
-                    progressTxt.setText(exerciseStatus);
-                }
+            Calendar calendar = Calendar.getInstance();
+            int day = calendar.get(Calendar.DAY_OF_WEEK);
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
+            final JSONArray trainOfTheDay = LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1));
+            String exerciseStatus = description+"\n\n"+ String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("done"))+" of "
+                    +String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("qtd"))+" done";
 
-                }
+            progressTxt.setText(exerciseStatus);
+            seekBar.setMax(trainOfTheDay.getJSONObject(idx).getInt("qtd"));
+            seekBar.setProgress(trainOfTheDay.getJSONObject(idx).getInt("done"));
+            /*
+             * This part define the behaviour of seekbar in the app,
+             * Then this part control the part of percentage
+             */
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int percentage, boolean b) {
+                        try {
+                            String exerciseStatus = description +"\n\n"+ String.valueOf(percentage)+" of "
+                                    +String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("qtd"))+" done";
+                            progressTxt.setText(exerciseStatus);
 
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
+                            trainOfTheDay.getJSONObject(idx).put("done", percentage);
+                            LoginSingleton.getInstance().updateDoneTrainingTracker();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
             });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         ImageView exerciseGifImageView = root.findViewById(R.id.fragment_training_imageView);
@@ -152,16 +200,6 @@ public class TrainingFragment extends Fragment {
         exerciseGifImageView.setImageDrawable(ContextCompat.getDrawable(root.getContext(),exerciseGif));
         exerciseAnimation = (AnimationDrawable) exerciseGifImageView.getDrawable();
         exerciseAnimation.start();
-
-
-        Toolbar toolbar = root.findViewById(R.id.toolbar_training);
-        ((AppCompatActivity)root.getContext()).setSupportActionBar(toolbar);
-        ActionBar actionBar = ((AppCompatActivity) root.getContext()).getSupportActionBar();
-        if( actionBar != null) {
-            actionBar.setHomeButtonEnabled(true);
-            //actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
 
         return root;
     }

@@ -122,11 +122,9 @@ public class Connection {
         protected JSONObject doInBackground(JSONObject ...dataJson) {
             try {
                 String urlString = "https://calvin.estig.ipb.pt/trainer/api/"+dataJson[0].getString("api");
-//                String urlString = "https://httpbin.org/post";
                 Log.i(this.getClass().getSimpleName(), urlString);
 
                 URL url = new URL(urlString);
-                byte[] bytes = new byte[2000000];
                 StringBuilder builder = new StringBuilder();
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 try {
@@ -166,10 +164,6 @@ public class Connection {
                     }
                     line = builder.toString();
 
-//                    result.read(bytes);
-//                    String resultString = new String(bytes, StandardCharsets.UTF_8);
-//                    resultString = resultString.trim();
-//                    if (resultString.equals("") && conn.getResponseCode() == 200)
                     if (line.equals("") && conn.getResponseCode() == 200)
                         return new JSONObject("{\"profile_ok\":\"\"}");
                     else {
@@ -206,17 +200,25 @@ public class Connection {
 
                 if(result.has("profile_ok")){
                     loginSingleton.profileSuccessful();
+
                 } else if(result.length() == 1 && result.has("token")){
                     loginSingleton.registrationSuccessful(result);
+
                 } else if(result.has("result")) {
                     result = result.getJSONObject("result");
-                    if(result.length() == 4 && result.has("token")) {
-                        loginSingleton.loginSuccessful(null, result.getJSONObject("result"));
-                    } else if(result.has("token") && result.has("status")) {
-                        if(result.getString("status").equals("1"))
-                            loginSingleton.profileSuccessful();
-                        else if(result.getString("status").equals("0"))
-                            loginSingleton.registrationSuccessful(result);
+
+                    if(result.has("token") && result.has("status")) {
+//                  status 0 - ok
+//                  status 1 - type missing
+//                  status 2 - profile (measures) missing
+
+                        switch (result.getString("status")){
+                            case "0": loginSingleton.loginSuccessful(null, result); break;
+                            case "1": loginSingleton.registrationSuccessful(result); break;
+                            case "2": loginSingleton.profileSuccessful(result.getString("token")); break;
+                            default: loginSingleton.errorHandler(result);
+
+                        }
 
                     }
                 } else{
