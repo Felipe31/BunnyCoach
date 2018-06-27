@@ -89,6 +89,8 @@ public class TrainingActivity extends AppCompatActivity{
                 return R.drawable.arm_gif;
             case 1002:
                 return R.drawable.abdominal_gif;
+            case 1003:
+                return R.drawable.leg_gif;
             case 1004:
                 return R.drawable.backs_gif;
             default:
