@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -95,11 +96,11 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TextView title = root.findViewById(R.id.fragment_home_txtv_title);
         final TextView progressTxt = root.findViewById(R.id.fragment_home_txtv_progress);
-        String exerciseStatus = String.valueOf(currentExercise)+" of "+ String.valueOf(totalExercise)+ " done";
+        String exerciseStatus = String.valueOf(currentExercise*100/totalExercise)+ "% done";
 
 
         // Set up texts to be shown
@@ -109,8 +110,8 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         SeekBar seekBar = root.findViewById(R.id.fragment_home_seekbar);
 
         seekBar.setOnTouchListener((view, motionEvent) -> true);
-        seekBar.setMax(totalExercise);
-        seekBar.setProgress(currentExercise);
+        seekBar.setMax(100);
+        seekBar.setProgress(currentExercise*100/totalExercise);
 
 
         final Button chooseButton = root.findViewById(R.id.content_home_button_check);
@@ -131,9 +132,8 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         SeekBar seekBar = appCompatActivity.findViewById(R.id.fragment_home_seekbar);
         TextView progressTxt = appCompatActivity.findViewById(R.id.fragment_home_txtv_progress);
         try {
-            seekBar.setProgress(LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done"));
-            String exerciseStatus = LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done")+" of "+
-                    LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises")+ " done";
+            seekBar.setProgress(LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done")*100/LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises"));
+            String exerciseStatus = String.valueOf(LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done")*100/LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises"))+ "% done";
             progressTxt.setText(exerciseStatus);
 
 

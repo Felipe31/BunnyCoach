@@ -1,5 +1,6 @@
 package ipb.dam.apptrainer.training;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +18,7 @@ import org.json.JSONObject;
 import java.util.Calendar;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.login.LoginSingleton;
 
 public class TrainingActivity extends AppCompatActivity{
@@ -49,6 +52,16 @@ public class TrainingActivity extends AppCompatActivity{
                 return;
             }
             JSONArray trainingArray = LoginSingleton.getInstance().getData().getJSONArray("training");
+
+            Log.i(getClass().getSimpleName(), LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1)).toString());
+            if(LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1)).length() < 1) {
+                Toast.makeText(this, getResources().getString(R.string.no_exercise_today), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, HomeActivity.class));
+                this.finish();
+                return;
+            }
+
+
 
             int i;
             for ( i = 0; i < trainingArray.length(); i++){

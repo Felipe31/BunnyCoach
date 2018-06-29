@@ -46,6 +46,12 @@ public class LoginSingleton {
     private String working_days = null;
 
     private LoginSingleton() {
+        try {
+            setTrainingTracker(new JSONObject("{\"qtd_exercises_done\":0,\"0\":[],\"qtd_exercises\":0,\"1\":[],\"2\":[],\"3\":[],\"4\":[],\"5\":[],\"6\":[]}"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public boolean isLogged() {
@@ -85,7 +91,7 @@ public class LoginSingleton {
                 Log.i("Bruno", result.toString());
 
                 setToken(result.getString("token"));
-                setData(data);
+                setData(result);
                 isLogged = true;
                 Intent intent = new Intent(context, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -151,6 +157,9 @@ public class LoginSingleton {
         if(context != null) {
             context.startActivity(new Intent(context, ProfileChooserActivity.class));
             Toast.makeText(context, context.getResources().getString(R.string.info_registration_successful), Toast.LENGTH_SHORT).show();
+
+            ((AppCompatActivity)context).finish();
+            context = null;
         }
 
     }
@@ -188,9 +197,18 @@ public class LoginSingleton {
         if(data != null) {
             this.data = data;
             Log.w(this.getClass().getSimpleName(), data.toString());
-
+            Log.i("Bruno Thread", "aaloooo"+getTrainingTracker().toString());
             try {
-                setTrainingTracker(new JSONObject("{\"qtd_exercises_done\":0,\"0\":[],\"qtd_exercises\":0,\"1\":[],\"2\":[],\"3\":[],\"4\":[],\"5\":[],\"6\":[]}"));
+
+                setProfile(context, String.valueOf(data.getJSONObject("profile").getString("type")));
+
+                String qtdProfile;
+                switch (Integer.parseInt(getProfile())){
+                    case 0: qtdProfile = "qtdLazy"; break;
+                    case 1: qtdProfile = "qtdBalanced"; break;
+                    default: qtdProfile = "qtdBody";
+                }
+
                 JSONArray exercises;
                 JSONArray training = data.getJSONArray("training");
                 trainingTracker.put("qtd_exercises_done", 0);
@@ -199,16 +217,17 @@ public class LoginSingleton {
                     exercises = training.getJSONObject(j).getJSONArray("exercises");
 
                     for (int i = 0; i < exercises.length(); i++) {
+
                         addTrainingTracker(training.getJSONObject(j).getInt("day"),
                                 exercises.getJSONObject(i).getInt("id"),
-                                exercises.getJSONObject(i).getInt("qtd"),
+                                exercises.getJSONObject(i).getInt(qtdProfile),
                                 0);
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-                Log.i("Bruno Thread", getTrainingTracker().toString());
+            Log.i("Bruno Thread", getTrainingTracker().toString());
 
          
         }
@@ -253,18 +272,23 @@ public class LoginSingleton {
 
     }
 
-    public void profileSuccessful(String token){
+    public void profileSuccessful(String token, boolean closeCurrentContext){
         setToken(token);
-        profileSuccessful();
+        profileSuccessful(closeCurrentContext);
     }
-    public void profileSuccessful(){
+    public void profileSuccessful(boolean closeCurrentContext){
 
-        if(context != null)
+        if(context != null) {
             context.startActivity(new Intent(context, AboutActivity.class));
+            if(closeCurrentContext) {
+                ((AppCompatActivity) context).finish();
+                context = null;
+            }
+        }
 
     }
 
-    public String getToken() throws Resources.NotFoundException{
+    private String getToken() throws Resources.NotFoundException{
         if(token == null ) {
             throw new Resources.NotFoundException();
         }
@@ -274,7 +298,7 @@ public class LoginSingleton {
         return token;
     }
 
-    public void setToken(String token) {
+    private void setToken(String token) {
         this.token = token;
     }
 
@@ -335,7 +359,7 @@ public class LoginSingleton {
 
             double sum = 0;
             for(int i = 0; i < trainOfTheDay.length(); i++){
-                sum += trainOfTheDay.getJSONObject(i).getDouble("done");
+                sum += trainOfTheDay.getJSONObject(i).getInt("done");
             }
             getTrainingTracker().put("qtd_exercises_done", sum);
 
@@ -344,5 +368,9 @@ public class LoginSingleton {
             e.printStackTrace();
         }
 
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

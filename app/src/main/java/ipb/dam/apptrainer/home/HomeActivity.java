@@ -85,6 +85,10 @@ public class HomeActivity  extends AppCompatActivity {
             case R.id.menu_logout:
                 LoginSingleton.getInstance().makeLogout(this);
                 return true;
+            case R.id.menu_about:
+                LoginSingleton.getInstance().setContext(this);
+                LoginSingleton.getInstance().profileSuccessful(false);
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }

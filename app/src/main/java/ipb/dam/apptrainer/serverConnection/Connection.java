@@ -199,7 +199,7 @@ public class Connection {
                 Log.w(this.getClass().getSimpleName(), result.toString());
 
                 if(result.has("profile_ok")){
-                    loginSingleton.profileSuccessful();
+                    loginSingleton.profileSuccessful(true);
 
                 } else if(result.length() == 1 && result.has("token")){
                     loginSingleton.registrationSuccessful(result);
@@ -215,7 +215,7 @@ public class Connection {
                         switch (result.getString("status")){
                             case "0": loginSingleton.loginSuccessful(null, result); break;
                             case "1": loginSingleton.registrationSuccessful(result); break;
-                            case "2": loginSingleton.profileSuccessful(result.getString("token")); break;
+                            case "2": loginSingleton.profileSuccessful(result.getString("token"), true); break;
                             default: loginSingleton.errorHandler(result);
 
                         }

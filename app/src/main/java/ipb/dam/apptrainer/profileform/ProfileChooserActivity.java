@@ -50,7 +50,6 @@ public class ProfileChooserActivity extends AppCompatActivity implements Button.
      * @param v View that has triggered this method
      */
     public void onClick(View v){
-        // TODO: 21/06/18 Get the current profile
         LoginSingleton.getInstance().setProfile(this, String.valueOf(pager.getCurrentItem()));
     }
 
