@@ -92,7 +92,15 @@ public class TrainingActivity extends AppCompatActivity{
         if (!LoginSingleton.getInstance().isLogged()) {
             LoginSingleton.getInstance().makeLogout(this);
         }
-    }
+        Log.i("onResume - Training", LoginSingleton.getInstance().getTrainingTracker().toString());
+        if(LoginSingleton.getInstance().getTrainingTracker().has("unused")){
+            Toast.makeText(this, getResources().getString(R.string.no_exercise_today), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, HomeActivity.class));
+            this.finish();
+            return;
+        }
+
+}
 
 
     private int getDrawableTraining(int id) {

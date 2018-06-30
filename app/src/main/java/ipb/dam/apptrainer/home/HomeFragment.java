@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -35,18 +36,15 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
      * Argument indexing the data related to the activity title
      */
     private static final String ARG_FRAGMENT_TITLE = "arg_profile_title";
-    private static final String ARG_CURRENT_INT = "arg_current_int";
-    private static final String ARG_TOTAL_INT = "arg_total_int";
 
 
     /**
-     * String holding the home title given in {@link #newInstance(String, Integer, Integer)}
+     * String holding the home title given in {@link #newInstance(String)}
      */
     private String fragmentTitle;
-    private Integer totalExercise, currentExercise;
     /**
      * <b>DO NOT</b> use this constructor to instantiate this class.
-     * It should only be used by the Operational System, use {@link #newInstance(String, Integer, Integer)}
+     * It should only be used by the Operational System, use {@link #newInstance(String)}
      * instead.
      *
      */
@@ -61,7 +59,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
      * @param fragmentTitle Title of app to be shown. Cannot be {@code null}.
      * @return A new instance of fragment HomeFragment.
      */
-    public static HomeFragment newInstance(@NonNull String fragmentTitle, @NonNull Integer currentExercise, @NonNull Integer totalExcercise) {
+    public static HomeFragment newInstance(@NonNull String fragmentTitle) {
 
         HomeFragment fragment = new HomeFragment();
 
@@ -69,8 +67,6 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         // if the operational system recreates this class using the default constructor.
         Bundle args = new Bundle();
         args.putString(ARG_FRAGMENT_TITLE, fragmentTitle);
-        args.putInt(ARG_CURRENT_INT, currentExercise);
-        args.putInt(ARG_TOTAL_INT, totalExcercise);
         fragment.setArguments(args);
 
         return fragment;
@@ -84,8 +80,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         // Since its arguments should not be null, this if should never fail.
         if (getArguments() != null) {
             fragmentTitle = getArguments().getString(ARG_FRAGMENT_TITLE);
-            currentExercise = getArguments().getInt(ARG_CURRENT_INT);
-            totalExercise= getArguments().getInt(ARG_TOTAL_INT);
+
         }
 
     }
@@ -100,7 +95,8 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
 
         final TextView title = root.findViewById(R.id.fragment_home_txtv_title);
         final TextView progressTxt = root.findViewById(R.id.fragment_home_txtv_progress);
-        String exerciseStatus = String.valueOf(currentExercise*100/totalExercise)+ "% done";
+        String exerciseStatus = String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday())+ "% done";
+
 
 
         // Set up texts to be shown
@@ -111,7 +107,9 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
 
         seekBar.setOnTouchListener((view, motionEvent) -> true);
         seekBar.setMax(100);
-        seekBar.setProgress(currentExercise*100/totalExercise);
+        Log.i("Current", String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()));
+        Log.i("Total", String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday()));
+        seekBar.setProgress( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday());
 
 
         final Button chooseButton = root.findViewById(R.id.content_home_button_check);
@@ -131,15 +129,12 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
     public void onResumeFragment(AppCompatActivity appCompatActivity) {
         SeekBar seekBar = appCompatActivity.findViewById(R.id.fragment_home_seekbar);
         TextView progressTxt = appCompatActivity.findViewById(R.id.fragment_home_txtv_progress);
-        try {
-            seekBar.setProgress(LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done")*100/LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises"));
-            String exerciseStatus = String.valueOf(LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises_done")*100/LoginSingleton.getInstance().getTrainingTracker().getInt("qtd_exercises"))+ "% done";
-            progressTxt.setText(exerciseStatus);
+        seekBar.setProgress(LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday());
+        String exerciseStatus = String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday())+ "% done";
+        progressTxt.setText(exerciseStatus);
+        Log.i("Current", String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()));
+        Log.i("Total", String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday()));
 
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         Objects.requireNonNull(appCompatActivity.getSupportActionBar()).setTitle(R.string.home_title);
 
 

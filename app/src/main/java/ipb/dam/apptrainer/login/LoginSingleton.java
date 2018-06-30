@@ -1,5 +1,6 @@
 package ipb.dam.apptrainer.login;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -13,7 +14,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.acl.LastOwnerException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 
 import ipb.dam.apptrainer.R;
@@ -45,13 +51,10 @@ public class LoginSingleton {
     private String hours_per_day = null;
     private String working_days = null;
 
-    private LoginSingleton() {
-        try {
-            setTrainingTracker(new JSONObject("{\"qtd_exercises_done\":0,\"0\":[],\"qtd_exercises\":0,\"1\":[],\"2\":[],\"3\":[],\"4\":[],\"5\":[],\"6\":[]}"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    private boolean isRefresh = false;
 
+    private LoginSingleton() {
+        setTrainingTrackerUnused();
     }
 
     public boolean isLogged() {
@@ -61,20 +64,7 @@ public class LoginSingleton {
     protected void makeLogin(Context context, String usernameApp, String passwdApp) {
 
         this.context = context;
-
         isLogged = true;
-        if(usernameApp.equals("Felipe")) {
-            try {
-                setData(new JSONObject("{\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MTE4MDk3OS0wMWE5LTQ4YjEtYjgyZC1lODNiZWUxYjQyMjciLCJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTUzMDUzNzUxOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2Mi8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzYyLyJ9.3wMZSn2XIwygpFrE3PzUCVm6A657nQQ81acRbwf8SJc\",         \"statistics\": {             \"arm\": 0,             \"abdominal\": 0,             \"leg\": 0,             \"back\": 0,             \"aerobic\": 0         },         \"profile\": {             \"height\": 1.8,             \"weight\": 70,             \"hours\": 3,             \"daysWeek\": \"0,1,2,3\",             \"type\":1         },         \"training\": [             {                 \"day\": 0,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             },             {                 \"day\": 1,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             },             {                 \"day\": 2,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             },             {                 \"day\": 3,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             },             {                 \"day\": 4,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             },             {                 \"day\": 5,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             },             {                 \"day\": 6,                 \"exercises\": [                     {                         \"id\": 2,                         \"name\": \"Exercicios Arms\",                         \"info\": \"1Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"11Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 2,                         \"unit\": \"Km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1002,                         \"name\": \"Exercicios Abdominals\",                         \"info\": \"2Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"22Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 3,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1003,                         \"name\": \"Exercicios Legs\",                         \"info\": \"3Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"33Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 4,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1004,                         \"name\": \"Exercicios Backs\",                         \"info\": \"4Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"44Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 5,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     },                     {                         \"id\": 1005,                         \"name\": \"Exercicios Aerobics\",                         \"info\": \"5Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"describe\": \"55Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, quam.\",                         \"imgQtd\": 0,                         \"typeId\": 6,                         \"unit\": \"km\",                         \"qtd\": 5,                         \"type\": null                     }                 ]             }         ] } "));
-                token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MTE4MDk3OS0wMWE5LTQ4YjEtYjgyZC1lODNiZWUxYjQyMjciLCJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTUzMDUzNzUxOSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2Mi8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzYyLyJ9.3wMZSn2XIwygpFrE3PzUCVm6A657nQQ81acRbwf8SJc";
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            context.startActivity(new Intent(context, HomeActivity.class));
-            return;
-        }
-
-
         Connection.getInstance().requestUserLogin(usernameApp, passwdApp);
 
     }
@@ -88,7 +78,7 @@ public class LoginSingleton {
     private void loginSuccessful(JSONObject result){
         if(context != null) {
             try {
-                Log.i("Bruno", result.toString());
+                Log.i("Login Successful", result.toString());
 
                 setToken(result.getString("token"));
                 setData(result);
@@ -197,7 +187,7 @@ public class LoginSingleton {
         if(data != null) {
             this.data = data;
             Log.w(this.getClass().getSimpleName(), data.toString());
-            Log.i("Bruno Thread", "aaloooo"+getTrainingTracker().toString());
+            Log.i("SetData Thread", getTrainingTracker().toString());
             try {
 
                 setProfile(context, String.valueOf(data.getJSONObject("profile").getString("type")));
@@ -209,25 +199,28 @@ public class LoginSingleton {
                     default: qtdProfile = "qtdBody";
                 }
 
-                JSONArray exercises;
-                JSONArray training = data.getJSONArray("training");
-                trainingTracker.put("qtd_exercises_done", 0);
+                if(getTrainingTracker().has("unused")) {
+                    JSONArray exercises;
+                    JSONArray training = data.getJSONArray("training");
+                    getTrainingTracker().put("qtd_exercises", 0);
+                    getTrainingTracker().remove("unused");
 
-                for (int j = 0; j < training.length(); j++) {
-                    exercises = training.getJSONObject(j).getJSONArray("exercises");
+                    for (int j = 0; j < training.length(); j++) {
+                        exercises = training.getJSONObject(j).getJSONArray("exercises");
 
-                    for (int i = 0; i < exercises.length(); i++) {
+                        for (int i = 0; i < exercises.length(); i++) {
 
-                        addTrainingTracker(training.getJSONObject(j).getInt("day"),
-                                exercises.getJSONObject(i).getInt("id"),
-                                exercises.getJSONObject(i).getInt(qtdProfile),
-                                0);
+                            addTrainingTracker(training.getJSONObject(j).getInt("day"),
+                                    exercises.getJSONObject(i).getInt("id"),
+                                    exercises.getJSONObject(i).getInt(qtdProfile),
+                                    0);
+                        }
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.i("Bruno Thread", getTrainingTracker().toString());
+            Log.i("SetData Thread", getTrainingTracker().toString());
 
          
         }
@@ -353,6 +346,8 @@ public class LoginSingleton {
     public void updateDoneTrainingTracker() {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
+        Date cDate = new Date();
+        @SuppressLint("SimpleDateFormat") String fDate = new SimpleDateFormat("MM-dd-yyyy").format(cDate);
 
         try {
             JSONArray trainOfTheDay = getTrainingTracker().getJSONArray(String.valueOf(day-1));
@@ -360,6 +355,7 @@ public class LoginSingleton {
             double sum = 0;
             for(int i = 0; i < trainOfTheDay.length(); i++){
                 sum += trainOfTheDay.getJSONObject(i).getInt("done");
+                trainOfTheDay.getJSONObject(i).put("date",fDate);
             }
             getTrainingTracker().put("qtd_exercises_done", sum);
 
@@ -372,5 +368,86 @@ public class LoginSingleton {
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    private void setTrainingTrackerUnused() {
+        try {
+            setTrainingTracker(new JSONObject("{\"unused\":\"\",\"qtd_exercises_done\":0,\"0\":[],\"qtd_exercises\":0,\"1\":[],\"2\":[],\"3\":[],\"4\":[],\"5\":[],\"6\":[]}"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Integer getTrainingTrackerExerciseTotalToday() {
+        return sumTrainingTrackerExerciseTodayField("qtd");
+    }
+
+    public Integer getTrainingTrackerExerciseDoneToday() {
+        return sumTrainingTrackerExerciseTodayField("done");
+    }
+
+    private int sumTrainingTrackerExerciseTodayField(String field){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        int sum = 0;
+        try {
+            JSONArray dayArray =  trainingTracker.getJSONArray(String.valueOf(day));
+            for (int i = 0 ; i < dayArray.length(); i++) {
+                sum += dayArray.getJSONObject(i).getInt(field);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            sum = 0;
+        }
+
+        return sum;
+    }
+
+    public JSONObject getStatistics() throws JSONException {
+        JSONObject statistics = getData().getJSONObject("statistics");
+        statistics.put("total", statistics.getDouble("arm")+
+                statistics.getDouble("abdominal")+
+                statistics.getDouble("leg")+
+                statistics.getDouble("back")+
+                statistics.getDouble("aerobic"));
+
+        String[] days = getData().getJSONObject("profile").getString("daysWeek").split(",");
+        boolean[] daysBool = new boolean[7];
+        Arrays.fill(daysBool, false);
+
+
+        for (String day : days  ){
+            daysBool[Integer.parseInt(day)] = true;
+        }
+        statistics.put("boolean", daysBool);
+        Log.i("Statistics", statistics.toString());
+        return statistics;
+    }
+
+    public void refreshStatistics(Context context) {
+        this.context = context;
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        try {
+            JSONArray exercises =  getTrainingTracker().getJSONArray(String.valueOf(day));
+
+            JSONArray ex = new JSONArray(exercises.toString());
+            for(int i = 0; i < ex.length(); i++){
+                ex.getJSONObject(i).put("qtd", ex.getJSONObject(i).getInt("done"));
+                ex.getJSONObject(i).remove("done");
+            }
+
+            Log.i("Refresh Statistics", ex.toString());
+            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
+            setTrainingTrackerUnused();
+            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
+            Connection.getInstance().sendExcercisesDone(token, ex);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

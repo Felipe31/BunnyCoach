@@ -78,6 +78,7 @@
     <string name="initial_day_of_the_week_sunday">S</string>
     <string name="logout">Logout</string>
     <string name="no_exercise_today">There is no exercise for today!</string>
+    <string name="refresh_statistics">Refresh statistics</string>
 
 
 </resources>
