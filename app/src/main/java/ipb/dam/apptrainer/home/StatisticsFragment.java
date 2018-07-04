@@ -260,7 +260,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
 
     @Override
     public void onResumeFragment(AppCompatActivity appCompatActivity) {
-        Objects.requireNonNull(appCompatActivity.getSupportActionBar()).setTitle(R.string.home_title);
+        Objects.requireNonNull(appCompatActivity.getSupportActionBar()).setTitle(R.string.statistics_title);
     }
 
     @Override

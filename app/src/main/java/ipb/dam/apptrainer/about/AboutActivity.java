@@ -1,22 +1,22 @@
 package ipb.dam.apptrainer.about;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.AppCompatSeekBar;
+import android.support.v7.widget.AppCompatSpinner;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import ipb.dam.apptrainer.R;
-import ipb.dam.apptrainer.home.HomeActivity;
-import ipb.dam.apptrainer.login.LoginActivity;
 import ipb.dam.apptrainer.login.LoginSingleton;
-import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
 
 public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheckedChangeListener {
 
@@ -57,10 +57,26 @@ public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheck
             textView.setTextColor(getResources().getColor(R.color.activity_about_days_of_the_week_unchecked));
 
 
-        for (int i = 0; i < checkBoxes.length; i++) {
-            checkBoxes[i].setBackgroundResource(R.drawable.activity_about_checkbox_day_of_the_week_background);
-            checkBoxes[i].setOnCheckedChangeListener(this);
+        for (CheckBox checkBoxe : checkBoxes) {
+            checkBoxe.setBackgroundResource(R.drawable.activity_about_checkbox_day_of_the_week_background);
+            checkBoxe.setOnCheckedChangeListener(this);
         }
+
+
+
+        //get the spinner from the xml.
+        AppCompatSpinner dropdown = findViewById(R.id.about_hours_spinner);
+        //create a list of items for the spinner.
+        String[] items = new String[]{"0:30", "1:00", "1:30", "2:00"};
+
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        //set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
+
+
+
 
         Button about_btn = findViewById(R.id.about_btn);
 
@@ -77,42 +93,32 @@ public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheck
 
             EditText height = findViewById(R.id.about_height_etxt);
             EditText weight = findViewById(R.id.about_weight_etxt);
-            EditText hours = findViewById(R.id.about_hours_etxt);
 
             String sh = height.getText().toString();
             String sw = weight.getText().toString();
-            String sho = hours.getText().toString();
+
+            String sho;
+            switch (dropdown.getSelectedItem().toString()) {
+                case ("0:30"):
+                    sho = "0.5";
+                    break;
+                case ("1:00"):
+                    sho = "1.0";
+                    break;
+                case ("1:30"):
+                    sho = "1.5";
+                    break;
+                default:
+                    sho = "2.0";
+                    break;
+            }
 
             if(sh.isEmpty()|| sw.isEmpty() || sho.isEmpty()) {
                 Toast.makeText(this, "Please, fill up all the fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            LoginSingleton loginSingleton = LoginSingleton.getInstance();
-
-            if(loginSingleton.updateAbout(sh, sw, sho, workingDays)) {
-
-                if (!loginSingleton.isLogged())
-                    loginSingleton.loginSuccessful(this);
-                else {
-                    startActivity(new Intent(this, HomeActivity.class));
-                    finish();
-                }
-
-            } else {
-
-                if (loginSingleton.isLogged()) {
-                    startActivity(new Intent(this, HomeActivity.class));
-                    finish();
-                } else {
-                    loginSingleton.makeLogout();
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                }
-
-            }
+            LoginSingleton.getInstance().updateAbout(this, sh, sw, sho, workingDays);
 
         });
     }

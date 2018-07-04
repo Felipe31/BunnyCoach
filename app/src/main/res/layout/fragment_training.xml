@@ -11,7 +11,7 @@
     -->
     <ImageView
         android:id="@+id/fragment_training_imageView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_training_view_gap_dummy"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -44,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
         android:layout_marginBottom="@dimen/margin_big"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginRight="@dimen/margin_medium"
@@ -69,7 +68,7 @@
         android:layout_margin="@dimen/margin_big"
         android:text="Exercise description"
         app:layout_constraintBottom_toTopOf="@+id/seekBarID"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
     <TextView
@@ -80,16 +79,16 @@
         app:layout_constraintBottom_toTopOf="@id/fragment_exercise_description_textview"
         app:layout_constraintStart_toStartOf="@id/fragment_exercise_description_textview" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_training"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/toolbar_bg"
-        app:titleTextColor="@color/textColor"
-        app:title="@string/training_title"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar_training"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:background="@drawable/toolbar_bg"-->
+        <!--app:titleTextColor="@color/textColor"-->
+        <!--app:title="@string/training_title"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
 
 
 </android.support.constraint.ConstraintLayout>

@@ -14,8 +14,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import ipb.dam.apptrainer.R;
-import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
-import ipb.dam.apptrainer.serverConnection.Connection;
+import ipb.dam.apptrainer.login.LoginSingleton;
 
 public class RegisterActivity extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
@@ -24,26 +23,18 @@ public class RegisterActivity extends AppCompatActivity {
     public void onCreate(Bundle onSavedInstanceState){
         super.onCreate(onSavedInstanceState);
         setContentView(R.layout.activity_register);
-        edittext = (EditText) findViewById(R.id.register_birthday);
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        edittext = findViewById(R.id.register_birthday);
+        DatePickerDialog.OnDateSetListener date = (view, year, monthOfYear, dayOfMonth) -> {
 
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-            }
-
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
         };
 
-        edittext.setOnClickListener(view -> {
-            new DatePickerDialog(RegisterActivity.this, date, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-        });
+        edittext.setOnClickListener(view -> new DatePickerDialog(RegisterActivity.this, date, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
         Button register_back_login = findViewById(R.id.register_back_login);
 
@@ -54,9 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button register_btn = findViewById(R.id.register_btn);
 
         register_btn.setOnClickListener(view -> {
-
-            startActivity(new Intent(this, ProfileChooserActivity.class));
-            Connection.getInstance().registerUser(((EditText)findViewById(R.id.register_name_etxt)).getText().toString(),
+            LoginSingleton.getInstance().registerUser(this, ((EditText)findViewById(R.id.register_name_etxt)).getText().toString(),
                     ((EditText)findViewById(R.id.register_email_etxt)).getText().toString(),
                     ((EditText)findViewById(R.id.register_passwd_etxt)).getText().toString(),
                     ((EditText)findViewById(R.id.register_birthday)).getText().toString());
@@ -64,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "MM-dd-yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         edittext.setText(sdf.format(myCalendar.getTime()));
