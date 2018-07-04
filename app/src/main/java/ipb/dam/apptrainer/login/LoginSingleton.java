@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,12 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.acl.LastOwnerException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -31,36 +27,58 @@ import ipb.dam.apptrainer.serverConnection.Connection;
 
 public class LoginSingleton {
 
-
+    // ourInstance holds the only instance of this class
     private static final LoginSingleton ourInstance = new LoginSingleton();
 
+//  This gets the instance of the class
     public static LoginSingleton getInstance() {
         return ourInstance;
     }
 
-
+//  Is true when the user is logged, otherwise is false
     private boolean isLogged = false;
+//    Holds the JSON object coming from the server containing all data about the user
     private JSONObject data = null;
+//    JSON object to track the activities of the user related to how many exercises
+//    the user did.
+//    This variable is reseted every time that:
+//      - the server sends a new data object
+//      - the user refreshes the statistics of the exercises done.
     private JSONObject trainingTracker;
+
+//    Context is used to handle Activities when there is response from de server
+//    It may be setted only when there is need to communicate to the server
     private Context context = null;
+
+//    Profile holds which type the user says to be:
+//    Lazy = 0
+//    Balanced = 1
+//    Body Builder = 2
     private String profile = null;
 
+//    Session token sent by the server each time the user makes login
     private String token = null;
+
+//  Height of the user
     private String height = null;
+
+//    Weight of the user
     private String weight = null;
+
+//    Hours per day the user chose to workout
     private String hours_per_day = null;
+
+//    Days the user chose to workout
     private String working_days = null;
 
-    private boolean isRefresh = false;
 
+//    Constructor initializes the variable trainingTracker
+//    otherwise the app would crash on training activity
     private LoginSingleton() {
         setTrainingTrackerUnused();
     }
 
-    public boolean isLogged() {
-        return isLogged;
-    }
-
+//    Takes the actual context (LoginActivity) and send the user information to the server
     protected void makeLogin(Context context, String usernameApp, String passwdApp) {
 
         this.context = context;
@@ -69,12 +87,21 @@ public class LoginSingleton {
 
     }
 
+//    Set the variable context if the one in parameters is not null
+//    and call loginSuccessful
     public void loginSuccessful(Context context, JSONObject result) {
 
         if(context != null)
             this.context = context;
         loginSuccessful(result);
     }
+
+//    To execute this method properly, the context variable NEEDS to be setted already
+//    loginSuccessful takes the information coming from the server and set it in local variables
+//    such as data, calling setData and set isLogged as true.
+//    This method also closes all the open activities, including the context one and open HomeActivity
+//
+//    If there is any error, it makes the logout
     private void loginSuccessful(JSONObject result){
         if(context != null) {
             try {
@@ -95,12 +122,15 @@ public class LoginSingleton {
         }
 
     }
+
+//    Set the context and call makeLogout
     public boolean makeLogout(Context context) {
         this.context = context;
         return makeLogout();
     }
 
-
+//    To execute this method properly, the context variable NEEDS to be setted already
+//    set isLogged as false, close all the open activities, including the context one and open LoginActivity
     private boolean makeLogout() {
         isLogged = false;
         if(context != null) {
@@ -114,6 +144,7 @@ public class LoginSingleton {
         return false;
     }
 
+//    Updates the local variables of the measures of the user and send them to the server
     public void updateAbout(Context context, String height, String weight, String hours_per_day, String working_days){
 
         this.context = context;
@@ -130,12 +161,15 @@ public class LoginSingleton {
         }
     }
 
-
+//    Send the registration information to the server
     public void registerUser(Context context, String name, String email, String password, String birthday) {
         this.context = context;
         Connection.getInstance().registerUser(name, email, password, birthday);
     }
 
+//    registrationSuccessful is called when the server returns successfully from the registerUser
+//    message
+//    It goes opens the next activity of the registration steps, which is the ProfileChooserActivity
     public void registrationSuccessful(JSONObject result) {
         try {
             setToken(result.getString("token"));
@@ -154,6 +188,8 @@ public class LoginSingleton {
 
     }
 
+//    Handles error coming from the server and display them on the screen as Toast notifications
+//    If there is nothing to display, it displays "Internal error"
     public void errorHandler(JSONObject error) {
         if(context == null)
             return;
@@ -179,10 +215,36 @@ public class LoginSingleton {
         }
     }
 
-    public JSONObject getData() {
-        return data;
-    }
 
+/*
+*    Is called every time the server send a new data JSON object, which as all the user information
+*    based on data information, the trainingTracker JSON is populated if it is not in use
+*    (if there is no field called "unused" on the trainingTracker JSON
+*    The trainingTracker has the following format:
+*    {
+*       "unused":"",
+*       "qtd_exercises_done":0,
+*       "0":[],
+*       "qtd_exercises":0,
+*       "1":[{
+*               "id":2,
+*               "qtd":5,
+*               "done":0,
+*               "date":"06-23-2018"
+*           },
+*           {
+ *               "id":1002,
+ *               "qtd":5,
+ *               "done":0,
+ *               "date":"06-23-2018"
+ *           }],
+*       "2":[],
+*       "3":[],
+*       "4":[],
+*       "5":[],
+*       "6":[]
+*    }
+*/
     public void setData(JSONObject data) {
         if(data != null) {
             this.data = data;
@@ -226,6 +288,8 @@ public class LoginSingleton {
         }
     }
 
+//    Used to populate the trainingTracker variable
+//    it adds one exercise in a specific day of the trainingTracker JSON
     private void addTrainingTracker(int day, int id, int qtd, int done) {
         try {
             String dayStr = String.valueOf(day);
@@ -247,10 +311,7 @@ public class LoginSingleton {
         }
     }
 
-    public String getProfile() {
-        return profile;
-    }
-
+//    Set the profile variable and sends it to the server
     public void setProfile(Context context, String profile) {
         this.profile = profile;
         this.context = context;
@@ -265,10 +326,17 @@ public class LoginSingleton {
 
     }
 
+//    To execute this method properly, the context variable NEEDS to be setted already
+//    If the server do the registration of the user's profile, it sets the token variable
+//    And call the profileSuccessful method
     public void profileSuccessful(String token, boolean closeCurrentContext){
         setToken(token);
         profileSuccessful(closeCurrentContext);
     }
+
+//    To execute this method properly, the context variable NEEDS to be setted already
+//    Finishes or not the current Activity based on the closeCurrentContext value
+//    Starts the next activity to collect user's data, which is the AboutActivity
     public void profileSuccessful(boolean closeCurrentContext){
 
         if(context != null) {
@@ -281,6 +349,7 @@ public class LoginSingleton {
 
     }
 
+//    Return token if setted, exception if it is not found
     private String getToken() throws Resources.NotFoundException{
         if(token == null ) {
             throw new Resources.NotFoundException();
@@ -290,9 +359,157 @@ public class LoginSingleton {
         }
         return token;
     }
+//       NOT USED
+//    public void resultHandler(JSONObject result) {
+//        if(context instanceof LoginActivity)
+//            loginSuccessful(result);
+//        else if(context instanceof RegisterActivity)
+//            registrationSuccessful(result);
+//
+//    }
+
+//    It updates the trainingTracker statistics of exercises done today
+//    and it updates the dates of the exercises done.
+    public void updateDoneTrainingTracker() {
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        Date cDate = new Date();
+        @SuppressLint("SimpleDateFormat") String fDate = new SimpleDateFormat("MM-dd-yyyy").format(cDate);
+
+        try {
+            JSONArray trainOfTheDay = getTrainingTracker().getJSONArray(String.valueOf(day-1));
+
+            double sum = 0;
+            for(int i = 0; i < trainOfTheDay.length(); i++){
+                sum += trainOfTheDay.getJSONObject(i).getInt("done");
+                trainOfTheDay.getJSONObject(i).put("date",fDate);
+            }
+            getTrainingTracker().put("qtd_exercises_done", sum);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+//    (Re)Initialize the trainingTracker JSON with unused flag
+    private void setTrainingTrackerUnused() {
+        try {
+            setTrainingTracker(new JSONObject("{\"unused\":\"\",\"qtd_exercises_done\":0,\"0\":[],\"qtd_exercises\":0,\"1\":[],\"2\":[],\"3\":[],\"4\":[],\"5\":[],\"6\":[]}"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    Gets the sum of the exercises of the today's training
+    public Integer getTrainingTrackerExerciseTotalToday() {
+        return sumTrainingTrackerExerciseTodayField("qtd");
+    }
+
+//    Gets the sum of the done exercises of the today's training
+    public Integer getTrainingTrackerExerciseDoneToday() {
+        return sumTrainingTrackerExerciseTodayField("done");
+    }
+
+//    Gets the sum of the field of the exercises of the today's training
+    private int sumTrainingTrackerExerciseTodayField(String field){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        int sum = 0;
+        try {
+            JSONArray dayArray =  trainingTracker.getJSONArray(String.valueOf(day));
+            for (int i = 0 ; i < dayArray.length(); i++) {
+                sum += dayArray.getJSONObject(i).getInt(field);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            sum = 0;
+        }
+
+        return sum;
+    }
+
+//    Gets all the statistics of the data JSON and format them to fit in the StatisticsFragment
+    public JSONObject getStatistics() throws JSONException {
+        JSONObject statistics = getData().getJSONObject("statistics");
+        statistics.put("total", statistics.getDouble("arm")+
+                statistics.getDouble("abdominal")+
+                statistics.getDouble("leg")+
+                statistics.getDouble("back")+
+                statistics.getDouble("aerobic"));
+
+        String[] days = getData().getJSONObject("profile").getString("daysWeek").split(",");
+        boolean[] daysBool = new boolean[7];
+        Arrays.fill(daysBool, false);
+
+
+        for (String day : days  ){
+            daysBool[Integer.parseInt(day)] = true;
+        }
+        statistics.put("boolean", daysBool);
+        Log.i("Statistics", statistics.toString());
+        return statistics;
+    }
+
+//    Send statistics of the day to the server and
+//    set the trainingTracker as unused
+    public void refreshStatistics(Context context) {
+        this.context = context;
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        try {
+            JSONArray exercises =  getTrainingTracker().getJSONArray(String.valueOf(day));
+
+            JSONArray ex = new JSONArray(exercises.toString());
+            for(int i = 0; i < ex.length(); i++){
+                ex.getJSONObject(i).put("qtd", ex.getJSONObject(i).getInt("done"));
+                ex.getJSONObject(i).remove("done");
+            }
+
+            Log.i("Refresh Statistics", ex.toString());
+            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
+            setTrainingTrackerUnused();
+            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
+            Connection.getInstance().sendExcercisesDone(token, ex);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+//    Regular getters and setters
+
+    public boolean isLogged() {
+        return isLogged;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public JSONObject getTrainingTracker() {
+        return trainingTracker;
+    }
+
+    private void setTrainingTracker(JSONObject trainingTracker) {
+        this.trainingTracker = trainingTracker;
+    }
 
     private void setToken(String token) {
         this.token = token;
+    }
+
+    public JSONObject getData() {
+        return data;
+    }
+
+    public String getProfile() {
+        return profile;
     }
 
     public String getHeight() {
@@ -327,127 +544,4 @@ public class LoginSingleton {
         this.working_days = working_days;
     }
 
-    public void resultHandler(JSONObject result) {
-        if(context instanceof LoginActivity)
-            loginSuccessful(result);
-        else if(context instanceof RegisterActivity)
-            registrationSuccessful(result);
-
-    }
-
-    public JSONObject getTrainingTracker() {
-        return trainingTracker;
-    }
-
-    private void setTrainingTracker(JSONObject trainingTracker) {
-        this.trainingTracker = trainingTracker;
-    }
-
-    public void updateDoneTrainingTracker() {
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-        Date cDate = new Date();
-        @SuppressLint("SimpleDateFormat") String fDate = new SimpleDateFormat("MM-dd-yyyy").format(cDate);
-
-        try {
-            JSONArray trainOfTheDay = getTrainingTracker().getJSONArray(String.valueOf(day-1));
-
-            double sum = 0;
-            for(int i = 0; i < trainOfTheDay.length(); i++){
-                sum += trainOfTheDay.getJSONObject(i).getInt("done");
-                trainOfTheDay.getJSONObject(i).put("date",fDate);
-            }
-            getTrainingTracker().put("qtd_exercises_done", sum);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    private void setTrainingTrackerUnused() {
-        try {
-            setTrainingTracker(new JSONObject("{\"unused\":\"\",\"qtd_exercises_done\":0,\"0\":[],\"qtd_exercises\":0,\"1\":[],\"2\":[],\"3\":[],\"4\":[],\"5\":[],\"6\":[]}"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Integer getTrainingTrackerExerciseTotalToday() {
-        return sumTrainingTrackerExerciseTodayField("qtd");
-    }
-
-    public Integer getTrainingTrackerExerciseDoneToday() {
-        return sumTrainingTrackerExerciseTodayField("done");
-    }
-
-    private int sumTrainingTrackerExerciseTodayField(String field){
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
-        int sum = 0;
-        try {
-            JSONArray dayArray =  trainingTracker.getJSONArray(String.valueOf(day));
-            for (int i = 0 ; i < dayArray.length(); i++) {
-                sum += dayArray.getJSONObject(i).getInt(field);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            sum = 0;
-        }
-
-        return sum;
-    }
-
-    public JSONObject getStatistics() throws JSONException {
-        JSONObject statistics = getData().getJSONObject("statistics");
-        statistics.put("total", statistics.getDouble("arm")+
-                statistics.getDouble("abdominal")+
-                statistics.getDouble("leg")+
-                statistics.getDouble("back")+
-                statistics.getDouble("aerobic"));
-
-        String[] days = getData().getJSONObject("profile").getString("daysWeek").split(",");
-        boolean[] daysBool = new boolean[7];
-        Arrays.fill(daysBool, false);
-
-
-        for (String day : days  ){
-            daysBool[Integer.parseInt(day)] = true;
-        }
-        statistics.put("boolean", daysBool);
-        Log.i("Statistics", statistics.toString());
-        return statistics;
-    }
-
-    public void refreshStatistics(Context context) {
-        this.context = context;
-
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
-        try {
-            JSONArray exercises =  getTrainingTracker().getJSONArray(String.valueOf(day));
-
-            JSONArray ex = new JSONArray(exercises.toString());
-            for(int i = 0; i < ex.length(); i++){
-                ex.getJSONObject(i).put("qtd", ex.getJSONObject(i).getInt("done"));
-                ex.getJSONObject(i).remove("done");
-            }
-
-            Log.i("Refresh Statistics", ex.toString());
-            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
-            setTrainingTrackerUnused();
-            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
-            Connection.getInstance().sendExcercisesDone(token, ex);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }

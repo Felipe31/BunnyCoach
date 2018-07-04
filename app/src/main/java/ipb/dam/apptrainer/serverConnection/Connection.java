@@ -32,11 +32,11 @@ public class Connection {
     private Connection() {
     }
 
-    private void sendJSON(JSONObject jsonToSend){
-        ConnectRest cr = new ConnectRest();
-        cr.execute(jsonToSend);
-    }
-
+/*
+ *
+ *  BEGIN - GENERATES THE JSON'S AS THE SERVER EXPECTS THOSE TO BE
+ *
+ */
     public void registerUser(String name, String email, String password, String birthday){
         JSONObject requestJSON = new JSONObject();
         try {
@@ -117,6 +117,18 @@ public class Connection {
 
     }
 
+/*
+*
+*  END - GENERATES THE JSON'S AS THE SERVER EXPECTS THOSE TO BE
+*
+*/
+
+//    Call the AsyncTask for the jsonToSend parameter to be sent to the server
+    private void sendJSON(JSONObject jsonToSend){
+        ConnectRest cr = new ConnectRest();
+        cr.execute(jsonToSend);
+    }
+
     static private class ConnectRest extends AsyncTask<JSONObject, Integer, JSONObject> {
         @Override
         protected JSONObject doInBackground(JSONObject ...dataJson) {
@@ -185,6 +197,9 @@ public class Connection {
             super.onProgressUpdate(values);
         }
 
+
+
+//        Handles the result of the AsyncTask calling the right method in LoginSingleton
         @Override
         protected void onPostExecute(JSONObject result) {
             super.onPostExecute(result);
