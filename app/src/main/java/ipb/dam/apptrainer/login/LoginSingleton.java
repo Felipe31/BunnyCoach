@@ -18,23 +18,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
-import ipb.dam.apptrainer.DB.DataBase;
+import ipb.dam.apptrainer.db.DataBase;
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.about.AboutActivity;
 import ipb.dam.apptrainer.home.HomeActivity;
 import ipb.dam.apptrainer.profileform.ProfileChooserActivity;
-import ipb.dam.apptrainer.register.RegisterActivity;
 import ipb.dam.apptrainer.serverConnection.Connection;
 
 public class LoginSingleton {
 
     // ourInstance holds the only instance of this class
     private static final LoginSingleton ourInstance = new LoginSingleton();
-
-//  This gets the instance of the class
-    public static LoginSingleton getInstance() {
-        return ourInstance;
-    }
 
 //  Is true when the user is logged, otherwise is false
     private boolean isLogged = false;
@@ -45,11 +39,11 @@ public class LoginSingleton {
 //    This variable is reseted every time that:
 //      - the server sends a new data object
 //      - the user refreshes the statistics of the exercises done.
-    private JSONObject trainingTracker;
+//    private JSONObject trainingTracker;
 
 //    Context is used to handle Activities when there is response from de server
 //    It may be setted only when there is need to communicate to the server
-    private Context context = null;
+    private Context context = null; // TODO this var should be removed. See warning in ourInstance var
 
 //    Profile holds which type the user says to be:
 //    Lazy = 0
@@ -77,6 +71,11 @@ public class LoginSingleton {
 //    otherwise the app would crash on training activity
     private LoginSingleton() {
         setTrainingTrackerUnused();
+    }
+
+    //  This gets the instance of the class
+    public static LoginSingleton getInstance() {
+        return ourInstance;
     }
 
 //    Takes the actual context (LoginActivity) and send the user information to the server
@@ -246,10 +245,10 @@ public class LoginSingleton {
 *       "6":[]
 *    }
 */
-    public void setData(JSONObject data) {
+    public void setData(JSONObject data) throws JSONException {
         if(data != null) {
-            DataBase.getInstance().setDataDB(data);
-            this.data = data;
+            DataBase.getInstance(context).setDataDB(data);
+           // this.data = data;
             Log.w(this.getClass().getSimpleName(), data.toString());
             Log.i("SetData Thread", getTrainingTracker().toString());
             try {
@@ -294,6 +293,7 @@ public class LoginSingleton {
 //    it adds one exercise in a specific day of the trainingTracker JSON
     private void addTrainingTracker(int day, int id, int qtd, int done) {
         try {
+            JSONObject trainingTracker = getTrainingTracker();
             String dayStr = String.valueOf(day);
             if(!trainingTracker.has(dayStr)) {
                 trainingTracker.put(dayStr, new JSONArray());
@@ -379,6 +379,7 @@ public class LoginSingleton {
         @SuppressLint("SimpleDateFormat") String fDate = new SimpleDateFormat("MM-dd-yyyy").format(cDate);
 
         try {
+
             JSONArray trainOfTheDay = getTrainingTracker().getJSONArray(String.valueOf(day-1));
 
             double sum = 0;
@@ -421,7 +422,7 @@ public class LoginSingleton {
         int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
         int sum = 0;
         try {
-            JSONArray dayArray =  trainingTracker.getJSONArray(String.valueOf(day));
+            JSONArray dayArray =  getTrainingTracker().getJSONArray(String.valueOf(day));
             for (int i = 0 ; i < dayArray.length(); i++) {
                 sum += dayArray.getJSONObject(i).getInt(field);
             }
@@ -443,7 +444,9 @@ public class LoginSingleton {
                 statistics.getDouble("back")+
                 statistics.getDouble("aerobic"));
 
+
         String[] days = getData().getJSONObject("profile").getString("daysWeek").split(",");
+
         boolean[] daysBool = new boolean[7];
         Arrays.fill(daysBool, false);
 
@@ -464,6 +467,7 @@ public class LoginSingleton {
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
         try {
+
             JSONArray exercises =  getTrainingTracker().getJSONArray(String.valueOf(day));
 
             JSONArray ex = new JSONArray(exercises.toString());
@@ -472,10 +476,11 @@ public class LoginSingleton {
                 ex.getJSONObject(i).remove("done");
             }
 
+            //gettrainingtracker função presente na classe trocado por DataBase.getInstance().getTrainigTrackerDBJ()
             Log.i("Refresh Statistics", ex.toString());
-            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
+            Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
             setTrainingTrackerUnused();
-            Log.i("Refresh Statistics TT", getTrainingTracker().toString());
+            Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
             Connection.getInstance().sendExcercisesDone(token, ex);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -494,20 +499,26 @@ public class LoginSingleton {
         this.context = context;
     }
 
-    public JSONObject getTrainingTracker() {
-        return trainingTracker;
+    public JSONObject getTrainingTracker(){
+
+        try {
+            return DataBase.getInstance(context).getTrainigTrackerDBJ();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null; // TODO Check return value in case of exception
+        }
     }
 
     private void setTrainingTracker(JSONObject trainingTracker) {
-        this.trainingTracker = trainingTracker;
+        DataBase.getInstance(context).setTrainigTrackerDB(trainingTracker);
     }
 
     private void setToken(String token) {
         this.token = token;
     }
 
-    public JSONObject getData() {
-        return data;
+    public JSONObject getData() throws JSONException {
+        return DataBase.getInstance(context).getDataDBJ();
     }
 
     public String getProfile() {

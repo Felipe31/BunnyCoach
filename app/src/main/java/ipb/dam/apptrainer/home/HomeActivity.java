@@ -11,13 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
+import ipb.dam.apptrainer.db.DataBase;
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.login.LoginActivity;
 import ipb.dam.apptrainer.login.LoginSingleton;
@@ -31,6 +31,10 @@ public class HomeActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        DataBase.getInstance(this); // Give context to the db, otherwise the line below will crash
+        LoginSingleton.getInstance().setContext(this); // Set context to the Singleton class
+
         AppCompatActivity appCompatActivity = this;
         pager = findViewById(R.id.content_home_viewpager);
         final ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter();
