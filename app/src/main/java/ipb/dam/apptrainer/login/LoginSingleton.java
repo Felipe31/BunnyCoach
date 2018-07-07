@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
+import ipb.dam.apptrainer.DB.DataBase;
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.about.AboutActivity;
 import ipb.dam.apptrainer.home.HomeActivity;
@@ -247,6 +248,7 @@ public class LoginSingleton {
 */
     public void setData(JSONObject data) {
         if(data != null) {
+            DataBase.getInstance().setDataDB(data);
             this.data = data;
             Log.w(this.getClass().getSimpleName(), data.toString());
             Log.i("SetData Thread", getTrainingTracker().toString());
