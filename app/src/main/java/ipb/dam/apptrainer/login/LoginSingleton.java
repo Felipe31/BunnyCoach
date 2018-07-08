@@ -248,7 +248,7 @@ public class LoginSingleton {
     public void setData(JSONObject data) throws JSONException {
         if(data != null) {
             DataBase.getInstance(context).setDataDB(data);
-           // this.data = data;
+            this.data = data;
             Log.w(this.getClass().getSimpleName(), data.toString());
             Log.i("SetData Thread", getTrainingTracker().toString());
             try {

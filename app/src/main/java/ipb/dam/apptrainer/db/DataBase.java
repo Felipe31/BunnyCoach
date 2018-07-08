@@ -4,9 +4,12 @@ package ipb.dam.apptrainer.db;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.math.BigDecimal;
 
 /**
  * This class is used to hide information about the system
@@ -60,8 +63,15 @@ public class DataBase extends AppCompatActivity {
      *             in this function the jason is converted to a string and save at database;
      */
     public void setTrainigTrackerDB(JSONObject json){
+        Log.i("TrainigTrackerDB", json.toString());
         editor = preferences.edit();
         editor.putString(KEY_TRAINING, json.toString());
+        try {
+            Log.i("Trainig.bankBuild", getDataDBJ().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         //save in data base
         editor.commit();
@@ -73,8 +83,15 @@ public class DataBase extends AppCompatActivity {
      */
 
     public void setDataDB (JSONObject json){
+        Log.i("DataDB", json.toString());
         editor = preferences.edit();
         editor.putString(KEY_DATA, json.toString());
+        try {
+            Log.i("Trainig.bankBuild", getTrainigTrackerDBJ().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         //save in data base
         editor.commit();
