@@ -67,7 +67,7 @@ public class DataBase extends AppCompatActivity {
         editor = preferences.edit();
         editor.putString(KEY_TRAINING, json.toString());
         try {
-            Log.i("Trainig.bankBuild", getDataDBJ().toString());
+            Log.i("Trainig.bankBuild", getTrainigTrackerDBJ().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class DataBase extends AppCompatActivity {
         editor = preferences.edit();
         editor.putString(KEY_DATA, json.toString());
         try {
-            Log.i("Trainig.bankBuild", getTrainigTrackerDBJ().toString());
+            Log.i("Data.build", getDataDBJ().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
