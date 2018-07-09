@@ -13,7 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="afef538b-714d-417f-9df8-34ab9c12cc9b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,10 +46,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StatisticsFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StatisticsFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
+            <state relative-caret-position="757">
               <caret line="223" column="47" lean-forward="false" selection-start-line="223" selection-start-column="47" selection-end-line="223" selection-end-column="47" />
               <folding />
             </state>
@@ -59,7 +59,7 @@
       <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="1870">
               <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -81,8 +81,21 @@
       <file leaf-file-name="HomeFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="1422">
               <caret line="133" column="10" lean-forward="false" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_home.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -113,11 +126,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/about/AboutActivity.java">
+      <file leaf-file-name="TrainingFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="117" column="45" lean-forward="false" selection-start-line="117" selection-start-column="45" selection-end-line="117" selection-end-column="45" />
+            <state relative-caret-position="65">
+              <caret line="170" column="17" lean-forward="true" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -138,16 +151,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
               <caret line="112" column="17" lean-forward="false" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrainingFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2805">
-              <caret line="189" column="72" lean-forward="false" selection-start-line="189" selection-start-column="72" selection-end-line="189" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -2306,13 +2309,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/days_of_the_week.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/DB/DataBase.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/serverConnection/Connection.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/db/DataBase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginSingleton.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java" />
       </list>
     </option>
   </component>
@@ -2379,6 +2382,13 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="apptrainer" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app-app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="apptrainer" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="training" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="app" type="1abcf292:AndroidViewProjectNode" />
@@ -2657,6 +2667,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25416037" sideWeight="0.53480476" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4312394" sideWeight="0.5030257" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25037822" sideWeight="0.49346405" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767403" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4312394" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
@@ -2679,7 +2690,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="461" y="280" width="444" height="168" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25037822" sideWeight="0.49346405" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2931,16 +2941,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="33" column="49" lean-forward="false" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/fragment_statistics_checkbox_day_of_the_week_background.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3045,14 +3045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2805">
-          <caret line="189" column="72" lean-forward="false" selection-start-line="189" selection-start-column="72" selection-end-line="189" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_statistics.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
@@ -3087,24 +3079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="133" column="10" lean-forward="false" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/db/DataBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -3134,10 +3108,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1870">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
+        <state relative-caret-position="757">
           <caret line="223" column="47" lean-forward="false" selection-start-line="223" selection-start-column="47" selection-end-line="223" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1422">
+          <caret line="133" column="10" lean-forward="false" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/training/TrainingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="170" column="17" lean-forward="true" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
           <folding />
         </state>
       </provider>
