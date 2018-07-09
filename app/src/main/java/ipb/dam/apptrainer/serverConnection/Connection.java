@@ -2,6 +2,7 @@ package ipb.dam.apptrainer.serverConnection;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,11 +33,11 @@ public class Connection {
     private Connection() {
     }
 
-    private void sendJSON(JSONObject jsonToSend){
-        ConnectRest cr = new ConnectRest();
-        cr.execute(jsonToSend);
-    }
-
+/*
+ *
+ *  BEGIN - GENERATES THE JSON'S AS THE SERVER EXPECTS THOSE TO BE
+ *
+ */
     public void registerUser(String name, String email, String password, String birthday){
         JSONObject requestJSON = new JSONObject();
         try {
@@ -82,6 +83,7 @@ public class Connection {
 
             sendJSON(requestJSON);
         }catch (Exception e){
+            e.printStackTrace();
             Log.w(this.getClass().getSimpleName(), "JSON build error");
         }
     }
@@ -117,7 +119,19 @@ public class Connection {
 
     }
 
-    static private class ConnectRest extends AsyncTask<JSONObject, Integer, JSONObject> {
+/*
+*
+*  END - GENERATES THE JSON'S AS THE SERVER EXPECTS THOSE TO BE
+*
+*/
+
+//    Call the AsyncTask for the jsonToSend parameter to be sent to the server
+    private void sendJSON(JSONObject jsonToSend){
+        ConnectRest cr = new ConnectRest();
+        cr.execute(jsonToSend);
+    }
+
+    private class ConnectRest extends AsyncTask<JSONObject, Integer, JSONObject> {
         @Override
         protected JSONObject doInBackground(JSONObject ...dataJson) {
             try {
@@ -185,6 +199,9 @@ public class Connection {
             super.onProgressUpdate(values);
         }
 
+
+
+//        Handles the result of the AsyncTask calling the right method in LoginSingleton
         @Override
         protected void onPostExecute(JSONObject result) {
             super.onPostExecute(result);
@@ -200,7 +217,6 @@ public class Connection {
 
                 if(result.has("profile_ok")){
                     loginSingleton.profileSuccessful(true);
-
                 } else if(result.length() == 1 && result.has("token")){
                     loginSingleton.registrationSuccessful(result);
 

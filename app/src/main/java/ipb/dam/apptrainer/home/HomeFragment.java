@@ -96,6 +96,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         final TextView title = root.findViewById(R.id.fragment_home_txtv_title);
         final TextView progressTxt = root.findViewById(R.id.fragment_home_txtv_progress);
         String exerciseStatus = String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday())+ "% done";
+        //String exerciseStatus = LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/7 + "% done"; //TODO remove
 
 
 
@@ -110,6 +111,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         Log.i("Current", String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()));
         Log.i("Total", String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday()));
         seekBar.setProgress( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday());
+        //seekBar.setProgress(5); //TODO remove
 
 
         final Button chooseButton = root.findViewById(R.id.content_home_button_check);

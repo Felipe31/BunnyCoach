@@ -248,6 +248,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
         for (int i = 0; i < checkBoxes.length; i++) {
             checkBoxes[i].setOnCheckedChangeListener(this);
             checkBoxes[i].setChecked(trainingDays[i]);
+            checkBoxes[i].setClickable(false);
         }
 
         return root;

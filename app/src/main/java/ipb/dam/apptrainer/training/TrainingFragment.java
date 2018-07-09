@@ -150,8 +150,7 @@ public class TrainingFragment extends Fragment {
 
             Calendar calendar = Calendar.getInstance();
             int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-            final JSONArray trainOfTheDay = LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1));
+            JSONArray trainOfTheDay = LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1));
             String exerciseStatus = description+"\n\n"+ String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("done"))+" of "
                     +String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("qtd"))+" done";
 
@@ -163,30 +162,37 @@ public class TrainingFragment extends Fragment {
              * Then this part control the part of percentage
              */
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int percentage, boolean b) {
-                        try {
-                            String exerciseStatus = description +"\n\n"+ String.valueOf(percentage)+" of "
-                                    +String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("qtd"))+" done";
-                            progressTxt.setText(exerciseStatus);
 
-                            trainOfTheDay.getJSONObject(idx).put("done", percentage);
-                            LoginSingleton.getInstance().updateDoneTrainingTracker();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                private int percentage;
 
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int percentage, boolean b) {
+                    this.percentage = percentage;
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    try {
+                        int day = calendar.get(Calendar.DAY_OF_WEEK);
+                        JSONObject jsonObject = LoginSingleton.getInstance().getTrainingTracker();
+                        JSONArray trainOfTheDay = jsonObject.getJSONArray(String.valueOf(day-1));
+                        String exerciseStatus = description +"\n\n"+ String.valueOf(percentage)+" of "
+                                +String.valueOf(trainOfTheDay.getJSONObject(idx).getInt("qtd"))+" done";
+                        progressTxt.setText(exerciseStatus);
+
+                        trainOfTheDay.getJSONObject(idx).put("done", percentage);
+                        LoginSingleton.getInstance().updateDoneTrainingTracker(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    }
+                }
             });
         } catch (JSONException e) {
             e.printStackTrace();

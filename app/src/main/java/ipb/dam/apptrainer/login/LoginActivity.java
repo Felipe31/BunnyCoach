@@ -50,10 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView register_txtv = findViewById(R.id.register_btn);
 
-        register_txtv.setOnClickListener(view -> {
-            startActivity(new Intent(context, RegisterActivity.class));
-
-        });
+        register_txtv.setOnClickListener(view -> startActivity(new Intent(context, RegisterActivity.class)));
 
 
         TextView forgotPasswdTxtv = findViewById(R.id.forgot_passwd_txtv);
