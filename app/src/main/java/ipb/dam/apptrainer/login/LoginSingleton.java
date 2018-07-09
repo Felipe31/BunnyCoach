@@ -30,8 +30,6 @@ public class LoginSingleton {
     // ourInstance holds the only instance of this class
     private static final LoginSingleton ourInstance = new LoginSingleton();
 
-//  Is true when the user is logged, otherwise is false
-    private boolean isLogged = false;
 //    Holds the JSON object coming from the server containing all data about the user
     private JSONObject data = null;
 //    JSON object to track the activities of the user related to how many exercises
@@ -82,7 +80,7 @@ public class LoginSingleton {
     protected void makeLogin(Context context, String usernameApp, String passwdApp) {
 
         this.context = context;
-        isLogged = true;
+        //isLogged = true;
         Connection.getInstance().requestUserLogin(usernameApp, passwdApp);
 
     }
@@ -109,7 +107,7 @@ public class LoginSingleton {
 
                 setToken(result.getString("token"));
                 setData(result);
-                isLogged = true;
+                //isLogged = true;
                 Intent intent = new Intent(context, HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
@@ -132,7 +130,9 @@ public class LoginSingleton {
 //    To execute this method properly, the context variable NEEDS to be setted already
 //    set isLogged as false, close all the open activities, including the context one and open LoginActivity
     private boolean makeLogout() {
-        isLogged = false;
+
+        DataBase.getInstance(context).setDataDB(null); // Remove data from the database.
+
         if(context != null) {
             Intent intent = new Intent(context, LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -355,6 +355,21 @@ public class LoginSingleton {
 
 //    Return token if setted, exception if it is not found
     private String getToken() throws Resources.NotFoundException{
+
+        String token = null;
+
+        try {
+
+            JSONObject jsonObject = DataBase.getInstance(context).getDataDBJ();
+            if(jsonObject != null){
+                token = jsonObject.getString("token");
+                Log.i(getClass().getSimpleName(), "Token retrieved: " + token);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         if(token == null ) {
             throw new Resources.NotFoundException();
         }
@@ -492,7 +507,12 @@ public class LoginSingleton {
 //    Regular getters and setters
 
     public boolean isLogged() {
-        return isLogged;
+        try {
+            return DataBase.getInstance(context).getDataDBJ() != null;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public void setContext(Context context) {

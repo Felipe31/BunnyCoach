@@ -3,6 +3,7 @@ package ipb.dam.apptrainer.db;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -80,36 +81,42 @@ public class DataBase extends AppCompatActivity {
      *
      * @param json This parameters is use to take all the Json received from server,
      *             in this function the jason is converted to a string and save at database;
+     *             If {@code null}, removes the json data from the database.
      */
 
-    public void setDataDB (JSONObject json){
-        Log.i("DataDB", json.toString());
+    public void setDataDB (@Nullable JSONObject json){
+        Log.i("DataDB", json == null ? "null" : json.toString());
         editor = preferences.edit();
-        editor.putString(KEY_DATA, json.toString());
 
-        //save in data base
-        editor.commit();
-
+        if(json == null)
+            editor.remove(KEY_DATA);
+        else
+            editor.putString(KEY_DATA, json.toString());
+        /*
         try {
             Log.i("Data.build", getDataDBJ().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        */
 
-
+        //save in data base
+        editor.commit();
     }
 
     /**
      *
-     * @return The Json saved in the setDataDB can be take with this fuction;
+     * @return The Json saved in the setDataDB can be take with this fuction; Null value
+     * means that the user is not logged (no data in the database).
      */
+    public @Nullable JSONObject getDataDBJ() throws JSONException {
 
-    public JSONObject getDataDBJ() throws JSONException {
-        return new JSONObject(
-                preferences.getString(
-                        KEY_DATA,
-                        null)
-        );
+        String jsonString = preferences.getString(KEY_DATA, null);
+
+        if (jsonString == null)
+            return null;
+        else
+            return new JSONObject(jsonString);
     }
 
     /**
