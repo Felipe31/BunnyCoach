@@ -68,7 +68,11 @@ public class LoginSingleton {
 //    Constructor initializes the variable trainingTracker
 //    otherwise the app would crash on training activity
     private LoginSingleton() {
-        setTrainingTrackerUnused();
+//        JSONObject jsonObject  = getTrainingTracker();
+//        if(jsonObject == null)
+//            setTrainingTrackerUnused();
+//        else
+
     }
 
     //  This gets the instance of the class

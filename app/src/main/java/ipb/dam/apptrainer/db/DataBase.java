@@ -67,15 +67,15 @@ public class DataBase extends AppCompatActivity {
         Log.i("TrainigTrackerDB", json.toString());
         editor = preferences.edit();
         editor.putString(KEY_TRAINING, json.toString());
+        
+        //save in data base
+        editor.commit();
         try {
             Log.i("Trainig.bankBuild", getTrainigTrackerDBJ().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
-        //save in data base
-        editor.commit();
     }
     /**
      *
