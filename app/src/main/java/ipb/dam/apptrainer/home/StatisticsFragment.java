@@ -221,6 +221,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
         CircularSeekBar circularSeekBar = root.findViewById(R.id.fragment_statistics_circular_seek_bar);
         TextView overallProgressTextView = root.findViewById(R.id.fragment_statistics_exercises_current_progress);
 
+        circularSeekBar.setIsTouchEnabled(false);
         animateCircularSeekBar(circularSeekBar, overallProgressTextView, calculatedOverallProgress);
 
         bars[0] = root.findViewById(R.id.fragment_statistics_bar_arms);
