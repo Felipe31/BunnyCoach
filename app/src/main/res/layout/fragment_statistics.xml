@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistics_title_days_worked_last_week"
-        app:layout_constraintBottom_toTopOf="@+id/days_of_the_week_checkbox_monday"
+        app:layout_constraintBottom_toTopOf="@+id/days_of_the_week_checkbox_sunday"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="@dimen/margin_big"
         android:layout_marginStart="@dimen/margin_big"

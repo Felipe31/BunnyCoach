@@ -1,6 +1,7 @@
 package ipb.dam.apptrainer.home;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -17,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+
 
 import ipb.dam.apptrainer.R;
 import ipb.dam.apptrainer.login.LoginActivity;
@@ -148,7 +150,6 @@ public class HomeActivity  extends AppCompatActivity {
 
 
                     default:
-                        // TODO dummy call for now. Change for the values taken from the server
 
                         try {
                             JSONObject statistics= LoginSingleton.getInstance().getStatistics();
@@ -166,7 +167,8 @@ public class HomeActivity  extends AppCompatActivity {
                                     BigDecimal.valueOf(statistics.getDouble("leg")).floatValue()/100,
                                     BigDecimal.valueOf(statistics.getDouble("back")).floatValue()/100,
                                     BigDecimal.valueOf(statistics.getDouble("aerobic")).floatValue()/100,
-                                    (boolean[]) statistics.get("boolean"));
+                                    (boolean[]) statistics.get("boolean")
+                            );
                         } catch (JSONException e) {
                             e.printStackTrace();
                             return StatisticsFragment.newInstance(0,0,

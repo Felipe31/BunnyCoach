@@ -3,15 +3,12 @@ package ipb.dam.apptrainer.about;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatSeekBar;
 import android.support.v7.widget.AppCompatSpinner;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +18,13 @@ import ipb.dam.apptrainer.login.LoginSingleton;
 public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheckedChangeListener {
 
     /**
-     * Array for each day of the week, starting on monday (index 0).
+     * Array for each day of the week, starting on sunday (index 0).
      * @see #checkBoxes
      */
     private TextView[] daysOfTheWeek = new TextView[7];
 
     /**
-     * Array that holds the checkboxes for each day of the week, starting on monday (index 0).
+     * Array that holds the checkboxes for each day of the week, starting on sunday (index 0).
      * @see #daysOfTheWeek
      */
     private CheckBox[] checkBoxes = new CheckBox[7];
@@ -37,21 +34,21 @@ public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheck
         super.onCreate(onSavedInstanceState);
         setContentView(R.layout.activity_about);
 
-        daysOfTheWeek[0] = findViewById(R.id.days_of_the_week_text_view_monday);
-        daysOfTheWeek[1] = findViewById(R.id.days_of_the_week_text_view_tuesday);
-        daysOfTheWeek[2] = findViewById(R.id.days_of_the_week_text_view_wednesday);
-        daysOfTheWeek[3] = findViewById(R.id.days_of_the_week_text_view_thursday);
-        daysOfTheWeek[4] = findViewById(R.id.days_of_the_week_text_view_friday);
-        daysOfTheWeek[5] = findViewById(R.id.days_of_the_week_text_view_saturday);
-        daysOfTheWeek[6] = findViewById(R.id.days_of_the_week_text_view_sunday);
+        daysOfTheWeek[0] = findViewById(R.id.days_of_the_week_text_view_sunday);
+        daysOfTheWeek[1] = findViewById(R.id.days_of_the_week_text_view_monday);
+        daysOfTheWeek[2] = findViewById(R.id.days_of_the_week_text_view_tuesday);
+        daysOfTheWeek[3] = findViewById(R.id.days_of_the_week_text_view_wednesday);
+        daysOfTheWeek[4] = findViewById(R.id.days_of_the_week_text_view_thursday);
+        daysOfTheWeek[5] = findViewById(R.id.days_of_the_week_text_view_friday);
+        daysOfTheWeek[6] = findViewById(R.id.days_of_the_week_text_view_saturday);
 
-        checkBoxes[0] = findViewById(R.id.days_of_the_week_checkbox_monday);
-        checkBoxes[1] = findViewById(R.id.days_of_the_week_checkbox_tuesday);
-        checkBoxes[2] = findViewById(R.id.days_of_the_week_checkbox_wednesday);
-        checkBoxes[3] = findViewById(R.id.days_of_the_week_checkbox_thursday);
-        checkBoxes[4] = findViewById(R.id.days_of_the_week_checkbox_friday);
-        checkBoxes[5] = findViewById(R.id.days_of_the_week_checkbox_saturday);
-        checkBoxes[6] = findViewById(R.id.days_of_the_week_checkbox_sunday);
+        checkBoxes[0] = findViewById(R.id.days_of_the_week_checkbox_sunday);
+        checkBoxes[1] = findViewById(R.id.days_of_the_week_checkbox_monday);
+        checkBoxes[2] = findViewById(R.id.days_of_the_week_checkbox_tuesday);
+        checkBoxes[3] = findViewById(R.id.days_of_the_week_checkbox_wednesday);
+        checkBoxes[4] = findViewById(R.id.days_of_the_week_checkbox_thursday);
+        checkBoxes[5] = findViewById(R.id.days_of_the_week_checkbox_friday);
+        checkBoxes[6] = findViewById(R.id.days_of_the_week_checkbox_saturday);
 
         for (TextView textView : daysOfTheWeek)
             textView.setTextColor(getResources().getColor(R.color.activity_about_days_of_the_week_unchecked));
@@ -135,7 +132,7 @@ public class AboutActivity extends AppCompatActivity implements CheckBox.OnCheck
 
         for (int i = 0; i < checkBoxes.length; i++)
             if (checkBoxes[i].isChecked())
-                s.append((i + 1) % checkBoxes.length /* This makes Monday = 1, Sunday = 0 */).append(",");
+                s.append(i).append(",");
 
         return (s.length() == 0) ? null : s.substring(0, s.toString().lastIndexOf(',')/* Remove last comma */);
 

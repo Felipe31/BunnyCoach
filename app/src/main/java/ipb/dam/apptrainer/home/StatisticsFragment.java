@@ -92,13 +92,13 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
     private View[] bars = new View[NUM_STATISTICS_BARS ];
 
     /**
-     * Array for each day of the week, starting on monday (index 0).
+     * Array for each day of the week, starting on sunday (index 0).
      * @see #checkBoxes
      */
     private TextView[] daysOfTheWeek = new TextView[7];
 
     /**
-     * Array that holds the checkboxes for each day of the week, starting on monday (index 0).
+     * Array that holds the checkboxes for each day of the week, starting on sunday (index 0).
      * @see #daysOfTheWeek
      */
     private CheckBox[] checkBoxes = new CheckBox[7];
@@ -120,7 +120,7 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
 
     /**
      * Boolean array holding whether the person trains in the i-th day of the week
-     * week or not. First day of the week (index 0) is Monday (ISO 8601).
+     * week or not. First day of the week (index 0) is Sunday (not following the ISO 8601).
      */
     private boolean[] trainingDays = new boolean[7];
 
@@ -160,8 +160,8 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
      *                                   the person has done.
      * @param trainingDays Boolean array where {@code true} means that the person
      *                    trains at the i-th day of the week. First day of the week is
-     *                    considered to be Monday (index {@code 0}),
-     *                    according to <b>ISO 8601</b>. Must have size 7.
+     *                    considered to be Sunday (index {@code 0}),
+     *                    not according to <b>ISO 8601</b>. Must have size 7.
      * @return A new instance of fragment ProfileChooserFragment.
      */
     public static StatisticsFragment newInstance(float overallCompletenessPercentage,
@@ -229,21 +229,21 @@ public class StatisticsFragment extends Fragment implements FragmentLifecycle, C
         bars[3] = root.findViewById(R.id.fragment_statistics_bar_back);
         bars[4] = root.findViewById(R.id.fragment_statistics_bar_aerobic);
 
-        daysOfTheWeek[0] = root.findViewById(R.id.days_of_the_week_text_view_monday);
-        daysOfTheWeek[1] = root.findViewById(R.id.days_of_the_week_text_view_tuesday);
-        daysOfTheWeek[2] = root.findViewById(R.id.days_of_the_week_text_view_wednesday);
-        daysOfTheWeek[3] = root.findViewById(R.id.days_of_the_week_text_view_thursday);
-        daysOfTheWeek[4] = root.findViewById(R.id.days_of_the_week_text_view_friday);
-        daysOfTheWeek[5] = root.findViewById(R.id.days_of_the_week_text_view_saturday);
-        daysOfTheWeek[6] = root.findViewById(R.id.days_of_the_week_text_view_sunday);
+        daysOfTheWeek[0] = root.findViewById(R.id.days_of_the_week_text_view_sunday);
+        daysOfTheWeek[1] = root.findViewById(R.id.days_of_the_week_text_view_monday);
+        daysOfTheWeek[2] = root.findViewById(R.id.days_of_the_week_text_view_tuesday);
+        daysOfTheWeek[3] = root.findViewById(R.id.days_of_the_week_text_view_wednesday);
+        daysOfTheWeek[4] = root.findViewById(R.id.days_of_the_week_text_view_thursday);
+        daysOfTheWeek[5] = root.findViewById(R.id.days_of_the_week_text_view_friday);
+        daysOfTheWeek[6] = root.findViewById(R.id.days_of_the_week_text_view_saturday);
 
-        checkBoxes[0] = root.findViewById(R.id.days_of_the_week_checkbox_monday);
-        checkBoxes[1] = root.findViewById(R.id.days_of_the_week_checkbox_tuesday);
-        checkBoxes[2] = root.findViewById(R.id.days_of_the_week_checkbox_wednesday);
-        checkBoxes[3] = root.findViewById(R.id.days_of_the_week_checkbox_thursday);
-        checkBoxes[4] = root.findViewById(R.id.days_of_the_week_checkbox_friday);
-        checkBoxes[5] = root.findViewById(R.id.days_of_the_week_checkbox_saturday);
-        checkBoxes[6] = root.findViewById(R.id.days_of_the_week_checkbox_sunday);
+        checkBoxes[0] = root.findViewById(R.id.days_of_the_week_checkbox_sunday);
+        checkBoxes[1] = root.findViewById(R.id.days_of_the_week_checkbox_monday);
+        checkBoxes[2] = root.findViewById(R.id.days_of_the_week_checkbox_tuesday);
+        checkBoxes[3] = root.findViewById(R.id.days_of_the_week_checkbox_wednesday);
+        checkBoxes[4] = root.findViewById(R.id.days_of_the_week_checkbox_thursday);
+        checkBoxes[5] = root.findViewById(R.id.days_of_the_week_checkbox_friday);
+        checkBoxes[6] = root.findViewById(R.id.days_of_the_week_checkbox_saturday);
 
         for (int i = 0; i < checkBoxes.length; i++) {
             checkBoxes[i].setOnCheckedChangeListener(this);
