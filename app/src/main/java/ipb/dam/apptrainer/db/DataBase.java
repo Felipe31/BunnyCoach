@@ -86,15 +86,16 @@ public class DataBase extends AppCompatActivity {
         Log.i("DataDB", json.toString());
         editor = preferences.edit();
         editor.putString(KEY_DATA, json.toString());
+
+        //save in data base
+        editor.commit();
+
         try {
             Log.i("Data.build", getDataDBJ().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
-        //save in data base
-        editor.commit();
 
     }
 

@@ -245,15 +245,15 @@ public class LoginSingleton {
 *       "6":[]
 *    }
 */
-    public void setData(JSONObject data) throws JSONException {
+    public void setData(JSONObject data) {
+        DataBase.getInstance(context).setDataDB(data);
         if(data != null) {
-            DataBase.getInstance(context).setDataDB(data);
             //this.data = data;
             Log.w(this.getClass().getSimpleName(), data.toString());
-            Log.i("SetData Thread", getTrainingTracker().toString());
+            Log.i("SetData", getTrainingTracker().toString());
             try {
 
-                setProfile(context, String.valueOf(data.getJSONObject("profile").getString("type")));
+                setProfileLocal(String.valueOf(data.getJSONObject("profile").getString("type")));
 
                 String qtdProfile;
                 switch (Integer.parseInt(getProfile())){
@@ -287,10 +287,9 @@ public class LoginSingleton {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Log.i("SetData Thread", getTrainingTracker().toString());
-
-         
-        }
+            Log.i("SetData", getTrainingTracker().toString());
+        }else
+            setTrainingTrackerUnused();
     }
 
 //    Used to populate the trainingTracker variable
@@ -558,4 +557,7 @@ public class LoginSingleton {
         this.working_days = working_days;
     }
 
+    public void setProfileLocal(String profile) {
+        this.profile = profile;
+    }
 }
