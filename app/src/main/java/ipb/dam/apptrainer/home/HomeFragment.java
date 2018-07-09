@@ -19,16 +19,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.db.DataBase;
 import ipb.dam.apptrainer.login.LoginSingleton;
 import ipb.dam.apptrainer.training.TrainingActivity;
 
@@ -44,6 +47,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
      * String holding the home title given in {@link #newInstance(String)}
      */
     private String fragmentTitle;
+
     /**
      * <b>DO NOT</b> use this constructor to instantiate this class.
      * It should only be used by the Operational System, use {@link #newInstance(String)}
@@ -99,8 +103,6 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         final TextView progressTxt = root.findViewById(R.id.fragment_home_txtv_progress);
         String exerciseStatus = String.valueOf( getProgressToday())+ "% done";
 
-
-
         // Set up texts to be shown
         title.setText(fragmentTitle);
         progressTxt.setText(exerciseStatus);
@@ -130,6 +132,32 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
             }
         });
 
+        ImageView profileImage = root.findViewById(R.id.home_imageview);
+        try {
+            JSONObject jsonObject = DataBase.getInstance(getContext()).getDataDBJ();
+
+            if(jsonObject != null){
+
+                switch (jsonObject.getJSONObject("profile").getInt("type")) {
+                    case 0: // Lazy
+                        profileImage.setImageResource(R.drawable.gordo);
+                        break;
+
+                    case 1: // Balanced
+                        profileImage.setImageResource(R.drawable.normal);
+                        break;
+
+                    case 2: // Bodybuilder
+                        profileImage.setImageResource(R.drawable.forte);
+                        break;
+                }
+
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return root;
     }
@@ -142,6 +170,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
 
     @Override
     public void onResumeFragment(AppCompatActivity appCompatActivity) {
+
         SeekBar seekBar = appCompatActivity.findViewById(R.id.fragment_home_seekbar);
         TextView progressTxt = appCompatActivity.findViewById(R.id.fragment_home_txtv_progress);
         seekBar.setProgress(getProgressToday());

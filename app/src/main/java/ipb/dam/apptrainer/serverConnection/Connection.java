@@ -20,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+import ipb.dam.apptrainer.db.DataBase;
 import ipb.dam.apptrainer.login.LoginSingleton;
 
 public class Connection {
@@ -111,7 +112,6 @@ public class Connection {
             requestJSON.put("token", "");
             requestJSON.put("email", usernameApp);
             requestJSON.put("password", passwdApp);
-
             sendJSON(requestJSON);
         }catch (Exception e){
             Log.w(this.getClass().getSimpleName(), "JSON build error");
@@ -231,7 +231,7 @@ public class Connection {
                         switch (result.getString("status")){
                             case "0": loginSingleton.loginSuccessful(null, result); break;
                             case "1": loginSingleton.registrationSuccessful(result); break;
-                            case "2": loginSingleton.profileSuccessful(result.getString("token"), true); break;
+                            case "2": loginSingleton.profileSuccessful(result, true); break;
                             default: loginSingleton.errorHandler(result);
 
                         }

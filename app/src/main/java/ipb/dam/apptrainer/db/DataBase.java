@@ -3,6 +3,7 @@ package ipb.dam.apptrainer.db;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +12,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * This class is used to hide information about the system
@@ -30,7 +38,7 @@ public class DataBase extends AppCompatActivity {
     /**
      * Name of the database for this application
      */
-    private static final String DATA_BASE_NAME = "bunny_coach_shared_preferences";
+    private static final String DATA_BASE_DEFAULT = "bunny_coach_shared_preferences";
 
     /**
      * Key for storing data of the current training status of the user.
@@ -43,7 +51,22 @@ public class DataBase extends AppCompatActivity {
     private static final String KEY_DATA = "key_data";
 
     /**
-     * @param context Context of the class.
+     * Key that maps to a value in the database that will return the date of the last synchronization.
+     */
+    private static final String KEY_LAST_SYNC = "key_last_sync";
+
+    /**
+     * Key that maps to the last email that has been used to log.
+     */
+    private static final String KEY_LOGGED_EMAIL = "key_logged_email";
+
+    /**
+     * Format of the date stored in the database.
+     */
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+
+    /**
+     * @param context Context of the app.
      * @return Instance of the class
      */
     public static synchronized DataBase getInstance(Context context) {
@@ -55,9 +78,57 @@ public class DataBase extends AppCompatActivity {
         return ourInstance;
     }
 
+
     private DataBase(Context context){
-        preferences = context.getSharedPreferences(DATA_BASE_NAME, MODE_PRIVATE);
+
+        preferences = context.getSharedPreferences(DATA_BASE_DEFAULT, MODE_PRIVATE);
+        String loggedEmail = preferences.getString(KEY_LOGGED_EMAIL, null);
+
+        if(loggedEmail != null){
+            preferences = context.getSharedPreferences(loggedEmail, MODE_PRIVATE);
+        }
+
     }
+
+    /**
+     * Changes the database to access data from the given user
+     * @param context App context. Cannot be {@code null}.
+     * @param login Login of the user to get access do his database. If {@code null},
+     *              change to the default database and clears the register of the last logged user.
+     */
+    public void changeUser(@NonNull Context context, @Nullable String login){
+        preferences = context.getSharedPreferences(DATA_BASE_DEFAULT, MODE_PRIVATE);
+
+        if (login == null) {
+            preferences.edit().remove(KEY_LOGGED_EMAIL).commit();
+        } else{
+            preferences.edit().putString(KEY_LOGGED_EMAIL, login).commit();
+            preferences = context.getSharedPreferences(login, MODE_PRIVATE);
+        }
+
+    }
+
+    /**
+     * Saves the current date to the database.
+     */
+    public void updateSyncDate(){
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        editor = preferences.edit();
+        editor.putInt(KEY_LAST_SYNC, day);
+        editor.commit();
+
+    }
+
+    /**
+     *
+     * @return -1 if there were no last update or one value between 0 to 6.
+     */
+    public int getLastSyncDate(){
+        return preferences.getInt(KEY_LAST_SYNC, -1);
+    }
+
 
     /**
      * @param json This parameters is use to take all the Json received from server,
@@ -92,13 +163,6 @@ public class DataBase extends AppCompatActivity {
             editor.remove(KEY_DATA);
         else
             editor.putString(KEY_DATA, json.toString());
-        /*
-        try {
-            Log.i("Data.build", getDataDBJ().toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        */
 
         //save in data base
         editor.commit();

@@ -79,15 +79,6 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="0%"/>
 
-    <TextView
-        style="@style/AppText.White.Micro"
-        android:id="@+id/fragment_statistics_exercises_current_progress_detail"
-        app:layout_constraintTop_toBottomOf="@id/fragment_statistics_space_center_circular_seek_bar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="45 de 49"
-        android:textColor="@color/fragment_statistics_text_exercises_progress_detail"/>
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/fragment_statistics_statistics_holder"
         android:layout_width="wrap_content"

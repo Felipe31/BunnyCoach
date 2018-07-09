@@ -16,6 +16,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 import ipb.dam.apptrainer.R;
@@ -35,7 +38,9 @@ public class HomeActivity  extends AppCompatActivity {
 
         DataBase.getInstance(this); // Give context to the db, otherwise the line below will crash
         LoginSingleton.getInstance().setContext(this); // Set context to the Singleton class
-        LoginSingleton.getInstance().refreshOldStatistics(this);
+        Log.i(getClass().getSimpleName(), "DATE CHANGED SINCE LAST SYNC: Send statistics to the database");
+        LoginSingleton.getInstance().refreshOldStatistics(this  );
+        Log.i(getClass().getSimpleName(), "---DATE CHANGED SINCE LAST SYNC: Send statistics to the database");
 
         AppCompatActivity appCompatActivity = this;
         pager = findViewById(R.id.content_home_viewpager);
@@ -113,9 +118,19 @@ public class HomeActivity  extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
+
         AppCompatActivity appCompatActivity = this;
         if(fragmentToShow != null)
             fragmentToShow.onResumeFragment(appCompatActivity);
+
+       /* Calendar calendar = Calendar.getInstance();
+        int today = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        int lastSync = DataBase.getInstance(this).getLastSyncDate();
+        if(lastSync != -1 && lastSync < today){
+            Log.i(getClass().getSimpleName(), "DATE CHANGED SINCE LAST SYNC: Send statistics to the database");
+            DataBase.getInstance(this).updateSyncDate();
+        }*/
+
     }
 
     @Override

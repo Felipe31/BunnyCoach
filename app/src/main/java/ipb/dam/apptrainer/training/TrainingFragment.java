@@ -172,7 +172,7 @@ public class TrainingFragment extends Fragment {
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
+                    percentage = seekBar.getProgress();
                 }
 
                 @Override
