@@ -120,13 +120,13 @@ public class HomeActivity  extends AppCompatActivity {
         if(fragmentToShow != null)
             fragmentToShow.onResumeFragment(appCompatActivity);
 
-        Date today = Calendar.getInstance(Locale.US).getTime();
-        Date lastSync = DataBase.getInstance(this).getLastSyncDate();
-        if(lastSync != null && lastSync.before(today)){
+       /* Calendar calendar = Calendar.getInstance();
+        int today = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        int lastSync = DataBase.getInstance(this).getLastSyncDate();
+        if(lastSync != -1 && lastSync < today){
             Log.i(getClass().getSimpleName(), "DATE CHANGED SINCE LAST SYNC: Send statistics to the database");
-
             DataBase.getInstance(this).updateSyncDate();
-        }
+        }*/
 
     }
 

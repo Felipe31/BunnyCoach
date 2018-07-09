@@ -113,34 +113,20 @@ public class DataBase extends AppCompatActivity {
      */
     public void updateSyncDate(){
 
-        Date currentDate = Calendar.getInstance(Locale.US).getTime();
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
         editor = preferences.edit();
-        editor.putString(KEY_LAST_SYNC, dateFormat.format(currentDate));
+        editor.putInt(KEY_LAST_SYNC, day);
         editor.commit();
 
     }
 
     /**
      *
-     * @return Date of the last sync in the format: dd/MM/yyyy, locale US or
-     * {@code null} if there was no sync.
+     * @return -1 if there were no last update or one value between 0 to 6.
      */
-    public @Nullable Date getLastSyncDate(){
-
-        String storedDate = preferences.getString(KEY_LAST_SYNC, null);
-
-        if (storedDate == null) {
-            return null;
-        }
-
-        Date date = null;
-        try {
-            date = dateFormat.parse(storedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return date;
+    public int getLastSyncDate(){
+        return preferences.getInt(KEY_LAST_SYNC, -1);
     }
 
 
