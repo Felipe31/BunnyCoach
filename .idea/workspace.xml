@@ -6,12 +6,18 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+<<<<<<< HEAD
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+=======
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="token" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="afef538b-714d-417f-9df8-34ab9c12cc9b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/db/DataBase.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/db/DataBase.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java" />
@@ -20,6 +26,9 @@
 =======
       <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginSingleton.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginSingleton.java" />
 >>>>>>> 94216eb41953c4a09d4a59e9f4b739b49cefc3b6
+=======
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" />
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,6 +61,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -62,6 +72,13 @@
             <state relative-caret-position="884">
               <caret line="250" column="44" lean-forward="false" selection-start-line="250" selection-start-column="44" selection-end-line="250" selection-end-column="44" />
 >>>>>>> 94216eb41953c4a09d4a59e9f4b739b49cefc3b6
+=======
+      <file leaf-file-name="StatisticsFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="434">
+              <caret line="223" column="47" lean-forward="false" selection-start-line="223" selection-start-column="47" selection-end-line="223" selection-end-column="47" />
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
               <folding />
             </state>
           </provider>
@@ -102,9 +119,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginSingleton.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoginSingleton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginSingleton.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="226">
               <caret line="156" column="49" lean-forward="false" selection-start-line="156" selection-start-column="49" selection-end-line="156" selection-end-column="49" />
@@ -112,6 +130,10 @@
             <state relative-caret-position="134">
               <caret line="375" column="12" lean-forward="false" selection-start-line="375" selection-start-column="12" selection-end-line="375" selection-end-column="12" />
 >>>>>>> 94216eb41953c4a09d4a59e9f4b739b49cefc3b6
+=======
+            <state relative-caret-position="170">
+              <caret line="366" column="79" lean-forward="false" selection-start-line="366" selection-start-column="79" selection-end-line="366" selection-end-column="79" />
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2547#2548#0" expanded="true" />
@@ -145,6 +167,19 @@
                 <element signature="e#19656#19657#0" expanded="true" />
                 <element signature="e#19707#19708#0" expanded="true" />
                 <element signature="e#19745#19746#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CircularSeekBar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/components/CircularSeekBar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="1071" column="13" lean-forward="false" selection-start-line="1071" selection-start-column="13" selection-end-line="1071" selection-end-column="13" />
+              <folding>
+                <element signature="e#41797#41798#0" expanded="true" />
+                <element signature="e#41849#41850#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -199,6 +234,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Connection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/serverConnection/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -213,6 +249,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -2379,12 +2417,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java" />
 =======
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/serverConnection/Connection.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/HomeFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/db/DataBase.java" />
 >>>>>>> 94216eb41953c4a09d4a59e9f4b739b49cefc3b6
         <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginSingleton.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java" />
       </list>
     </option>
   </component>
@@ -2447,6 +2485,14 @@
 =======
 >>>>>>> 94216eb41953c4a09d4a59e9f4b739b49cefc3b6
               <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app-app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="apptrainer" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="app" type="1abcf292:AndroidViewProjectNode" />
@@ -2964,13 +3010,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/anim/statistics_bar_expand.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/animator/ViewExpandAnimator.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/components/CircularSeekBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="237" column="27" lean-forward="false" selection-start-line="237" selection-start-column="18" selection-end-line="237" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
@@ -3133,9 +3172,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="952">
           <caret line="250" column="44" lean-forward="false" selection-start-line="250" selection-start-column="44" selection-end-line="250" selection-end-column="44" />
           <folding />
+=======
+        <state relative-caret-position="1887">
+          <caret line="133" column="4" lean-forward="false" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6542#6543#0" expanded="false" />
+            <element signature="e#6596#6597#0" expanded="false" />
+            <marker date="1531132429008" expanded="true" signature="8358:8368" ph="{...}" />
+          </folding>
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
         </state>
       </provider>
     </entry>
@@ -3174,6 +3224,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-26/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -3198,6 +3249,8 @@
             <element signature="e#6632#6633#0" expanded="true" />
           </folding>
 =======
+=======
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -3260,12 +3313,17 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/login/LoginSingleton.java">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="226">
           <caret line="156" column="49" lean-forward="false" selection-start-line="156" selection-start-column="49" selection-end-line="156" selection-end-column="49" />
 =======
         <state relative-caret-position="134">
           <caret line="375" column="12" lean-forward="false" selection-start-line="375" selection-start-column="12" selection-end-line="375" selection-end-column="12" />
 >>>>>>> 94216eb41953c4a09d4a59e9f4b739b49cefc3b6
+=======
+        <state relative-caret-position="170">
+          <caret line="366" column="79" lean-forward="false" selection-start-line="366" selection-start-column="79" selection-end-line="366" selection-end-column="79" />
+>>>>>>> dd6e137aca056a6268e77eeb644fc93224d26824
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2547#2548#0" expanded="true" />
@@ -3300,6 +3358,25 @@
             <element signature="e#19707#19708#0" expanded="true" />
             <element signature="e#19745#19746#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/components/CircularSeekBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="1071" column="13" lean-forward="false" selection-start-line="1071" selection-start-column="13" selection-end-line="1071" selection-end-column="13" />
+          <folding>
+            <element signature="e#41797#41798#0" expanded="true" />
+            <element signature="e#41849#41850#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/ipb/dam/apptrainer/home/StatisticsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="223" column="47" lean-forward="false" selection-start-line="223" selection-start-column="47" selection-end-line="223" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
