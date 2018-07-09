@@ -2,6 +2,7 @@ package ipb.dam.apptrainer.home;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
@@ -113,8 +115,22 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         Log.i("Total", String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday()));
         seekBar.setProgress( getProgressToday());
 
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
         final Button chooseButton = root.findViewById(R.id.content_home_button_check);
-        chooseButton.setOnClickListener(view -> startActivity(new Intent(root.getContext(), TrainingActivity.class)));
+        chooseButton.setOnClickListener(view -> {
+            try {
+                Log.i(getClass().getSimpleName(), LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1)).toString());
+                if(LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1)).length() < 1) {
+                    Toast.makeText(root.getContext(), getResources().getString(R.string.no_exercise_today), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else startActivity(new Intent(root.getContext(), TrainingActivity.class));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
 
         ImageView profileImage = root.findViewById(R.id.home_imageview);
         try {
