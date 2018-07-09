@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
                 if(LoginSingleton.getInstance().getTrainingTracker().getJSONArray(String.valueOf(day-1)).length() < 1) {
                     Toast.makeText(root.getContext(), getResources().getString(R.string.no_exercise_today), Toast.LENGTH_SHORT).show();
                     return;
-                } 
+                }
                 else startActivity(new Intent(root.getContext(), TrainingActivity.class));
             } catch (JSONException e) {
                 e.printStackTrace();

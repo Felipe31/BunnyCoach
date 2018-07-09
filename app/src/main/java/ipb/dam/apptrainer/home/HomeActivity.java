@@ -35,6 +35,7 @@ public class HomeActivity  extends AppCompatActivity {
 
         DataBase.getInstance(this); // Give context to the db, otherwise the line below will crash
         LoginSingleton.getInstance().setContext(this); // Set context to the Singleton class
+        LoginSingleton.getInstance().refreshOldStatistics(this);
 
         AppCompatActivity appCompatActivity = this;
         pager = findViewById(R.id.content_home_viewpager);

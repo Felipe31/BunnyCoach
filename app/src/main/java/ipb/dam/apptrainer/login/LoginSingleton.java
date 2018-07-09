@@ -481,32 +481,59 @@ public class LoginSingleton {
 //    Send statistics of the day to the server and
 //    set the trainingTracker as unused
     public void refreshStatistics(Context context) {
-        this.context = context;
-
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK)-1;
-        try {
+        actionRefreshStatistics(context, day);
+    }
 
+    public void refreshOldStatistics(Context context){
+        Calendar calendar = Calendar.getInstance();
+        int dayCurrent = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        int dayOld = 0;
+        if(dayCurrent != dayOld){
+            actionRefreshStatistics(context, dayOld);
+        }
+    }
+
+    private void actionRefreshStatistics(Context context, int day){
+        if(context != null ) {
+            this.context = context;
+            try {
+                JSONArray ex = generateStatisticsJSON(day);
+                if (ex == null) throw new JSONException;
+                //gettrainingtracker função presente na classe trocado por DataBase.getInstance().getTrainigTrackerDBJ()
+                Log.i("Refresh Statistics", ex.toString());
+                Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
+                setTrainingTrackerUnused();
+                Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
+                Connection.getInstance().sendExcercisesDone(token, ex);
+            } catch (Exception e) {
+                Log.i("Action Refresh", "Error");
+
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private JSONArray generateStatisticsJSON(int day){
+        try {
             JSONArray exercises =  getTrainingTracker().getJSONArray(String.valueOf(day));
 
             JSONArray ex = new JSONArray(exercises.toString());
             for(int i = 0; i < ex.length(); i++){
-                ex.getJSONObject(i).put("qtd", ex.getJSONObject(i).getInt("done"));
-                ex.getJSONObject(i).remove("done");
+                if(ex.getJSONObject(i).getInt("done") != 0) {
+                    ex.getJSONObject(i).put("qtd", ex.getJSONObject(i).getInt("done"));
+                    ex.getJSONObject(i).remove("done");
+                }
             }
-
-            //gettrainingtracker função presente na classe trocado por DataBase.getInstance().getTrainigTrackerDBJ()
-            Log.i("Refresh Statistics", ex.toString());
-            Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
-            setTrainingTrackerUnused();
-            Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
-            Connection.getInstance().sendExcercisesDone(token, ex);
+            return ex;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
+        return null;
     }
+
 
 //    Regular getters and setters
 
