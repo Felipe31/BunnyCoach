@@ -16,6 +16,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 import ipb.dam.apptrainer.R;
@@ -112,9 +115,19 @@ public class HomeActivity  extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
+
         AppCompatActivity appCompatActivity = this;
         if(fragmentToShow != null)
             fragmentToShow.onResumeFragment(appCompatActivity);
+
+        Date today = Calendar.getInstance(Locale.US).getTime();
+        Date lastSync = DataBase.getInstance(this).getLastSyncDate();
+        if(lastSync != null && lastSync.before(today)){
+            Log.i(getClass().getSimpleName(), "DATE CHANGED SINCE LAST SYNC: Send statistics to the database");
+
+            DataBase.getInstance(this).updateSyncDate();
+        }
+
     }
 
     @Override

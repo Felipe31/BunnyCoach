@@ -49,9 +49,6 @@ public class LoginSingleton {
 //    Body Builder = 2
     private String profile = null;
 
-//    Session token sent by the server each time the user makes login
-    private String token = null;
-
 //  Height of the user
     private String height = null;
 
@@ -85,6 +82,7 @@ public class LoginSingleton {
 
         this.context = context;
         //isLogged = true;
+        DataBase.getInstance(context).changeUser(context, usernameApp); // Switch to the user's database. Ok if the login succeed or fail.
         Connection.getInstance().requestUserLogin(usernameApp, passwdApp);
 
     }
@@ -106,21 +104,16 @@ public class LoginSingleton {
 //    If there is any error, it makes the logout
     private void loginSuccessful(JSONObject result){
         if(context != null) {
-            try {
-                Log.i("Login Successful", result.toString());
 
-                setToken(result.getString("token"));
-                setData(result);
-                //isLogged = true;
-                Intent intent = new Intent(context, HomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(intent);
-                ((AppCompatActivity)context).finish();
-                context = null;
-            } catch (JSONException e) {
-                e.printStackTrace();
-                makeLogout();
-            }
+            Log.i("Login Successful", result.toString());
+            setData(result);
+            //isLogged = true;
+            Intent intent = new Intent(context, HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+            ((AppCompatActivity)context).finish();
+            context = null;
+
         }
 
     }
@@ -136,6 +129,7 @@ public class LoginSingleton {
     private boolean makeLogout() {
 
         DataBase.getInstance(context).setDataDB(null); // Remove data from the database.
+        DataBase.getInstance(context).changeUser(context, null); // Remove logged user from the database.
 
         if(context != null) {
             Intent intent = new Intent(context, LoginActivity.class);
@@ -175,13 +169,7 @@ public class LoginSingleton {
 //    message
 //    It goes opens the next activity of the registration steps, which is the ProfileChooserActivity
     public void registrationSuccessful(JSONObject result) {
-        try {
-            setToken(result.getString("token"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-            makeLogout();
-        }
-
+        DataBase.getInstance(context).setDataDB(result);
         if(context != null) {
             context.startActivity(new Intent(context, ProfileChooserActivity.class));
             Toast.makeText(context, context.getResources().getString(R.string.info_registration_successful), Toast.LENGTH_SHORT).show();
@@ -337,8 +325,8 @@ public class LoginSingleton {
 //    To execute this method properly, the context variable NEEDS to be setted already
 //    If the server do the registration of the user's profile, it sets the token variable
 //    And call the profileSuccessful method
-    public void profileSuccessful(String token, boolean closeCurrentContext){
-        setToken(token);
+    public void profileSuccessful(JSONObject result, boolean closeCurrentContext){
+        DataBase.getInstance(context).setDataDB(result);
         profileSuccessful(closeCurrentContext);
     }
 
@@ -500,7 +488,7 @@ public class LoginSingleton {
             Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
             setTrainingTrackerUnused();
             Log.i("Refresh Statistics TT", DataBase.getInstance(context).getTrainigTrackerDBJ().toString());
-            Connection.getInstance().sendExcercisesDone(token, ex);
+            Connection.getInstance().sendExcercisesDone(getToken(), ex);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -535,10 +523,6 @@ public class LoginSingleton {
 
     private void setTrainingTracker(JSONObject trainingTracker) {
         DataBase.getInstance(context).setTrainigTrackerDB(trainingTracker);
-    }
-
-    private void setToken(String token) {
-        this.token = token;
     }
 
     public JSONObject getData() throws JSONException {
