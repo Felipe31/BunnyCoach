@@ -153,7 +153,7 @@ public class Connection {
                     dataJson[0].remove("token");
                     dataJson[0].remove("api");
                     String body = dataJson[0].toString();
-                    Log.i(this.getClass().getSimpleName(), body);
+                    Log.i(this.getClass().getSimpleName(),"Content to be sent to the server:"+ body);
 
                     OutputStream output = new BufferedOutputStream(conn.getOutputStream());
                     output.write(body.getBytes());

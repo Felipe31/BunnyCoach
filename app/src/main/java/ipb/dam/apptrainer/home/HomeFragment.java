@@ -18,15 +18,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
 import ipb.dam.apptrainer.R;
+import ipb.dam.apptrainer.db.DataBase;
 import ipb.dam.apptrainer.login.LoginSingleton;
 import ipb.dam.apptrainer.training.TrainingActivity;
 
@@ -42,6 +45,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
      * String holding the home title given in {@link #newInstance(String)}
      */
     private String fragmentTitle;
+
     /**
      * <b>DO NOT</b> use this constructor to instantiate this class.
      * It should only be used by the Operational System, use {@link #newInstance(String)}
@@ -95,10 +99,7 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
 
         final TextView title = root.findViewById(R.id.fragment_home_txtv_title);
         final TextView progressTxt = root.findViewById(R.id.fragment_home_txtv_progress);
-        //String exerciseStatus = String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday())+ "% done";
-        String exerciseStatus = LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/7 + "% done"; //TODO remove
-
-
+        String exerciseStatus = String.valueOf( getProgressToday())+ "% done";
 
         // Set up texts to be shown
         title.setText(fragmentTitle);
@@ -110,13 +111,37 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         seekBar.setMax(100);
         Log.i("Current", String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()));
         Log.i("Total", String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday()));
-        //seekBar.setProgress( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday());
-        seekBar.setProgress(5); //TODO remove
-
+        seekBar.setProgress( getProgressToday());
 
         final Button chooseButton = root.findViewById(R.id.content_home_button_check);
         chooseButton.setOnClickListener(view -> startActivity(new Intent(root.getContext(), TrainingActivity.class)));
 
+        ImageView profileImage = root.findViewById(R.id.home_imageview);
+        try {
+            JSONObject jsonObject = DataBase.getInstance(getContext()).getDataDBJ();
+
+            if(jsonObject != null){
+
+                switch (jsonObject.getJSONObject("profile").getInt("type")) {
+                    case 0: // Lazy
+                        profileImage.setImageResource(R.drawable.gordo);
+                        break;
+
+                    case 1: // Balanced
+                        profileImage.setImageResource(R.drawable.normal);
+                        break;
+
+                    case 2: // Bodybuilder
+                        profileImage.setImageResource(R.drawable.forte);
+                        break;
+                }
+
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return root;
     }
@@ -129,10 +154,11 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
 
     @Override
     public void onResumeFragment(AppCompatActivity appCompatActivity) {
+
         SeekBar seekBar = appCompatActivity.findViewById(R.id.fragment_home_seekbar);
         TextView progressTxt = appCompatActivity.findViewById(R.id.fragment_home_txtv_progress);
-        //seekBar.setProgress(LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday());
-        String exerciseStatus = String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday())+ "% done";
+        seekBar.setProgress(getProgressToday());
+        String exerciseStatus = String.valueOf(getProgressToday())+ "% done";
         progressTxt.setText(exerciseStatus);
         Log.i("Current", String.valueOf( LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()));
         Log.i("Total", String.valueOf(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday()));
@@ -140,5 +166,12 @@ public class HomeFragment extends Fragment implements FragmentLifecycle {
         Objects.requireNonNull(appCompatActivity.getSupportActionBar()).setTitle(R.string.home_title);
 
 
+    }
+
+    public int getProgressToday() {
+        if(LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday() != 0)
+            return LoginSingleton.getInstance().getTrainingTrackerExerciseDoneToday()*100/LoginSingleton.getInstance().getTrainingTrackerExerciseTotalToday();
+        else
+        return 100;
     }
 }

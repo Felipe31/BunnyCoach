@@ -102,7 +102,6 @@ public class DataBase extends AppCompatActivity {
 
         //save in data base
         editor.commit();
-
     }
 
     /**
