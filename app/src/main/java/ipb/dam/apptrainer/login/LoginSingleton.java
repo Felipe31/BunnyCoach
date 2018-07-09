@@ -356,6 +356,21 @@ public class LoginSingleton {
 
 //    Return token if setted, exception if it is not found
     private String getToken() throws Resources.NotFoundException{
+
+        String token = null;
+
+        try {
+
+            JSONObject jsonObject = DataBase.getInstance(context).getDataDBJ();
+            if(jsonObject != null){
+                token = jsonObject.getString("token");
+                Log.i(getClass().getSimpleName(), "Token retrieved: " + token);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         if(token == null ) {
             throw new Resources.NotFoundException();
         }
